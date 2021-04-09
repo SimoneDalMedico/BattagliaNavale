@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>risorse/style.css</file>
+        <file>risorse/Affondata.png</file>
+        <file>risorse/quadratoRosso.png</file>
+        <file>risorse/XMancata.jpg</file>
+    </qresource>
+</RCC>

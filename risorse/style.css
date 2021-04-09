@@ -1,0 +1,35 @@
+* {
+	margin:0;
+	padding:0;
+        background-color: rgb(51,03,129);
+        color: white;
+}
+
+QPushButton {
+
+/*Border – style: outset;
+Border – width: 2px;		
+Border – radius:  10px;		
+Border – color: beige;		
+font: bold 14px;		
+min – width: 10em;
+*/
+margin:0;
+padding:0;
+border: 1px solid white;
+background-color: rgb(21,73,99);
+}
+QPushButton:hover {
+        /*Background – color : #e6e6fa;*/
+        /*Border – style: inset;*/
+    background-color: rgb(36,88,114);
+}
+QMenuBar{
+        padding: spx;
+        background-color: rgb(21,83,109);
+}
+QMenuBar::item::selected, QMenu::item::selected{
+        background-color: rgb(21,83,109);
+}
+
+/*da provare a fare la QIcon*/
