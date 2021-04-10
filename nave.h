@@ -23,7 +23,7 @@ public:
 
 protected:
 
-    std::map<unsigned short int, tpair> caselleNave;
+    std::map<unsigned short int, tpair> caselleNave; //questo si trasforma in classe contenitore con all' interno i puntattori all aclasse base cella
 
 };
 
