@@ -5,6 +5,7 @@
  <data>
   <variable>EnvironmentId</variable>
   <value type="QByteArray">{ec877425-93e6-42d2-9a1b-2dcc33da3ca3}</value>
+
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
