@@ -29,7 +29,6 @@ HEADERS += buttonb.h \
            navecorazzata.h \
            navecrociere.h \
            naveportaerei.h \
-           ui_schermata.h \
            vistagioco.h \
            vistaposizione.h
 FORMS += schermata.ui
