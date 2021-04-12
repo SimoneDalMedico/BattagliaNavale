@@ -6,6 +6,8 @@
 #include <iostream>
 //#include <QRandomGenerator>
 #include <vector>
+#include "contenitore.h"
+
 typedef std::pair<unsigned short int, unsigned short int> tpair;
 
 class Nave : public cella
@@ -24,7 +26,8 @@ public:
 
 protected:
 
-    std::map<unsigned short int, tpair> caselleNave;
+//    std::map<unsigned short int, tpair> caselleNave;
+    contenitore<deep_ptr<cella>> caselleNave;
 
 };
 
