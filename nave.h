@@ -1,5 +1,6 @@
 #ifndef NAVE_H
 #define NAVE_H
+#include "cella.h"
 #include <random>
 #include <map>
 #include <iostream>
@@ -7,7 +8,7 @@
 #include <vector>
 typedef std::pair<unsigned short int, unsigned short int> tpair;
 
-class Nave
+class Nave : public cella
 {
 
 public:

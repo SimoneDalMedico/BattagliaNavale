@@ -16,6 +16,7 @@ INCLUDEPATH += .
 
 # Input
 HEADERS += buttonb.h \
+           cella.h \
            computer.h \
            controller.h \
            dimensione.h \
@@ -34,6 +35,7 @@ HEADERS += buttonb.h \
            vistaposizione.h
 FORMS += schermata.ui
 SOURCES += buttonb.cpp \
+           cella.cpp \
            computer.cpp \
            controller.cpp \
            giocatore.cpp \
