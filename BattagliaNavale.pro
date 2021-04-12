@@ -32,7 +32,7 @@ HEADERS += buttonb.h \
            naveportaerei.h \
            vistagioco.h \
            vistaposizione.h
-FORMS += schermata.ui
+FORMS +=
 SOURCES += buttonb.cpp \
            cella.cpp \
            computer.cpp \
