@@ -1,6 +1,6 @@
 #ifndef MODEL_H
 #define MODEL_H
-#define u_int unsigned short
+//#define u_int unsigned short
 #include <string>
 #include <stdexcept>
 #include <map>
