@@ -17,7 +17,7 @@ public:
     bool empty();
     T* begin(); //indica il primo elemento del contenitore
     T* end();
-    void erase(const T&);
+    void erase (T*&);
 //    void push_front(const T&);
 };
 

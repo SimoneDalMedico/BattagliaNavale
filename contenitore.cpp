@@ -71,7 +71,7 @@ T *contenitore<T>::end()
 }
 
 template<class T>
-void contenitore<T>::erase(T* p)
+void contenitore<T>::erase(T* &p)
 {
     bool stop=true;
     for(deep_ptr<T>* tmp=first; tmp!=nullptr && stop; tmp=tmp->next){

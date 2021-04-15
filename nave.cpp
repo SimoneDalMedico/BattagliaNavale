@@ -2,7 +2,6 @@
 
 void Nave::reset()
 {
-    deep_ptr<cella>* it;
     caselleNave.clear();
 }
 
@@ -446,7 +445,7 @@ if(it->info.ShowX()==0 && it->info.ShowY()==0){
 unsigned short Nave::PosizionaGrigliaC()
 {
     deep_ptr<cella>* it=caselleNave.end();
-    it--;
+    it--; //attenzione!!! qui si va in dietro!
     return (((it->info.ShowX())*10)+it->info.ShowY());
 }
 
