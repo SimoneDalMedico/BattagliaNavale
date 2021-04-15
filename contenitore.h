@@ -13,6 +13,11 @@ public:
     void insert(const T&);
     T* find(const T&);
     unsigned short int size();
+    void clear();
+    bool empty();
+    T* begin(); //indica il primo elemento del contenitore
+    T* end();
+    void erase(const T&);
 //    void push_front(const T&);
 };
 
