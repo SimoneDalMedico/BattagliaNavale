@@ -8,20 +8,20 @@ NaveCorazzata::NaveCorazzata()
 
 void NaveCorazzata::assegna(unsigned short X, unsigned short Y)
 {
-    if(NaveCorazzata::caselleNave.size()<dimensioneCorzzata){
-           tpair posizione=std::pair<unsigned short int, unsigned short int>(X,Y);
-           std::map< unsigned short int,tpair>::value_type a(NaveCorazzata::caselleNave.size()+1,posizione);
-           NaveCorazzata::caselleNave.insert(a);
+    if(NaveCorazzata::caselleNave.size()<4){
+        cella nuova(X,Y);
+        deep_ptr<cella> posizione(nuova);
+        caselleNave.insert(posizione);
     }
 }
 
 void NaveCorazzata::operator=(NaveCorazzata co)
 {
     
-    std::map<unsigned short int,tpair>::iterator it;
+    deep_ptr<cella>* it;
     for(it=co.caselleNave.begin();it!=co.caselleNave.end();it++){
-        tpair posizione=std::pair<unsigned short int, unsigned short int>(it->second.first, it->second.second);
-        std::map<int,tpair>::value_type a(it->first,posizione);
-        caselleNave.insert(a);
+        cella nuova(it->info.ShowX(),it->info.ShowY());
+        deep_ptr<cella> posizione(nuova);
+        caselleNave.insert(posizione);
     }
 }

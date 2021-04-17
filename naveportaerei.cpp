@@ -7,19 +7,19 @@ NavePortaerei::NavePortaerei()
 
 void NavePortaerei::assegna(unsigned short X, unsigned short Y)
 {
-    if(NavePortaerei::caselleNave.size()<dimensionePortaerei){
-            tpair posizione=std::pair<unsigned short int, unsigned short int>(X,Y);
-            std::map<unsigned short int,tpair>::value_type a(NavePortaerei::caselleNave.size()+1,posizione);
-            NavePortaerei::caselleNave.insert(a);
+    if(NavePortaerei::caselleNave.size()<5){
+        cella nuova(X,Y);
+        deep_ptr<cella> posizione(nuova);
+        caselleNave.insert(posizione);
     }
 }
 
 void NavePortaerei::operator=(NavePortaerei a)
 {
-    std::map<unsigned short int,tpair>::iterator it;
+    deep_ptr<cella>* it;
     for(it=a.caselleNave.begin();it!=a.caselleNave.end();it++){
-        tpair posizione=std::pair<unsigned short int, unsigned short int>(it->second.first, it->second.second);
-        std::map<int,tpair>::value_type a(it->first,posizione);
-        caselleNave.insert(a);
+        cella nuova(it->info.ShowX(), it->info.ShowY());
+        deep_ptr<cella> posizione(nuova);
+        caselleNave.insert(posizione);
     }
 }

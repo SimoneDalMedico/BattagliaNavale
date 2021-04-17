@@ -134,7 +134,6 @@ bool ModelloGioco::checkWinner()
 
 bool ModelloGioco::checkNaveColpita(unsigned short x, unsigned short y)
 {
-      std::map<int,tpair>::iterator it;
         if(turn==Giocatore::Turno){
             if(giocatore.assalto.colpita(x,y)){
                 return true;

@@ -2,7 +2,7 @@
 #define NAVECORAZZATA_H
 #include "nave.h"
 #include "dimensione.h"
-class NaveCorazzata : public Nave, public Dimensione
+class NaveCorazzata : public Nave
 {
     friend class Giocatore;
     friend class Computer;

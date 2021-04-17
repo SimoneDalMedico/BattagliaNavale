@@ -17,6 +17,7 @@ bool Nave::check_posizione(unsigned short x, unsigned short y)
         return true;
     }else{
     deep_ptr<cella>* it=caselleNave.begin();
+
     deep_ptr<cella>* it2=caselleNave.end();
     it2--;
         if(caselleNave.size()==1){
@@ -450,6 +451,8 @@ unsigned short Nave::PosizionaGrigliaC()
 }
 
 
+
+Nave::Nave():caselleNave() {}
 
 bool Nave::colpita(unsigned short X, unsigned short Y)
 {

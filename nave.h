@@ -8,13 +8,13 @@
 #include <vector>
 #include "contenitore.h"
 
-typedef std::pair<unsigned short int, unsigned short int> tpair;
+//typedef std::pair<unsigned short int, unsigned short int> tpair;
 
 class Nave : public cella
 {
 
 public:
-
+    Nave();
     bool colpita(unsigned short int, unsigned short int);
     bool affondata();
     virtual void assegna(unsigned short int, unsigned short int) =0;

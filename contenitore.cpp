@@ -79,6 +79,7 @@ void contenitore<T>::erase(T* &p)
             tmp->next=p->next;
             p->next=0;
             delete p;
+
             stop=false;
         }
     }
