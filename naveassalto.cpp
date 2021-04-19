@@ -4,14 +4,19 @@ NaveAssalto::NaveAssalto()
     NaveAssalto::reset();
 }
 
-void NaveAssalto::assegna(unsigned short int X, unsigned short int Y)
+void NaveAssalto::assegna(unsigned short, unsigned short)
 {
-    if(NaveAssalto::caselleNave.size()<2){
-        cella nuova(X,Y);
-        deep_ptr<cella> posizione(nuova);
-        caselleNave.insert(posizione);
-    }
+
 }
+
+//void NaveAssalto::assegna(unsigned short int X, unsigned short int Y)
+//{
+//    if(NaveAssalto::caselleNave<deep_ptr<cella>>.size()<2){
+//        cella nuova(X,Y);
+//        deep_ptr<cella> posizione(nuova);
+//        caselleNave.insert(posizione);
+//    }
+//}
 
 void NaveAssalto::operator=(NaveAssalto a)
 {

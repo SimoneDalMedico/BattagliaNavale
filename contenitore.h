@@ -1,12 +1,13 @@
 #ifndef CONTENITORE_H
 #define CONTENITORE_H
 #include "deep_ptr.h"
+#include "cella.h"
 
-template<class T>
+template<template<class U> class T>
 class contenitore
 {
 private:
-    T* first;
+    template<class U>::T<U>* first;
     T* last;
 public:
     contenitore();

@@ -1,8 +1,11 @@
 #include "contenitore.h"
+//template class contenitore<deep_ptr<B>>;
 
 
-template<class T>
-contenitore<T>::contenitore():first(nullptr), last(nullptr){}
+
+//template<class T>
+template<template<class U> class T>
+contenitore<T<template class U>>::contenitore():template<template <class U> class T>::first<T<U>>(nullptr), last(nullptr){}
 
 template<class T>
 void contenitore<T>::insert(const T& t)

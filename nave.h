@@ -15,6 +15,7 @@ class Nave : public cella
 
 public:
     Nave();
+    virtual
     bool colpita(unsigned short int, unsigned short int);
     bool affondata();
     virtual void assegna(unsigned short int, unsigned short int) =0;
@@ -27,7 +28,10 @@ public:
 protected:
 
 //    std::map<unsigned short int, tpair> caselleNave;
-    contenitore<deep_ptr<cella>> caselleNave;
+//    template<template contenitore<typename deep_ptr<cella>>>
+//    template<template<typename> class deep_ptr, typename cella> potrebbe essere giusto da verificare
+    contenitore<template<typename cella> class deep_ptr>> caselleNave;
+//    contenitore<deep_ptr<cella>> caselleNave;
 
 };
 

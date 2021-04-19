@@ -11,6 +11,7 @@ int Nave::counter()
     return count;
 }
 
+
 bool Nave::check_posizione(unsigned short x, unsigned short y)
 {
     if(caselleNave.empty()){
