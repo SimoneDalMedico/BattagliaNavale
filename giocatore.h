@@ -22,6 +22,7 @@ protected:
     static const int Turno=0;
     int numero_Navi_Affondate;
     int numeroNaviPosizionate;
+    //contenitore<deep_ptr<cella>> naviG
 };
 
 #endif // GIOCATORE_H
