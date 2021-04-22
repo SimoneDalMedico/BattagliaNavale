@@ -15,6 +15,8 @@ public:
     void operator=(Giocatore);
 
 protected:
+//    contenitore<deep_ptr<cella>> naveAssalto;
+    //se inserisco i puntatori all albero di derivazionein giocatore e computer?
     NaveAssalto assalto;
     NaveCrociere crociere;
     NaveCorazzata corazzata;

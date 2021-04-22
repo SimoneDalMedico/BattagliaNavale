@@ -30,8 +30,8 @@ protected:
 //    std::map<unsigned short int, tpair> caselleNave;
 //    template<template contenitore<typename deep_ptr<cella>>>
 //    template<template<typename> class deep_ptr, typename cella> potrebbe essere giusto da verificare
-    contenitore<template<typename cella> class deep_ptr>> caselleNave;
-//    contenitore<deep_ptr<cella>> caselleNave;
+
+    contenitore<deep_ptr<cella>> caselleNave;
 
 };
 

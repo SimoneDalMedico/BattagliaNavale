@@ -3,11 +3,11 @@
 #include "deep_ptr.h"
 #include "cella.h"
 
-template<template<class U> class T>
+template<class T>
 class contenitore
 {
 private:
-    template<class U>::T<U>* first;
+    T* first;
     T* last;
 public:
     contenitore();

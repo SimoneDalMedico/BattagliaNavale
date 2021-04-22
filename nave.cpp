@@ -7,7 +7,7 @@ void Nave::reset()
 
 int Nave::counter()
 {
-    int count=static_cast<int>(caselleNave.size());
+    int count=static_cast<int>(caselleNave.contenitore<deep_ptr<cella>>::size());
     return count;
 }
 
