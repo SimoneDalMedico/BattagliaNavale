@@ -2,7 +2,7 @@
 #define NAVECROCIERE_H
 #include"nave.h"
 #include "dimensione.h"
-class NaveCrociere : public Nave, public Dimensione
+class NaveCrociere : public Nave
 {
     friend class Giocatore;
     friend class Computer;

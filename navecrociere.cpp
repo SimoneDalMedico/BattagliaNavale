@@ -15,7 +15,7 @@ NaveCrociere::~NaveCrociere()
 
 void NaveCrociere::assegna(unsigned short X, unsigned short Y)
 {
-    if(NaveCrociere::caselleNave.size()<dimensioneCrociere){
+    if(NaveCrociere::caselleNave.size()<3){
             tpair posizione=std::pair<unsigned short int, unsigned short int>(X,Y);
             std::map<unsigned short int,tpair>::value_type a(NaveCrociere::caselleNave.size()+1,posizione);
             NaveCrociere::caselleNave.insert(a);

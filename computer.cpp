@@ -9,6 +9,15 @@ Computer::Computer()
         std::map<unsigned short int, unsigned short int>::value_type v(i,i);
         SceltePossibili.insert(v);
     }
+    deep_ptr<cella> assalto=new NaveAssalto();
+    navi.pushBack(assalto);
+    deep_ptr<cella> crociere=new NaveCrociere();
+    navi.pushBack(crociere);
+    deep_ptr<cella> corazzata=new NaveCorazzata();
+    navi.pushBack(corazzata);
+    deep_ptr<cella> portarei=new NavePortaerei();
+    navi.pushBack(portarei);
+
 }
 
 void Computer::operator=(Computer pos)
@@ -17,10 +26,7 @@ void Computer::operator=(Computer pos)
         std::map<unsigned short int, unsigned short int>::value_type v(i,i);
         SceltePossibili.insert(v);
     }
-    assalto=pos.assalto;
-    crociere=pos.crociere;
-    corazzata=pos.corazzata;
-    portaerei=pos.portaerei;
+    navi=pos.navi;
 }
 
 unsigned short int Computer::SceltaComputer()

@@ -8,7 +8,7 @@ NaveCorazzata::NaveCorazzata()
 
 void NaveCorazzata::assegna(unsigned short X, unsigned short Y)
 {
-    if(NaveCorazzata::caselleNave.size()<dimensioneCorzzata){
+    if(NaveCorazzata::caselleNave.size()<4){
            tpair posizione=std::pair<unsigned short int, unsigned short int>(X,Y);
            std::map< unsigned short int,tpair>::value_type a(NaveCorazzata::caselleNave.size()+1,posizione);
            NaveCorazzata::caselleNave.insert(a);

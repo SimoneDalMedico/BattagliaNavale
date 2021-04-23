@@ -2,6 +2,7 @@
 #define CONTENITORE_H
 #include <stdexcept>
 
+
 template <class T>
 class contenitore {
    private:

@@ -4,7 +4,9 @@
 #include "navecorazzata.h"
 #include "navecrociere.h"
 #include "naveportaerei.h"
-
+#include "contenitore.h"
+#include "deep_ptr.h"
+#include "cella.h"
 class Giocatore
 {
     friend class Model;
@@ -15,10 +17,11 @@ public:
     void operator=(Giocatore);
 
 protected:
-    NaveAssalto assalto;
-    NaveCrociere crociere;
-    NaveCorazzata corazzata;
-    NavePortaerei portaerei;
+//    NaveAssalto assalto;
+//    NaveCrociere crociere;
+//    NaveCorazzata corazzata;
+//    NavePortaerei portaerei;
+    contenitore<deep_ptr<cella>> navi;
     static const int Turno=0;
     int numero_Navi_Affondate;
     int numeroNaviPosizionate;

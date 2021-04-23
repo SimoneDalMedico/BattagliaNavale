@@ -2,7 +2,7 @@
 #define NAVEASSALTO_H
 #include "nave.h"
 #include "dimensione.h"
-class NaveAssalto: public Nave, public Dimensione
+class NaveAssalto: public Nave
 {
     friend class Giocatore;
     friend class Computer;

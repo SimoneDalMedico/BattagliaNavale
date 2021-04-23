@@ -1,20 +1,20 @@
 #include "deep_ptr.h"
 
 template <class T>
-bool operator==(const SharedPtr<T>& left, const SharedPtr<T>& right) {
+bool operator==(const deep_ptr<T>& left, const deep_ptr<T>& right) {
     return left._ptr == right._ptr;
 }
 
 template <class T>
-bool operator!=(const SharedPtr<T>& left, const SharedPtr<T>& right) {
+bool operator!=(const deep_ptr<T>& left, const deep_ptr<T>& right) {
     return left._ptr != right._ptr;
 }
 
 template <class T>
-SharedPtr<T>::SharedPtr(T* ptr) : _ptr(ptr), _counter(ptr ? new unsigned short int(1) : new unsigned short int(0)) {}
+deep_ptr<T>::deep_ptr(T* ptr) : _ptr(ptr), _counter(ptr ? new unsigned short int(1) : new unsigned short int(0)) {}
 
 template <class T>
-SharedPtr<T>::SharedPtr(const SharedPtr<T>& SharedPtr) : _ptr(SharedPtr._ptr), _counter(SharedPtr._counter) {
+deep_ptr<T>::deep_ptr(const deep_ptr<T>& deep_ptr) : _ptr(deep_ptr._ptr), _counter(deep_ptr._counter) {
     if (_ptr != nullptr) {
         (*_counter)++;
     } else {
@@ -23,8 +23,8 @@ SharedPtr<T>::SharedPtr(const SharedPtr<T>& SharedPtr) : _ptr(SharedPtr._ptr), _
 }
 
 template <class T>
-SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr<T>& SharedPtr) {
-    if (this != &SharedPtr) {
+deep_ptr<T>& deep_ptr<T>::operator=(const deep_ptr<T>& deep_ptr) {
+    if (this != &deep_ptr) {
         if (*_counter > 0) {
             (*_counter)--;
         }
@@ -36,8 +36,8 @@ SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr<T>& SharedPtr) {
             _counter = nullptr;
         }
 
-        _ptr = SharedPtr._ptr;
-        _counter = SharedPtr._counter;
+        _ptr = deep_ptr._ptr;
+        _counter = deep_ptr._counter;
 
         if (_ptr != nullptr) {
             (*_counter)++;
@@ -49,64 +49,64 @@ SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr<T>& SharedPtr) {
 }
 
 template <class T>
-void SharedPtr<T>::swap(SharedPtr<T>& SharedPtr) {
+void deep_ptr<T>::swap(deep_ptr<T>& deep_ptr) {
     T* temp = _ptr;
     unsigned short int* tempCount = _counter;
 
-    _ptr = SharedPtr._ptr;
-    SharedPtr._ptr = temp;
+    _ptr = deep_ptr._ptr;
+    deep_ptr._ptr = temp;
 
-    _counter = SharedPtr._counter;
-    SharedPtr._counter = tempCount;
+    _counter = deep_ptr._counter;
+    deep_ptr._counter = tempCount;
 }
 
 template <class T>
-SharedPtr<T>::operator bool() const {
+deep_ptr<T>::operator bool() const {
     return _ptr != nullptr;
 }
 
 template <class T>
-T* SharedPtr<T>::get() {
+T* deep_ptr<T>::get() {
     return _ptr;
 }
 
 template <class T>
-T& SharedPtr<T>::operator*() {
+T& deep_ptr<T>::operator*() {
     return *_ptr;
 }
 
 template <class T>
-T* SharedPtr<T>::operator->() {
+T* deep_ptr<T>::operator->() {
     return _ptr;
 }
 
 template <class T>
-T& SharedPtr<T>::operator[](unsigned short int index) {
+T& deep_ptr<T>::operator[](unsigned short int index) {
     return _ptr[index];
 }
 
 template <class T>
-const T* SharedPtr<T>::get() const {
+const T* deep_ptr<T>::get() const {
     return _ptr;
 }
 
 template <class T>
-const T& SharedPtr<T>::operator*() const {
+const T& deep_ptr<T>::operator*() const {
     return *_ptr;
 }
 
 template <class T>
-const T* SharedPtr<T>::operator->() const {
+const T* deep_ptr<T>::operator->() const {
     return _ptr;
 }
 
 template <class T>
-const T& SharedPtr<T>::operator[](unsigned short int index) const {
+const T& deep_ptr<T>::operator[](unsigned short int index) const {
     return _ptr[index];
 }
 
 template <class T>
-void SharedPtr<T>::reset(T* ptr) {
+void deep_ptr<T>::reset(T* ptr) {
     if (*_counter > 0) {
         (*_counter)--;
     }
@@ -121,12 +121,12 @@ void SharedPtr<T>::reset(T* ptr) {
 }
 
 template <class T>
-unsigned short int SharedPtr<T>::use_count() const {
+unsigned short int deep_ptr<T>::use_count() const {
     return (_counter ? *_counter : 0);
 }
 
 template <class T>
-SharedPtr<T>::~SharedPtr() {
+deep_ptr<T>::~deep_ptr() {
     if (*_counter > 0) {
         (*_counter)--;
     }
@@ -139,6 +139,6 @@ SharedPtr<T>::~SharedPtr() {
 }
 
 template <class T, class... Args>
-SharedPtr<T> make_shared(Args&&... args) {
-    return SharedPtr<T>(new T(args...));
+deep_ptr<T> make_shared(Args&&... args) {
+    return deep_ptr<T>(new T(args...));
 }

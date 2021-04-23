@@ -7,7 +7,7 @@ NavePortaerei::NavePortaerei()
 
 void NavePortaerei::assegna(unsigned short X, unsigned short Y)
 {
-    if(NavePortaerei::caselleNave.size()<dimensionePortaerei){
+    if(NavePortaerei::caselleNave.size()<5){
             tpair posizione=std::pair<unsigned short int, unsigned short int>(X,Y);
             std::map<unsigned short int,tpair>::value_type a(NavePortaerei::caselleNave.size()+1,posizione);
             NavePortaerei::caselleNave.insert(a);
