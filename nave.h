@@ -6,13 +6,14 @@
 #include <iostream>
 //#include <QRandomGenerator>
 #include <vector>
-typedef std::pair<unsigned short int, unsigned short int> tpair;
+//typedef std::pair<unsigned short int, unsigned short int> tpair;
 
 class Nave : public cella
 {
 
 public:
-
+    Nave() =default;
+    Nave(unsigned short int, unsigned short int);
     bool colpita(unsigned short int, unsigned short int);
     bool affondata();
     virtual void assegna(unsigned short int, unsigned short int) =0;
@@ -24,7 +25,7 @@ public:
 
 protected:
 
-    std::map<unsigned short int, tpair> caselleNave;
+    std::map<unsigned short int, cella> caselleNave;
 
 };
 

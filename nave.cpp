@@ -2,7 +2,7 @@
 
 void Nave::reset()
 {
-    std::map<unsigned short int,tpair>::iterator it;
+    std::map<unsigned short int,cella>::iterator it;
     caselleNave.clear();
 }
 
@@ -17,18 +17,18 @@ bool Nave::check_posizione(unsigned short x, unsigned short y)
     if(caselleNave.empty()){
         return true;
     }else{
-    std::map<unsigned short int,tpair>::iterator it=caselleNave.begin();
-    std::map<unsigned short int,tpair>::iterator it2=caselleNave.end();
+    std::map<unsigned short int,cella>::iterator it=caselleNave.begin();
+    std::map<unsigned short int,cella>::iterator it2=caselleNave.end();
     it2--;
         if(it->first==it2->first){
-            if((x==(it2->second.first)-1 && y==it2->second.second) || (x==(it2->second.first)+1 && y==it2->second.second) || (x==it2->second.first && y==(it2->second.second)-1) || (x==it2->second.first && y==(it2->second.second)+1)){
+            if((x==(it2->second.ShowX())-1 && y==it2->second.ShowY()) || (x==(it2->second.ShowX())+1 && y==it2->second.ShowY()) || (x==it2->second.ShowX() && y==(it2->second.ShowY())-1) || (x==it2->second.ShowX() && y==(it2->second.ShowY())+1)){
                 return true;
             }
         }else{
-            if(it->second.first==it2->second.first && x==it2->second.first && (y==(it2->second.second)+1 || y==(it2->second.second)-1)){
+            if(it->second.ShowX()==it2->second.ShowX() && x==it2->second.ShowX() && (y==(it2->second.ShowY())+1 || y==(it2->second.ShowY())-1)){
                 return true;
             }
-            if(it->second.second==it2->second.second && y==it2->second.second && (x==(it2->second.first)+1 || x==(it2->second.first)-1)){
+            if(it->second.ShowY()==it2->second.ShowY() && y==it2->second.ShowY() && (x==(it2->second.ShowX())+1 || x==(it2->second.ShowX())-1)){
                 return true;
             }
         }
@@ -39,161 +39,161 @@ bool Nave::check_posizione(unsigned short x, unsigned short y)
 void Nave::Posizionamentocomputer()
 {
 
-    std::map<unsigned short int,tpair>::iterator it=caselleNave.begin();
-    std::map<unsigned short int,tpair>::iterator it2=caselleNave.end();
+    std::map<unsigned short int,cella>::iterator it=caselleNave.begin();
+    std::map<unsigned short int,cella>::iterator it2=caselleNave.end();
     it2--;
     if(it->first==it2->first && counter()==1){
-if(it->second.first==0 && it->second.second==9){
-            unsigned short int x0=(it->second.first);
-            unsigned short int x1=(it->second.first)+1;
-            unsigned short int y0=(it->second.second);
-            unsigned short int y1=(it->second.second)-1;
+if(it->second.ShowX()==0 && it->second.ShowY()==9){
+            unsigned short int x0=(it->second.ShowX());
+            unsigned short int x1=(it->second.ShowX())+1;
+            unsigned short int y0=(it->second.ShowY());
+            unsigned short int y1=(it->second.ShowY())-1;
             unsigned short int x[2]={x0,x1};
             unsigned short int randomX=rand() % 2;
             if(x[randomX]==x0){
-                tpair posizione=std::pair<unsigned short int, unsigned short int>(x0,y1);
-                std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                cella posizione(x0,y1);
+                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                 caselleNave.insert(a);
             }else{
-                tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,y0);
-                std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                cella posizione(x1,y0);
+                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                 caselleNave.insert(a);
             }
 }else{
-if(it->second.first==9 && it->second.second==0){
-    unsigned short int x0=(it->second.first);
-    unsigned short int x1=(it->second.first)-1;
-    unsigned short int y0=(it->second.second);
-    unsigned short int y1=(it->second.second)+1;
+if(it->second.ShowX()==9 && it->second.ShowY()==0){
+    unsigned short int x0=(it->second.ShowX());
+    unsigned short int x1=(it->second.ShowX())-1;
+    unsigned short int y0=(it->second.ShowY());
+    unsigned short int y1=(it->second.ShowY())+1;
     unsigned short int x[2]={x0,x1};
     unsigned short int randomX=rand() % 2;
     if(x[randomX]==x0){
-        tpair posizione=std::pair<unsigned short int, unsigned short int>(x0,y1);
-        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+        cella posizione(x0,y1);
+        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
         caselleNave.insert(a);
     }else{
-        tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,y0);
-        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+        cella posizione(x1,y0);
+        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
         caselleNave.insert(a);
     }
 }else{
-if(it->second.first==0 && it->second.second<9 && it->second.second>0){
-            unsigned short int x0=(it->second.first);
-            unsigned short int x1=(it->second.first)+1;
+if(it->second.ShowX()==0 && it->second.ShowY()<9 && it->second.ShowY()>0){
+            unsigned short int x0=(it->second.ShowX());
+            unsigned short int x1=(it->second.ShowX())+1;
 
             unsigned short int x[2]={x0,x1};
             unsigned short int randomX=rand() % 2;
             if(x[randomX]==x0){
-                unsigned short int y0=(it->second.second)-1;
-                unsigned short int y1=(it->second.second)+1;
+                unsigned short int y0=(it->second.ShowY())-1;
+                unsigned short int y1=(it->second.ShowY())+1;
                 unsigned short int y[2]={y0,y1};
                 unsigned short int randomY=rand() % 2;
-                tpair posizione=std::pair<unsigned short int, unsigned short int>(x0,y[randomY]);
-                std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                cella posizione(x0,y[randomY]);
+                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                 caselleNave.insert(a);
             }else{
-                tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-                std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                cella posizione(x1,it->second.ShowY());
+                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                 caselleNave.insert(a);
             }
 
 
 }else{
-if(it->second.first<9 && it->second.second==0 && it->second.first>0){
-    unsigned short int y0=(it->second.second);
-    unsigned short int y1=(it->second.second)+1;
+if(it->second.ShowX()<9 && it->second.ShowY()==0 && it->second.ShowX()>0){
+    unsigned short int y0=(it->second.ShowY());
+    unsigned short int y1=(it->second.ShowY())+1;
     unsigned short int y[2]={y0,y1};
     unsigned short int randomY=rand() % 2;
     if(y[randomY]==y0){
-        unsigned short int x0=(it->second.first)-1;
-        unsigned short int x1=(it->second.first)+1;
+        unsigned short int x0=(it->second.ShowX())-1;
+        unsigned short int x1=(it->second.ShowX())+1;
         unsigned short int x[2]={x0,x1};
         unsigned short int randomX=rand() % 2;
-        tpair posizione=std::pair<unsigned short int, unsigned short int>(x[randomX],y0);
-        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+        cella posizione(x[randomX],y0);
+        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
         caselleNave.insert(a);
     }else{
-        tpair posizione=std::pair<unsigned short int, unsigned short int>(it->second.first,y1);
-        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+        cella posizione(it->second.ShowX(),y1);
+        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
         caselleNave.insert(a);
     }
 }else{
-if(it->second.first==0 && it->second.second==0){
-    unsigned short int x0=(it->second.first);
-    unsigned short int x1=(it->second.first)+1;
+if(it->second.ShowX()==0 && it->second.ShowY()==0){
+    unsigned short int x0=(it->second.ShowX());
+    unsigned short int x1=(it->second.ShowX())+1;
     unsigned short int x[2]={x0,x1};
     unsigned short int randomX=rand() % 2;
     if(x[randomX]==x0){
-        unsigned short int y1=(it->second.second)+1;
-        tpair posizione=std::pair<unsigned short int, unsigned short int>(x0,y1);
-        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+        unsigned short int y1=(it->second.ShowY())+1;
+        cella posizione(x0,y1);
+        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
         caselleNave.insert(a);
     }else{
-        tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+        cella posizione(x1,it->second.ShowY());
+        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
         caselleNave.insert(a);
     }
 }else{
-   if(it->second.first==9 && it->second.second==9){
-       unsigned short int x0=(it->second.first);
-       unsigned short int x1=(it->second.first)-1;
+   if(it->second.ShowX()==9 && it->second.ShowY()==9){
+       unsigned short int x0=(it->second.ShowX());
+       unsigned short int x1=(it->second.ShowX())-1;
        unsigned short int x[2]={x0,x1};
        unsigned short int randomX=rand() % 2;
        if(x[randomX]==x0){
-           unsigned short int y1=(it->second.second)-1;
-           tpair posizione=std::pair<unsigned short int, unsigned short int>(x0,y1);
-           std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+           unsigned short int y1=(it->second.ShowY())-1;
+           cella posizione(x0,y1);
+           std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
            caselleNave.insert(a);
        }else{
-           tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-           std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+           cella posizione(x1,it->second.ShowY());
+           std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
            caselleNave.insert(a);
        }
    } else{
-       if(it->second.first==9 && it->second.second<9 && it->second.second>0){
-           unsigned short int x0=it->second.first;
-           unsigned short int x1=it->second.first-1;
+       if(it->second.ShowX()==9 && it->second.ShowY()<9 && it->second.ShowY()>0){
+           unsigned short int x0=it->second.ShowX();
+           unsigned short int x1=it->second.ShowX()-1;
            unsigned short int x[2]={x0,x1};
            unsigned short int randomX=rand()%2;
            if(x[randomX]==x0){
-               unsigned short int y1=it->second.second-1;
-               unsigned short int y2=it->second.second+1;
+               unsigned short int y1=it->second.ShowY()-1;
+               unsigned short int y2=it->second.ShowY()+1;
                unsigned short int y[2]={y1,y2};
                unsigned short int randomY=rand()%2;
-               tpair posizione=std::pair<unsigned short int, unsigned short int>(x0,y[randomY]);
-               std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+               cella posizione(x0,y[randomY]);
+               std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                caselleNave.insert(a);
            }else{
-               tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-               std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+               cella posizione(x1,it->second.ShowY());
+               std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                caselleNave.insert(a);
            }
        }else{
-           if(it->second.first<9 && it->second.second==9){
-               unsigned short int y0=it->second.second;
-               unsigned short int y1=it->second.second-1;
+           if(it->second.ShowX()<9 && it->second.ShowY()==9){
+               unsigned short int y0=it->second.ShowY();
+               unsigned short int y1=it->second.ShowY()-1;
                unsigned short int y[2]={y0,y1};
                unsigned short int randomY=rand()%2;
                if(y[randomY]==y0){
-                   unsigned short int x1=it->second.first-1;
-                   unsigned short int x2=it->second.first+1;
+                   unsigned short int x1=it->second.ShowX()-1;
+                   unsigned short int x2=it->second.ShowX()+1;
                    unsigned short int x[2]={x1,x2};
                    unsigned short int randomX=rand()%2;
-                   tpair posizione=std::pair<unsigned short int, unsigned short int>(x[randomX],y0);
-                   std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                   cella posizione(x[randomX],y0);
+                   std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                    caselleNave.insert(a);
                }else{
-                   tpair posizione=std::pair<unsigned short int, unsigned short int>(it->second.first,y1);
-                   std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                   cella posizione(it->second.ShowX(),y1);
+                   std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                    caselleNave.insert(a);
                }
            }else{
-               unsigned short int x0=(it->second.first)-1;
-               unsigned short int x2=(it->second.first)+1;
-               unsigned short int y0=(it->second.second)-1;
-               unsigned short int y2=(it->second.second)+1;
-               unsigned short int x[3]={x0,it->second.first,x2};
-               unsigned short int y[3]={y0,it->second.second,y2};
+               unsigned short int x0=(it->second.ShowX())-1;
+               unsigned short int x2=(it->second.ShowX())+1;
+               unsigned short int y0=(it->second.ShowY())-1;
+               unsigned short int y2=(it->second.ShowY())+1;
+               unsigned short int x[3]={x0,it->second.ShowX(),x2};
+               unsigned short int y[3]={y0,it->second.ShowY(),y2};
 
                unsigned short int randomX=rand() % 3;
                unsigned short int randomY=rand() % 3;
@@ -201,8 +201,8 @@ if(it->second.first==0 && it->second.second==0){
                         randomX=rand() % 3;
                         randomY=rand() % 3;
                }
-               tpair posizione=std::pair<unsigned short int, unsigned short int>(x[randomX],y[randomY]);
-               std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+               cella posizione(x[randomX],y[randomY]);
+               std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                caselleNave.insert(a);
            }
        }
@@ -215,103 +215,103 @@ if(it->second.first==0 && it->second.second==0){
 
 }else{
         if(counter()>1){
-            if(it->second.first==it2->second.first){
-                if((it->second.first==0 && it->second.second==0) || (it2->second.first==0 && it2->second.second==0)){
-                    if(it->second.second<it2->second.second){
-                        unsigned short int y1=it2->second.second+1;
-                        tpair posizione=std::pair<unsigned short int, unsigned short int>(it2->second.first,y1);
-                        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+            if(it->second.ShowX()==it2->second.ShowX()){
+                if((it->second.ShowX()==0 && it->second.ShowY()==0) || (it2->second.ShowX()==0 && it2->second.ShowY()==0)){
+                    if(it->second.ShowY()<it2->second.ShowY()){
+                        unsigned short int y1=it2->second.ShowY()+1;
+                        cella posizione(it2->second.ShowX(),y1);
+                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                         caselleNave.insert(a);
                     }else{
-                        unsigned short int y1=it->second.second+1;
-                        tpair posizione=std::pair<unsigned short int, unsigned short int>(it->second.first,y1);
-                        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                        unsigned short int y1=it->second.ShowY()+1;
+                        cella posizione(it->second.ShowX(),y1);
+                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                         caselleNave.insert(a);
                     }
                 }else{
-                    if((it->second.first==0 && it->second.second==9) || (it2->second.first==0 && it2->second.second==9)){
-                        if(it->second.second<it2->second.second){
-                            unsigned short int y1=it->second.second-1;
-                            tpair posizione=std::pair<unsigned short int, unsigned short int>(it->second.first,y1);
-                            std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                    if((it->second.ShowX()==0 && it->second.ShowY()==9) || (it2->second.ShowX()==0 && it2->second.ShowY()==9)){
+                        if(it->second.ShowY()<it2->second.ShowY()){
+                            unsigned short int y1=it->second.ShowY()-1;
+                            cella posizione(it->second.ShowX(),y1);
+                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                             caselleNave.insert(a);
                         }else{
-                            unsigned short int y1=it2->second.second-1;
-                            tpair posizione=std::pair<unsigned short int, unsigned short int>(it->second.first,y1);
-                            std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                            unsigned short int y1=it2->second.ShowY()-1;
+                            cella posizione(it->second.ShowX(),y1);
+                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                             caselleNave.insert(a);
                         }
                     }else{
-                        if((it->second.first==9 && it->second.second==0) || (it2->second.first==9 && it2->second.second==0)){
-                            if(it->second.second<it2->second.second){
-                                unsigned short int y1=it2->second.second+1;
-                                tpair posizione=std::pair<unsigned short int, unsigned short int>(it2->second.first,y1);
-                                std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                        if((it->second.ShowX()==9 && it->second.ShowY()==0) || (it2->second.ShowX()==9 && it2->second.ShowY()==0)){
+                            if(it->second.ShowY()<it2->second.ShowY()){
+                                unsigned short int y1=it2->second.ShowY()+1;
+                                cella posizione(it2->second.ShowX(),y1);
+                                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                 caselleNave.insert(a);
                             }else{
-                                unsigned short int y1=it->second.second+1;
-                                tpair posizione=std::pair<unsigned short int, unsigned short int>(it->second.first,y1);
-                                std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                unsigned short int y1=it->second.ShowY()+1;
+                                cella posizione(it->second.ShowX(),y1);
+                                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                 caselleNave.insert(a);
                             }
                         }else{
-                            if((it->second.first==9 && it->second.second==9) || (it2->second.first==9 && it2->second.second==9)){
-                                if(it->second.second<it2->second.second){
-                                    unsigned short int y1=it->second.second-1;
-                                    tpair posizione=std::pair<unsigned short int, unsigned short int>(it->second.first,y1);
-                                    std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                            if((it->second.ShowX()==9 && it->second.ShowY()==9) || (it2->second.ShowX()==9 && it2->second.ShowY()==9)){
+                                if(it->second.ShowY()<it2->second.ShowY()){
+                                    unsigned short int y1=it->second.ShowY()-1;
+                                    cella posizione(it->second.ShowX(),y1);
+                                    std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                     caselleNave.insert(a);
                                 }else{
-                                    unsigned short int y1=it2->second.second-1;
-                                    tpair posizione=std::pair<unsigned short int, unsigned short int>(it2->second.first,y1);
-                                    std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                    unsigned short int y1=it2->second.ShowY()-1;
+                                    cella posizione(it2->second.ShowX(),y1);
+                                    std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                     caselleNave.insert(a);
                                 }
                             }else{
-                                if((it->second.first>0 && it->second.first<9 && it->second.second==0)||(it2->second.first>0 && it2->second.first<9 && it2->second.second==0)){
-                                    if(it->second.second<it2->second.second){
-                                        unsigned short int y1=it2->second.second+1;
-                                        tpair posizione=std::pair<unsigned short int, unsigned short int>(it2->second.first,y1);
-                                        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                if((it->second.ShowX()>0 && it->second.ShowX()<9 && it->second.ShowY()==0)||(it2->second.ShowX()>0 && it2->second.ShowX()<9 && it2->second.ShowY()==0)){
+                                    if(it->second.ShowY()<it2->second.ShowY()){
+                                        unsigned short int y1=it2->second.ShowY()+1;
+                                        cella posizione(it2->second.ShowX(),y1);
+                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                         caselleNave.insert(a);
                                     }else{
-                                        unsigned short int y1=it->second.second+1;
-                                        tpair posizione=std::pair<unsigned short int, unsigned short int>(it->second.first,y1);
-                                        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                        unsigned short int y1=it->second.ShowY()+1;
+                                        cella posizione(it->second.ShowX(),y1);
+                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                         caselleNave.insert(a);
                                     }
                                 }else{
-                                    if((it->second.first>0 && it->second.first<9 && it->second.second==9) || (it2->second.first>0 && it2->second.first<9 && it2->second.second==9)){
-                                        if(it->second.second<it2->second.second){
-                                            unsigned short int y1=it->second.second-1;
-                                            tpair posizione=std::pair<unsigned short int, unsigned short int>(it->second.first,y1);
-                                            std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                    if((it->second.ShowX()>0 && it->second.ShowX()<9 && it->second.ShowY()==9) || (it2->second.ShowX()>0 && it2->second.ShowX()<9 && it2->second.ShowY()==9)){
+                                        if(it->second.ShowY()<it2->second.ShowY()){
+                                            unsigned short int y1=it->second.ShowY()-1;
+                                            cella posizione(it->second.ShowX(),y1);
+                                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                             caselleNave.insert(a);
                                         }else{
-                                            unsigned short int y1=it2->second.second-1;
-                                            tpair posizione=std::pair<unsigned short int, unsigned short int>(it2->second.first,y1);
-                                            std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                            unsigned short int y1=it2->second.ShowY()-1;
+                                            cella posizione(it2->second.ShowX(),y1);
+                                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                             caselleNave.insert(a);
                                         }
                                     }else{
-                                    if(it->second.second<it2->second.second){
-                                        unsigned short int y1=it->second.second-1;
-                                        unsigned short int y2=it2->second.second +1;
+                                    if(it->second.ShowY()<it2->second.ShowY()){
+                                        unsigned short int y1=it->second.ShowY()-1;
+                                        unsigned short int y2=it2->second.ShowY() +1;
                                         unsigned short int y[2]={y1,y2};
 
                                         unsigned short int random=rand() % 2;
-                                        tpair posizione=std::pair<unsigned short int, unsigned short int>(it->second.first,y[random]);
-                                        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                        cella posizione(it->second.ShowX(),y[random]);
+                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                         caselleNave.insert(a);
                                     }else{
-                                        unsigned short int y1=it2->second.second-1;
-                                        unsigned short int y2=it->second.second +1;
+                                        unsigned short int y1=it2->second.ShowY()-1;
+                                        unsigned short int y2=it->second.ShowY() +1;
 
                                         unsigned short int y[2]={y1,y2};
 
                                         unsigned short int random=rand() % 2;
-                                        tpair posizione=std::pair<unsigned short int, unsigned short int>(it->second.first,y[random]);
-                                        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                        cella posizione(it->second.ShowX(),y[random]);
+                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                         caselleNave.insert(a);
                                     }
                                 }
@@ -321,103 +321,103 @@ if(it->second.first==0 && it->second.second==0){
                 }
             }
                     }else{
-                        if(it->second.second==it2->second.second){
-                            if((it->second.first==0 && it->second.second==0) || (it2->second.first==0 && it2->second.second==0)){
-                                if(it->second.first<it2->second.first){
-                                    unsigned short int x1=it2->second.first+1;
-                                    tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-                                    std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                        if(it->second.ShowY()==it2->second.ShowY()){
+                            if((it->second.ShowX()==0 && it->second.ShowY()==0) || (it2->second.ShowX()==0 && it2->second.ShowY()==0)){
+                                if(it->second.ShowX()<it2->second.ShowX()){
+                                    unsigned short int x1=it2->second.ShowX()+1;
+                                    cella posizione(x1,it->second.ShowY());
+                                    std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                     caselleNave.insert(a);
                                 }else{
-                                    unsigned short int x1=it->second.first+1;
-                                    tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-                                    std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                    unsigned short int x1=it->second.ShowX()+1;
+                                    cella posizione(x1,it->second.ShowY());
+                                    std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                     caselleNave.insert(a);
                                 }
                             }else{
-                                if((it->second.first==0 && it->second.second==9) || (it2->second.first==0 && it2->second.second==9)){
-                                    if(it->second.first<it2->second.first){
-                                        unsigned short int x1=it2->second.first+1;
-                                        tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-                                        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                if((it->second.ShowX()==0 && it->second.ShowY()==9) || (it2->second.ShowX()==0 && it2->second.ShowY()==9)){
+                                    if(it->second.ShowX()<it2->second.ShowX()){
+                                        unsigned short int x1=it2->second.ShowX()+1;
+                                        cella posizione(x1,it->second.ShowY());
+                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                         caselleNave.insert(a);
                                     }else{
-                                        unsigned short int x1=it->second.first+1;
-                                        tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-                                        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                        unsigned short int x1=it->second.ShowX()+1;
+                                        cella posizione(x1,it->second.ShowY());
+                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                         caselleNave.insert(a);
                                     }
                                 }else{
-                                    if((it->second.first==9 && it->second.second==0) || (it2->second.first==9 && it2->second.second==0)){
-                                        if(it->second.first<it->second.first){
-                                            unsigned short int x1=it->second.first-1;
-                                            tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-                                            std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                    if((it->second.ShowX()==9 && it->second.ShowY()==0) || (it2->second.ShowX()==9 && it2->second.ShowY()==0)){
+                                        if(it->second.ShowX()<it->second.ShowX()){
+                                            unsigned short int x1=it->second.ShowX()-1;
+                                            cella posizione(x1,it->second.ShowY());
+                                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                             caselleNave.insert(a);
                                         }else{
-                                            unsigned short int x1=it2->second.first-1;
-                                            tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it2->second.second);
-                                            std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                            unsigned short int x1=it2->second.ShowX()-1;
+                                            cella posizione(x1,it2->second.ShowY());
+                                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                             caselleNave.insert(a);
                                         }
                                     }else{
-                                        if((it->second.first==9 && it->second.second==9) || (it2->second.first==9 && it2->second.second==9)){
-                                            if(it->second.first<it2->second.first){
-                                                unsigned short int x1=it->second.first-1;
-                                                tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-                                                std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                        if((it->second.ShowX()==9 && it->second.ShowY()==9) || (it2->second.ShowX()==9 && it2->second.ShowY()==9)){
+                                            if(it->second.ShowX()<it2->second.ShowX()){
+                                                unsigned short int x1=it->second.ShowX()-1;
+                                                cella posizione(x1,it->second.ShowY());
+                                                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                                 caselleNave.insert(a);
                                             }else{
-                                                unsigned short int x1=it2->second.first-1;
-                                                tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-                                                std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                                unsigned short int x1=it2->second.ShowX()-1;
+                                                cella posizione(x1,it->second.ShowY());
+                                                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                                 caselleNave.insert(a);
                                             }
                                         }else{
-                                            if((it->second.first==0 && it->second.second>0 && it->second.second<9) || (it2->second.first==0 && it2->second.second>0 && it2->second.second<9)){
-                                                if(it->second.first<it2->second.first){
-                                                    unsigned short int x1=it2->second.first+1;
-                                                    tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-                                                    std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                            if((it->second.ShowX()==0 && it->second.ShowY()>0 && it->second.ShowY()<9) || (it2->second.ShowX()==0 && it2->second.ShowY()>0 && it2->second.ShowY()<9)){
+                                                if(it->second.ShowX()<it2->second.ShowX()){
+                                                    unsigned short int x1=it2->second.ShowX()+1;
+                                                    cella posizione(x1,it->second.ShowY());
+                                                    std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                                     caselleNave.insert(a);
                                                 }else{
-                                                    unsigned short int x1=it->second.first+1;
-                                                    tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-                                                    std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                                    unsigned short int x1=it->second.ShowX()+1;
+                                                    cella posizione(x1,it->second.ShowY());
+                                                    std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                                     caselleNave.insert(a);
                                                 }
                                             }else{
-                                                if((it->second.first==9 && it->second.second>0 && it->second.second<9) || (it2->second.first==9 && it2->second.second>0 && it2->second.second<9)){
-                                                    if(it->second.first<it2->second.first){
-                                                        unsigned short int x1=it->second.first-1;
-                                                        tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-                                                        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                                if((it->second.ShowX()==9 && it->second.ShowY()>0 && it->second.ShowY()<9) || (it2->second.ShowX()==9 && it2->second.ShowY()>0 && it2->second.ShowY()<9)){
+                                                    if(it->second.ShowX()<it2->second.ShowX()){
+                                                        unsigned short int x1=it->second.ShowX()-1;
+                                                        cella posizione(x1,it->second.ShowY());
+                                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                                         caselleNave.insert(a);
                                                     }else{
-                                                        unsigned short int x1=it2->second.first-1;
-                                                        tpair posizione=std::pair<unsigned short int, unsigned short int>(x1,it->second.second);
-                                                        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                                        unsigned short int x1=it2->second.ShowX()-1;
+                                                        cella posizione(x1,it->second.ShowY());
+                                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                                         caselleNave.insert(a);
                                                     }
                                                 }else{
-                                                    if(it->second.first<it2->second.first){
-                                                        unsigned short int x1=(it->second.first)-1;
-                                                        unsigned short int x2=(it2->second.first)+1;
+                                                    if(it->second.ShowX()<it2->second.ShowX()){
+                                                        unsigned short int x1=(it->second.ShowX())-1;
+                                                        unsigned short int x2=(it2->second.ShowX())+1;
                                                         unsigned short int x[2]={x1,x2};
                                                         unsigned short int random=rand() % 2;
 
-                                                        tpair posizione=std::pair<unsigned short int, unsigned short int>(x[random],it->second.second);
-                                                        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                                        cella posizione(x[random],it->second.ShowY());
+                                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                                         caselleNave.insert(a);
                                                     }else{
-                                                        unsigned short int x1=(it2->second.first)-1;
-                                                        unsigned short int x2=(it->second.first)+1;
+                                                        unsigned short int x1=(it2->second.ShowX())-1;
+                                                        unsigned short int x2=(it->second.ShowX())+1;
 
                                                         unsigned short int x[2]={x1,x2};
                                                         unsigned short int random=rand() % 2;
 
-                                                        tpair posizione=std::pair<unsigned short int, unsigned short int>(x[random],it->second.second);
-                                                        std::map<int,tpair>::value_type a(caselleNave.size()+1 ,posizione);
+                                                        cella posizione(x[random],it->second.ShowY());
+                                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                                         caselleNave.insert(a);
                                                         }
 
@@ -436,17 +436,24 @@ if(it->second.first==0 && it->second.second==0){
 
 unsigned short Nave::PosizionaGrigliaC()
 {
-    std::map<unsigned short int,tpair>::iterator it=caselleNave.end();
+    std::map<unsigned short int,cella>::iterator it=caselleNave.end();
     it--;
-    return (((it->second.first)*10)+it->second.second);
+    return (((it->second.ShowX())*10)+it->second.ShowY());
 }
 
 
 
+Nave::Nave(unsigned short X, unsigned short Y)
+{
+    cella posizione(X,Y);
+    std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
+    caselleNave.insert(a);
+}
+
 bool Nave::colpita(unsigned short X, unsigned short Y)
 {
-    for(std::map<unsigned short int,tpair>::iterator it=caselleNave.begin();it!=caselleNave.end();it++){
-        if(it->second.first==X && it->second.second==Y){
+    for(std::map<unsigned short int,cella>::iterator it=caselleNave.begin();it!=caselleNave.end();it++){
+        if(it->second.ShowX()==X && it->second.ShowY()==Y){
             caselleNave.erase(it);
             return true;
         }

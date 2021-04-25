@@ -70,7 +70,7 @@ void ModelloGioco::reset()
     giocatore.numero_Navi_Affondate=0;
     computer.numero_Navi_Affondate=0;
 
-    giocatore.assalto.reset();
+    giocatore.navi.find(assalto)->reset();
     giocatore.crociere.reset();
     giocatore.corazzata.reset();
     giocatore.portaerei.reset();

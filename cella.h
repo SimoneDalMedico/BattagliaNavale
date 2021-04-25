@@ -8,8 +8,8 @@ private:
     unsigned short int x;
     unsigned short int y;
 public:
-
-//    cella(unsigned short int, unsigned short int);
+    cella() =default;
+    cella(unsigned short int, unsigned short int);
     unsigned short int ShowX();
     unsigned short int ShowY();
 };
