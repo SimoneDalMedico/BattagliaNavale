@@ -70,15 +70,15 @@ void ModelloGioco::reset()
     giocatore.numero_Navi_Affondate=0;
     computer.numero_Navi_Affondate=0;
 
-    giocatore.navi.find(assalto)->reset();
-    giocatore.crociere.reset();
-    giocatore.corazzata.reset();
-    giocatore.portaerei.reset();
+    static_cast<NaveAssalto*>(giocatore.navi[0].get())->reset();
+    static_cast<NaveCrociere*>(giocatore.navi[1].get())->reset();
+    static_cast<NaveCorazzata*>(giocatore.navi[2].get())->reset();
+    static_cast<NavePortaerei*>(giocatore.navi[3].get())->reset();
 
-    computer.assalto.reset();
-    computer.crociere.reset();
-    computer.corazzata.reset();
-    computer.portaerei.reset();
+    static_cast<NaveAssalto*>(computer.navi[0].get())->reset();
+    static_cast<NaveCrociere*>(computer.navi[1].get())->reset();
+    static_cast<NaveCorazzata*>(computer.navi[2].get())->reset();
+    static_cast<NavePortaerei*>(computer.navi[3].get())->reset();
 }
 
 Player ModelloGioco::winner() const
@@ -134,31 +134,31 @@ bool ModelloGioco::checkWinner()
 
 bool ModelloGioco::checkNaveColpita(unsigned short x, unsigned short y)
 {
-      std::map<int,tpair>::iterator it;
+      std::map<int,cella>::iterator it;
         if(turn==Giocatore::Turno){
-            if(giocatore.assalto.colpita(x,y)){
+            if(static_cast<NaveAssalto*>(giocatore.navi[0].get())->colpita(x,y)){
                 return true;
             }
-            if(giocatore.corazzata.colpita(x,y)){
+            if(static_cast<NaveCrociere*>(giocatore.navi[1].get())->colpita(x,y)){
                 return true;
             }
-            if(giocatore.crociere.colpita(x,y)){
+            if(static_cast<NaveCorazzata*>(giocatore.navi[2].get())->colpita(x,y)){
                 return true;
             }
-            if(giocatore.portaerei.colpita(x,y)){
+            if(static_cast<NavePortaerei*>(giocatore.navi[3].get())->colpita(x,y)){
                 return true;
             }
         }else{
-            if(computer.assalto.colpita(x,y)){
+            if(static_cast<NaveAssalto*>(computer.navi[0].get())->colpita(x,y)){
                 return true;
             }
-            if(computer.corazzata.colpita(x,y)){
+            if(static_cast<NaveCrociere*>(computer.navi[1].get())->colpita(x,y)){
                 return true;
             }
-            if(computer.crociere.colpita(x,y)){
+            if(static_cast<NaveCorazzata*>(computer.navi[2].get())->colpita(x,y)){
                 return true;
             }
-            if(computer.portaerei.colpita(x,y)){
+            if(static_cast<NavePortaerei*>(computer.navi[3].get())->colpita(x,y)){
                 return true;
             }
         }
@@ -169,16 +169,16 @@ bool ModelloGioco::checkNaveAffondata()
 {
     if(turn==computer.Turno){
         computer.numero_Navi_Affondate=0;
-        if(computer.assalto.affondata()){
+        if(static_cast<NaveAssalto*>(computer.navi[0].get())->affondata()){
             computer.numero_Navi_Affondate++;
         }
-        if(computer.crociere.affondata()){
+        if(static_cast<NaveCrociere*>(computer.navi[1].get())->affondata()){
             computer.numero_Navi_Affondate++;
         }
-        if(computer.corazzata.affondata()){
+        if(static_cast<NaveCorazzata*>(computer.navi[2].get())->affondata()){
             computer.numero_Navi_Affondate++;
         }
-        if(computer.portaerei.affondata()){
+        if(static_cast<NavePortaerei*>(computer.navi[3].get())->affondata()){
             computer.numero_Navi_Affondate++;
         }
         if(computer.numero_Navi_Affondate>0){
@@ -188,16 +188,16 @@ bool ModelloGioco::checkNaveAffondata()
 
     }else{
         giocatore.numero_Navi_Affondate=0;
-        if(giocatore.assalto.affondata()){
+        if(static_cast<NaveAssalto*>(giocatore.navi[0].get())->affondata()){
             giocatore.numero_Navi_Affondate++;
         }
-        if(giocatore.crociere.affondata()){
+        if(static_cast<NaveCrociere*>(giocatore.navi[1].get())->affondata()){
             giocatore.numero_Navi_Affondate++;
         }
-        if(giocatore.corazzata.affondata()){
+        if(static_cast<NaveCorazzata*>(giocatore.navi[2].get())->affondata()){
             giocatore.numero_Navi_Affondate++;
         }
-        if(giocatore.portaerei.affondata()){
+        if(static_cast<NavePortaerei*>(giocatore.navi[3].get())->affondata()){
             giocatore.numero_Navi_Affondate++;
         }
         if(giocatore.numero_Navi_Affondate>0){

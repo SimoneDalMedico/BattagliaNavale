@@ -7,19 +7,19 @@ NaveAssalto::NaveAssalto()
 void NaveAssalto::assegna(unsigned short int X, unsigned short int Y)
 {
     if(NaveAssalto::caselleNave.size()<2){
-            tpair posizione=std::pair<unsigned short int, unsigned short int>(X,Y);
-            std::map<int,tpair>::value_type a(NaveAssalto::caselleNave.size()+1 ,posizione);
+            cella posizione(X,Y);
+            std::map<int,cella>::value_type a(NaveAssalto::caselleNave.size()+1 ,posizione);
             NaveAssalto::caselleNave.insert(a);
     }
 }
 
 void NaveAssalto::operator=(NaveAssalto a)
 {
-    std::map<unsigned short int,tpair>::iterator it;
+    std::map<unsigned short int,cella>::iterator it;
 
     for(it=a.caselleNave.begin();it!=a.caselleNave.end();it++){
-        tpair posizione=std::pair<unsigned short int, unsigned short int>(it->second.first, it->second.second);
-        std::map<int,tpair>::value_type a(it->first,posizione);
+        cella posizione(it->second.ShowX(), it->second.ShowY());
+        std::map<int,cella>::value_type a(it->first,posizione);
         caselleNave.insert(a);
     }
 }
