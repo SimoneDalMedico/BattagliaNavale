@@ -20,54 +20,51 @@ Player ModelloPosizione::operator()(unsigned short row, unsigned short col) cons
 void ModelloPosizione::move(unsigned short X, unsigned short Y)
 {
     if(grigliaGiocatore[X*10+Y]) throw  new MoveException(X,Y);
-    contenitore<deep_ptr<cella>>::iterator itG=giocatore.navi.begin();
+
 if(giocatore.numeroNaviPosizionate==0){
     //static_cast<NaveAssalto*>(giocatore.navi[0]->get())->check_posizione(X,Y)
-    if(!static_cast<NaveAssalto*>(itG->get())->check_posizione(X,Y)) throw new MoveException(X,Y);
+    if(!static_cast<NaveAssalto*>(giocatore.navi[0].get())->check_posizione(X,Y)) throw new MoveException(X,Y);
     //!giocatore.assalto.NaveAssalto::check_posizione(X,Y)0
-        if(static_cast<NaveAssalto*>(itG->get())->counter()<2){
+        if(static_cast<NaveAssalto*>(giocatore.navi[0].get())->counter()<2){
             grigliaGiocatore[X*10+Y]=playerG;
-            static_cast<NaveAssalto*>(itG->get())->assegna(X,Y);
+            static_cast<NaveAssalto*>(giocatore.navi[0].get())->assegna(X,Y);
 
         }
-        if(static_cast<NaveAssalto*>(itG->get())->counter()==2) {
+        if(static_cast<NaveAssalto*>(giocatore.navi[0].get())->counter()==2) {
             giocatore.numeroNaviPosizionate=(giocatore.numeroNaviPosizionate)+1;
-            ++itG;
         }
 
 }else{
 if(giocatore.numeroNaviPosizionate==1){
-    if(!static_cast<NaveCrociere*>(itG->get())->check_posizione(X,Y)) throw new MoveException(X,Y);
-        if(static_cast<NaveCrociere*>(itG->get())->counter()<3){
+    if(!static_cast<NaveCrociere*>(giocatore.navi[0].get())->check_posizione(X,Y)) throw new MoveException(X,Y);
+        if(static_cast<NaveCrociere*>(giocatore.navi[0].get())->counter()<3){
              grigliaGiocatore[X*10+Y]=playerG;
-            static_cast<NaveCrociere*>(itG->get())->assegna(X,Y);
+            static_cast<NaveCrociere*>(giocatore.navi[0].get())->assegna(X,Y);
 
         }
-            if(static_cast<NaveCrociere*>(itG->get())->counter()==3){
+            if(static_cast<NaveCrociere*>(giocatore.navi[0].get())->counter()==3){
                 giocatore.numeroNaviPosizionate=(giocatore.numeroNaviPosizionate)+1;
-                ++itG;
             }
 }else{
 if(giocatore.numeroNaviPosizionate==2){
-    if(!static_cast<NaveCorazzata*>(itG->get())->check_posizione(X,Y)) throw new MoveException(X,Y);
-    if(static_cast<NaveCorazzata*>(itG->get())->counter()<4){
+    if(!static_cast<NaveCorazzata*>(giocatore.navi[0].get())->check_posizione(X,Y)) throw new MoveException(X,Y);
+    if(static_cast<NaveCorazzata*>(giocatore.navi[0].get())->counter()<4){
         grigliaGiocatore[X*10+Y]=playerG;
-        static_cast<NaveCorazzata*>(itG->get())->assegna(X,Y);
+        static_cast<NaveCorazzata*>(giocatore.navi[0].get())->assegna(X,Y);
 
         }
-        if(static_cast<NaveCorazzata*>(itG->get())->counter()==4) {
+        if(static_cast<NaveCorazzata*>(giocatore.navi[0].get())->counter()==4) {
             giocatore.numeroNaviPosizionate=(giocatore.numeroNaviPosizionate)+1;
-            ++itG;
         }
 }else{
 if(giocatore.numeroNaviPosizionate==3){
-    if(!static_cast<NavePortaerei*>(itG->get())->check_posizione(X,Y)) throw new MoveException(X,Y);
-    if(static_cast<NavePortaerei*>(itG->get())->counter()<5 ){
+    if(!static_cast<NavePortaerei*>(giocatore.navi[0].get())->check_posizione(X,Y)) throw new MoveException(X,Y);
+    if(static_cast<NavePortaerei*>(giocatore.navi[0].get())->counter()<5 ){
         grigliaGiocatore[X*10+Y]=playerG;
-        static_cast<NavePortaerei*>(itG->get())->assegna(X,Y);
+        static_cast<NavePortaerei*>(giocatore.navi[0].get())->assegna(X,Y);
 
     }
-    if(static_cast<NavePortaerei*>(itG->get())->counter()==5) giocatore.numeroNaviPosizionate=(giocatore.numeroNaviPosizionate)+1;
+    if(static_cast<NavePortaerei*>(giocatore.navi[0].get())->counter()==5) giocatore.numeroNaviPosizionate=(giocatore.numeroNaviPosizionate)+1;
 }
             }
         }
@@ -78,9 +75,8 @@ turn=!turn;
 
 void ModelloPosizione::moveC()
 {
-    contenitore<deep_ptr<cella>>::iterator itC=computer.navi.begin();
     if(computer.numeroNaviPosizionate==0){
-        if(static_cast<NaveAssalto*>(itC->get())->counter()==0){
+        if(static_cast<NaveAssalto*>(computer.navi[0].get())->counter()==0){
             unsigned short X;
             unsigned short Y;
             do{
@@ -88,26 +84,25 @@ void ModelloPosizione::moveC()
 
             Y=rand() % 10;
             }while(grigliaComputer[X*10+Y]!=none);
-                if(static_cast<NaveAssalto*>(itC->get())->check_posizione(X,Y)){
+                if(static_cast<NaveAssalto*>(computer.navi[0].get())->check_posizione(X,Y)){
                     grigliaComputer[X*10+Y]=playerC;
-                    static_cast<NaveAssalto*>(itC->get())->assegna(X,Y);
+                    static_cast<NaveAssalto*>(computer.navi[0].get())->assegna(X,Y);
                 }
 
         }else{
-            if(static_cast<NaveAssalto*>(itC->get())->counter()>0 && static_cast<NaveAssalto*>(itC->get())->counter()<2){
-                static_cast<NaveAssalto*>(itC->get())->Posizionamentocomputer();
-                grigliaComputer[static_cast<NaveAssalto*>(itC->get())->PosizionaGrigliaC()]=playerC;
+            if(static_cast<NaveAssalto*>(computer.navi[0].get())->counter()>0 && static_cast<NaveAssalto*>(computer.navi[0].get())->counter()<2){
+                static_cast<NaveAssalto*>(computer.navi[0].get())->Posizionamentocomputer();
+                grigliaComputer[static_cast<NaveAssalto*>(computer.navi[0].get())->PosizionaGrigliaC()]=playerC;
             }
 
 
-        if(static_cast<NaveAssalto*>(itC->get())->counter()==2) {
+        if(static_cast<NaveAssalto*>(computer.navi[0].get())->counter()==2) {
             computer.numeroNaviPosizionate++;
-            ++itC;
         }
     }
         }else{
         if(computer.numeroNaviPosizionate==1){
-            if(static_cast<NaveCrociere*>(itC->get())->counter()==0){
+            if(static_cast<NaveCrociere*>(computer.navi[0].get())->counter()==0){
                 unsigned short X;
                 unsigned short Y;
                 do{
@@ -115,24 +110,23 @@ void ModelloPosizione::moveC()
                 Y=rand() % 10;
                 }while(grigliaComputer[X*10+Y]!=none);
 
-                    if(static_cast<NaveCrociere*>(itC->get())->check_posizione(X,Y)){
+                    if(static_cast<NaveCrociere*>(computer.navi[0].get())->check_posizione(X,Y)){
                         grigliaComputer[X*10+Y]=playerC;
-                        static_cast<NaveCrociere*>(itC->get())->assegna(X,Y);
+                        static_cast<NaveCrociere*>(computer.navi[0].get())->assegna(X,Y);
                     }
 
             }else{
-                if(static_cast<NaveCrociere*>(itC->get())->counter()>0 && static_cast<NaveCrociere*>(itC->get())->counter()<3){
-                    static_cast<NaveCrociere*>(itC->get())->Posizionamentocomputer();
-                    grigliaComputer[static_cast<NaveCrociere*>(itC->get())->PosizionaGrigliaC()]=playerC;
+                if(static_cast<NaveCrociere*>(computer.navi[0].get())->counter()>0 && static_cast<NaveCrociere*>(computer.navi[0].get())->counter()<3){
+                    static_cast<NaveCrociere*>(computer.navi[0].get())->Posizionamentocomputer();
+                    grigliaComputer[static_cast<NaveCrociere*>(computer.navi[0].get())->PosizionaGrigliaC()]=playerC;
                 }
-                if(static_cast<NaveCrociere*>(itC->get())->counter()==3) {
+                if(static_cast<NaveCrociere*>(computer.navi[0].get())->counter()==3) {
                     computer.numeroNaviPosizionate++;
-                    ++itC;
                 }
             }
         }else{
             if(computer.numeroNaviPosizionate==2){
-                if(static_cast<NaveCorazzata*>(itC->get())->counter()==0){
+                if(static_cast<NaveCorazzata*>(computer.navi[0].get())->counter()==0){
                     unsigned short X;
                     unsigned short Y;
                     do{
@@ -140,24 +134,23 @@ void ModelloPosizione::moveC()
                     Y=rand() % 10;
                     }while(grigliaComputer[X*10+Y]!=none);
 
-                        if(static_cast<NaveCorazzata*>(itC->get())->check_posizione(X,Y)){
+                        if(static_cast<NaveCorazzata*>(computer.navi[0].get())->check_posizione(X,Y)){
                             grigliaComputer[X*10+Y]=playerC;
-                            static_cast<NaveCorazzata*>(itC->get())->assegna(X,Y);
+                            static_cast<NaveCorazzata*>(computer.navi[0].get())->assegna(X,Y);
                         }
 
                 }else{
-                    if(static_cast<NaveCorazzata*>(itC->get())->counter()>0 && static_cast<NaveCorazzata*>(itC->get())->counter()<4){
-                        static_cast<NaveCorazzata*>(itC->get())->Posizionamentocomputer();
-                        grigliaComputer[static_cast<NaveCorazzata*>(itC->get())->PosizionaGrigliaC()]=playerC;
+                    if(static_cast<NaveCorazzata*>(computer.navi[0].get())->counter()>0 && static_cast<NaveCorazzata*>(computer.navi[0].get())->counter()<4){
+                        static_cast<NaveCorazzata*>(computer.navi[0].get())->Posizionamentocomputer();
+                        grigliaComputer[static_cast<NaveCorazzata*>(computer.navi[0].get())->PosizionaGrigliaC()]=playerC;
                     }
-                    if(static_cast<NaveCorazzata*>(itC->get())->counter()==4) {
+                    if(static_cast<NaveCorazzata*>(computer.navi[0].get())->counter()==4) {
                         computer.numeroNaviPosizionate++;
-                        ++itC;
                     }
                 }
             }else{
                 if(computer.numeroNaviPosizionate==3){
-                    if(static_cast<NavePortaerei*>(itC->get())->counter()==0){
+                    if(static_cast<NavePortaerei*>(computer.navi[0].get())->counter()==0){
                         unsigned short X;
                         unsigned short Y;
                         do{
@@ -167,16 +160,16 @@ void ModelloPosizione::moveC()
                         std::cout<<"X: "<<X<<std::endl;
                         std::cout<<"Y: "<<Y<<std::endl;
 
-                            if(static_cast<NavePortaerei*>(itC->get())->check_posizione(X,Y)){
+                            if(static_cast<NavePortaerei*>(computer.navi[0].get())->check_posizione(X,Y)){
                                 grigliaComputer[X*10+Y]=playerC;
-                                static_cast<NavePortaerei*>(itC->get())->assegna(X,Y);
+                                static_cast<NavePortaerei*>(computer.navi[0].get())->assegna(X,Y);
                             }
                     }else{
-                        if(static_cast<NavePortaerei*>(itC->get())->counter()>0 && static_cast<NavePortaerei*>(itC->get())->counter()<5){
-                            static_cast<NavePortaerei*>(itC->get())->Posizionamentocomputer();
-                            grigliaComputer[static_cast<NavePortaerei*>(itC->get())->PosizionaGrigliaC()]=playerC;
+                        if(static_cast<NavePortaerei*>(computer.navi[0].get())->counter()>0 && static_cast<NavePortaerei*>(computer.navi[0].get())->counter()<5){
+                            static_cast<NavePortaerei*>(computer.navi[0].get())->Posizionamentocomputer();
+                            grigliaComputer[static_cast<NavePortaerei*>(computer.navi[0].get())->PosizionaGrigliaC()]=playerC;
                         }
-                       if(static_cast<NavePortaerei*>(itC->get())->counter()==5) computer.numeroNaviPosizionate++;
+                       if(static_cast<NavePortaerei*>(computer.navi[0].get())->counter()==5) computer.numeroNaviPosizionate++;
                     }
                 }
             }
@@ -188,8 +181,7 @@ turn=!turn;
 void ModelloPosizione::reset()
 {
     turn=0;
-    contenitore<deep_ptr<cella>>::iterator itG=giocatore.navi.begin();
-    contenitore<deep_ptr<cella>>::iterator itC=computer.navi.begin();
+
     for(int i=0; i<100;i++){
         grigliaGiocatore[i]=none;
         grigliaComputer[i]=none;
@@ -204,21 +196,15 @@ void ModelloPosizione::reset()
     giocatore.numero_Navi_Affondate=0;
     computer.numero_Navi_Affondate=0;
 
-    static_cast<NaveAssalto*>(itG->get())->reset();
-    ++itG;
-    static_cast<NaveCrociere*>(itG->get())->reset();
-    ++itG;
-    static_cast<NaveCorazzata*>(itG->get())->reset();
-    ++itG;
-    static_cast<NavePortaerei*>(itG->get())->reset();
+    static_cast<NaveAssalto*>(giocatore.navi[0].get())->reset();
+    static_cast<NaveCrociere*>(giocatore.navi[0].get())->reset();
+    static_cast<NaveCorazzata*>(giocatore.navi[0].get())->reset();
+    static_cast<NavePortaerei*>(giocatore.navi[0].get())->reset();
 
-    static_cast<NaveAssalto*>(itC->get())->reset();
-    ++itC;
-    static_cast<NaveCrociere*>(itC->get())->reset();
-    ++itC;
-    static_cast<NaveCorazzata*>(itC->get())->reset();
-    ++itC;
-    static_cast<NavePortaerei*>(itC->get())->reset();
+    static_cast<NaveAssalto*>(computer.navi[0].get())->reset();
+    static_cast<NaveCrociere*>(computer.navi[0].get())->reset();
+    static_cast<NaveCorazzata*>(computer.navi[0].get())->reset();
+    static_cast<NavePortaerei*>(computer.navi[0].get())->reset();
 }
 
 bool ModelloPosizione::CeckFinePosizionamento()
