@@ -22,12 +22,10 @@ void ModelloPosizione::move(unsigned short X, unsigned short Y)
     if(grigliaGiocatore[X*10+Y]) throw  new MoveException(X,Y);
     contenitore<deep_ptr<cella>>::iterator itG=giocatore.navi.begin();
     contenitore<deep_ptr<cella>>::iterator itC=computer.navi.begin();
-
-
 if(giocatore.numeroNaviPosizionate==0){
-    if(!itG->get()->) throw new MoveException(X,Y);
+    if(!static_cast<NaveAssalto*>(giocatore.navi[0].get())->check_posizione(X,Y)) throw new MoveException(X,Y);
     //!giocatore.assalto.NaveAssalto::check_posizione(X,Y)
-        if(giocatore.assalto.NaveAssalto::counter()<2){
+        if(nave->counter()<2){
             grigliaGiocatore[X*10+Y]=playerG;
             giocatore.assalto.NaveAssalto::assegna(X,Y);
 
