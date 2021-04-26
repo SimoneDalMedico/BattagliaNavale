@@ -17,7 +17,7 @@ class Computer
 public:
     Computer();
 
-    void operator=(Computer);
+    void operator=(Computer*);
     unsigned short int SceltaComputer();
 protected:
 

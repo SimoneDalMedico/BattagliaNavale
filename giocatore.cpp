@@ -35,9 +35,9 @@ Giocatore::Giocatore()
 //    navi.pushBack(portarei);
 }
 
-void Giocatore::operator=(Giocatore pos)
+void Giocatore::operator=(Giocatore* pos)
 {
-    navi=pos.navi;
+    navi=pos->navi;
 //    assalto=pos.assalto;
 //    crociere=pos.crociere;
 //    corazzata=pos.corazzata;

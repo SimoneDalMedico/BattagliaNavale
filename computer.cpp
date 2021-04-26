@@ -37,13 +37,13 @@ Computer::Computer()
 
 }
 
-void Computer::operator=(Computer pos)
+void Computer::operator=(Computer* pos)
 {
     for(unsigned short int i=0;i<100;i++){
         std::map<unsigned short int, unsigned short int>::value_type v(i,i);
         SceltePossibili.insert(v);
     }
-    navi=pos.navi;
+    navi=pos->navi;
 }
 
 unsigned short int Computer::SceltaComputer()

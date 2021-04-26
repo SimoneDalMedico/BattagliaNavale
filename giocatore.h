@@ -16,7 +16,7 @@ class Giocatore
     friend class ModelloPosizione;
 public:
     Giocatore();
-    void operator=(Giocatore);
+    void operator=(Giocatore*);
 
 protected:
 //    NaveAssalto assalto;
