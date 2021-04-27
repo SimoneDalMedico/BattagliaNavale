@@ -16,8 +16,8 @@ class Computer
     friend class ModelloPosizione;
 public:
     Computer();
-
-    void operator=(Computer*);
+    Computer(const Computer&);
+    void operator=(Computer);
     unsigned short int SceltaComputer();
 protected:
 

@@ -19,10 +19,6 @@ int main(int argc, char *argv[])
     c.setViewP(&q);
 
 
-
-
-
-
     vistaGioco vs(&c);
 
 

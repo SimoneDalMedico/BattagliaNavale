@@ -32,12 +32,19 @@ Giocatore::Giocatore()
 //    deep_ptr<cella> corazzata=new NaveCorazzata();
 //    navi.pushBack(corazzata);
 //    deep_ptr<cella> portarei=new NavePortaerei();
-//    navi.pushBack(portarei);
+    //    navi.pushBack(portarei);
 }
 
-void Giocatore::operator=(Giocatore* pos)
+Giocatore::Giocatore(const Giocatore & G)
 {
-    navi=pos->navi;
+    numeroNaviPosizionate=0;
+    numero_Navi_Affondate=0;
+    navi=G.navi;
+}
+
+void Giocatore::operator=(Giocatore pos)
+{
+    navi=pos.navi;
 //    assalto=pos.assalto;
 //    crociere=pos.crociere;
 //    corazzata=pos.corazzata;

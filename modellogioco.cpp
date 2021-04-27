@@ -5,15 +5,19 @@ ModelloGioco::ModelloGioco()
     reset();
 }
 
-ModelloGioco::ModelloGioco(ModelloPosizione* p)
+ModelloGioco::ModelloGioco(ModelloPosizione* p): giocatore(p->giocatore), computer(p->computer)
 {
     giocatore.numero_Navi_Affondate=0;
     computer.numero_Navi_Affondate=0;
     for(unsigned short int i=0;i<100;i++){
         grigliaComputer[i]=p->grigliaComputer[i];
         grigliaGiocatore[i]=p->grigliaGiocatore[i];
+//        std::cout<<grigliaComputer[i]<<std::endl;
+//        std::cout<<grigliaGiocatore[i]<<std::endl;
+//        std::cout<<std::endl;
     }
-
+    giocatore=p->giocatore;
+    computer=p->computer;
 }
 
 void ModelloGioco::move(unsigned short int x, unsigned short int y)
@@ -93,7 +97,7 @@ Player ModelloGioco::winner() const
 }
 
 unsigned short ModelloGioco::countFrame(Player player) const
-{   u_int counter=0;
+{   unsigned short counter=0;
     if(player==playerG){
         for(u_int i=0;i<100;i++){
             counter+=(grigliaGiocatore[i]==player);
@@ -221,9 +225,19 @@ void ModelloGioco::riempiGriglie(ModelloPosizione *p)
     for(int i=0;i<100;i++){
         grigliaGiocatore[i]=p->grigliaGiocatore[i];
         grigliaComputer[i]=p->grigliaComputer[i];
+
     }
+    //da numeri random!
     giocatore=p->giocatore;
     computer=p->computer;
+
+
+    contenitore<deep_ptr<cella>>::iterator it=giocatore.navi.begin();
+    std::cout<<"test riempi griglie"<<std::endl;
+    for(it=giocatore.navi.begin();it!=giocatore.navi.end(); ++it){
+        std::cout<<it->get()->ShowX()<<" "<<it->get()->ShowY()<<std::endl;
+    }
+
 }
 
 Player ModelloGioco::GetPlayer(unsigned short x, unsigned short y)

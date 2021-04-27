@@ -9,7 +9,7 @@ class NaveAssalto: public Nave
 public:
     NaveAssalto();
     ~NaveAssalto()=default;
-    void assegna(unsigned short, unsigned short);
+    void assegna(unsigned short int, unsigned short int);
     void operator=(NaveAssalto);
 };
 #endif // NAVEASSALTO_H
