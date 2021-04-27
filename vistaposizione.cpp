@@ -140,7 +140,7 @@ void VistaPosizione::setSchermata()
     grigliaComputer->setSpacing(0);
     grigliaGiocatore->setSpacing(0);
 
-    setMinimumSize(QSize(400,400));
+    setMinimumSize(QSize(1300,500));
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
     QFile file(":risorse/style.css");
     file.open(QFile::ReadOnly);

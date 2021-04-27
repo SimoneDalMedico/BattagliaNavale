@@ -4,6 +4,11 @@
         background-color: rgb(51,03,129);
         color: white;
 }
+/*QGridLayout{
+ display:block;
+ width: 1000px;
+ height:1000px;
+}*/
 
 QPushButton {
 
@@ -14,6 +19,9 @@ Border – color: beige;
 font: bold 14px;		
 min – width: 10em;
 */
+/*display: block;*/
+/*width: 300px;*/
+/*height: 100px;*/
 margin:0;
 padding:0;
 border: 1px solid white;
