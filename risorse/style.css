@@ -1,32 +1,19 @@
 * {
-    display:block;
-	margin:0;
-	padding:0;
+        margin:0;
+        padding:0;
         background-color: rgb(51,03,129);
         color: white;
 }
-/*QGridLayout{
- display:block;
- width: 1000px;
- height:1000px;
-}*/
-.VistaPosizione{
 
-/*  background:red;*/
-}
 QPushButton {
 
 /*Border – style: outset;
-Border – width: 2px;		
-Border – radius:  10px;		
-Border – color: beige;		
-font: bold 14px;		
+Border – width: 2px;
+Border – radius:  10px;
+Border – color: beige;
+font: bold 14px;
 min – width: 10em;
 */
-/*display: block;*/
-/*width: 300px;*/
-/*height: 100px;*/
-
 margin:0;
 padding:0;
 border: 1px solid white;

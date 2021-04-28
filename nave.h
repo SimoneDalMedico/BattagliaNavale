@@ -13,6 +13,7 @@ class Nave : public cella
 
 public:
     Nave() =default;
+    virtual ~Nave() =default;
     Nave(unsigned short int, unsigned short int);
     bool colpita(unsigned short int, unsigned short int);
     bool affondata();
