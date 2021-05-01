@@ -3,7 +3,7 @@
 
 
 template <class T>
-class deep_ptr;  // Dichiarazione incompleta
+class deep_ptr;  // Dichiarazione incomple
 
 template <class T>
 bool operator==(const deep_ptr<T>& left, const deep_ptr<T>& right);  // Dichiarazione incompleta
