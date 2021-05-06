@@ -27,6 +27,7 @@ vistaGioco::vistaGioco(Controller* c,QWidget* parent): QWidget(parent), controll
 
 void vistaGioco::update()
 {
+    std::cout<<"vistaGioco->update->start"<<std::endl;
     for(unsigned short int i=0;i<100;i++){
         int player=controller->getPlayer(i/10, i%10);
         if(player!=none){
@@ -45,6 +46,7 @@ void vistaGioco::update()
                 }
         }
     }
+    std::cout<<"vistaGioco->update->end"<<std::endl;
 
 }
 
@@ -98,7 +100,7 @@ void vistaGioco::showWinner()
 void vistaGioco::updatePannelo()
 {
     QLayoutItem* itemC=PannelloInformazioni->itemAt(0);
-            std::stringstream naviComputer;
+    std::stringstream naviComputer;
     QLabel* naveC=static_cast<QLabel*>(itemC->widget());
 
     int numeroNaviAffondateComputer=controller->showNaviAffondateC();
@@ -106,7 +108,7 @@ void vistaGioco::updatePannelo()
     naveC->setText(QString::fromStdString(naviComputer.str()));
 
     QLayoutItem* itemG=PannelloInformazioni->itemAt(1);
-            std::stringstream naviGiocatore;
+    std::stringstream naviGiocatore;
     QLabel* naveG=static_cast<QLabel*>(itemG->widget());
     int numeroNaviAffondateGiocatore=controller->showNaviAffondateG();
     naviGiocatore<<"numero navi Giocatore affondate: "<<numeroNaviAffondateGiocatore;
@@ -183,7 +185,7 @@ void vistaGioco::addMenu()
     QMenu* menu=new QMenu("File",menuBar);
     QAction* exit=new QAction("Exit",menu);
     QAction* reset=new QAction("Reset", menu);
-   connect(reset,SIGNAL(triggered()),controller,SLOT(resetGameG()));
+    connect(reset,SIGNAL(triggered()),controller,SLOT(resetGameG()));
     connect(exit,SIGNAL(triggered()),this,SLOT(close()));
 
     menu->addAction(exit);

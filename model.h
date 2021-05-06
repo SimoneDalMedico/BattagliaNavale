@@ -23,7 +23,7 @@ protected:
 
     Player grigliaComputer[100];
     Player grigliaGiocatore[100];
-    bool turn;
+    bool turn = false;
 };
 
 #endif // MODEL_H
