@@ -146,7 +146,7 @@ void Controller::resetGameG()
 
     vistaG->close();
     vistaP->show();
-     vistaP->updatePanelloP();
+    vistaP->updatePanelloP();
 }
 
 void Controller::resetGameP()

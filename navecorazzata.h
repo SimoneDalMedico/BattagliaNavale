@@ -8,7 +8,7 @@ class NaveCorazzata : public Nave
     friend class Computer;
 public:
     NaveCorazzata();
-    ~NaveCorazzata()=default;
+    //~NaveCorazzata()=default;
     void assegna(unsigned short int, unsigned short int);
     void operator=(NaveCorazzata);
 };

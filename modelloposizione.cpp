@@ -198,14 +198,14 @@ void ModelloPosizione::reset()
     computer.numero_Navi_Affondate=0;
 
     static_cast<NaveAssalto*>(giocatore.navi[0].get())->reset();
-    static_cast<NaveCrociere*>(giocatore.navi[0].get())->reset();
-    static_cast<NaveCorazzata*>(giocatore.navi[0].get())->reset();
-    static_cast<NavePortaerei*>(giocatore.navi[0].get())->reset();
+    static_cast<NaveCrociere*>(giocatore.navi[1].get())->reset();
+    static_cast<NaveCorazzata*>(giocatore.navi[2].get())->reset();
+    static_cast<NavePortaerei*>(giocatore.navi[3].get())->reset();
 
     static_cast<NaveAssalto*>(computer.navi[0].get())->reset();
-    static_cast<NaveCrociere*>(computer.navi[0].get())->reset();
-    static_cast<NaveCorazzata*>(computer.navi[0].get())->reset();
-    static_cast<NavePortaerei*>(computer.navi[0].get())->reset();
+    static_cast<NaveCrociere*>(computer.navi[1].get())->reset();
+    static_cast<NaveCorazzata*>(computer.navi[2].get())->reset();
+    static_cast<NavePortaerei*>(computer.navi[3].get())->reset();
 }
 
 bool ModelloPosizione::CeckFinePosizionamento()

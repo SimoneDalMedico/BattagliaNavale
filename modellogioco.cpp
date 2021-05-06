@@ -16,8 +16,8 @@ ModelloGioco::ModelloGioco(ModelloPosizione* p): giocatore(p->giocatore), comput
 //        std::cout<<grigliaGiocatore[i]<<std::endl;
 //        std::cout<<std::endl;
     }
-    giocatore=p->giocatore;
-    computer=p->computer;
+    //giocatore=p->giocatore;
+    //computer=p->computer;
 }
 
 void ModelloGioco::move(unsigned short int x, unsigned short int y)
@@ -36,6 +36,7 @@ void ModelloGioco::move(unsigned short int x, unsigned short int y)
         }
 
     }else{
+        std::cout<<"Modello gioco::move"<<std::endl;
         std::map<unsigned short int,unsigned short int>::iterator it;
         it=computer.SceltePossibili.find(x*10+y);
                     if(grigliaGiocatore[x*10+y]==playerG){
