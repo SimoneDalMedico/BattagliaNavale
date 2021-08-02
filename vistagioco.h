@@ -7,6 +7,7 @@
 #include <QGridLayout>
 #include <QMenuBar>
 #include <QPushButton>
+#include <QMessageBox>
 #include <QFile>
 #include <QIcon>
 #include <QDialog>
@@ -31,13 +32,16 @@ public:
     void updatePannelo();
     void ShowMessage(const QString &);
     void inizializza_Griglie();
+    void showHelp();
 
 private:
     Controller* controller;
+    QGridLayout* layout;
     QHBoxLayout* mainLayout;
     QGridLayout* grigliaGiocatore;
     QGridLayout* grigliaComputer;
     QVBoxLayout* PannelloInformazioni;
+    QPushButton * helpButton;
     void setSchermata();
     void addMenu();
     void addButton();

@@ -3,6 +3,7 @@
 
 vistaGioco::vistaGioco(Controller* c,QWidget* parent): QWidget(parent), controller(c)
 {
+    layout = new QGridLayout(parent);
     mainLayout=new QHBoxLayout(this);
     grigliaComputer=new QGridLayout(parent);
     grigliaGiocatore=new QGridLayout(parent);
@@ -21,6 +22,8 @@ vistaGioco::vistaGioco(Controller* c,QWidget* parent): QWidget(parent), controll
     mainLayout->addLayout(grigliaGiocatore);
 
     mainLayout->addLayout(PannelloInformazioni);
+
+    mainLayout->addLayout(layout);
 
     setLayout(mainLayout);
 }
@@ -183,10 +186,17 @@ void vistaGioco::addMenu()
 {
     QMenuBar*menuBar=new QMenuBar(this);
     QMenu* menu=new QMenu("File",menuBar);
-    QAction* exit=new QAction("Exit",menu);
+    QAction* exit=new QAction("Exit", menu);
     QAction* reset=new QAction("Reset", menu);
     connect(reset,SIGNAL(triggered()),controller,SLOT(resetGameG()));
     connect(exit,SIGNAL(triggered()),this,SLOT(close()));
+    // HELP BUTTON
+    helpButton = new QPushButton("Help");
+    helpButton->setFocusPolicy(Qt::NoFocus);
+    helpButton->setStyleSheet("font-size: 15px;");
+    QObject::connect(helpButton,SIGNAL(clicked(bool)),controller,SLOT(sendHelp()));
+
+    layout->addWidget(helpButton);
 
     menu->addAction(exit);
 
@@ -197,9 +207,20 @@ void vistaGioco::addMenu()
     mainLayout->addWidget(menuBar);
 }
 
-
-
-
+void vistaGioco::showHelp(){
+    QMessageBox info;
+    QFile file(":/resources/README.md");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+    info.setText(QString(styleSheet));
+    info.setWindowTitle("Help");
+    QFile stile(":/resources/helpstyle.css");
+    stile.open(QFile::ReadOnly);
+    QString style = QLatin1String(stile.readAll());
+    info.setStyleSheet(style);
+    //info.setWindowIcon(QIcon(QPixmap(":/info"))); // mette iconcina nella barra delle finestre aperte in basso
+    info.exec();
+}
 
 
 

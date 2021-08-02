@@ -38,6 +38,7 @@ public slots:
     void moveG(unsigned short , unsigned short);
     void resetGameG();
     void resetGameP();
+    void sendHelp();
 private:
     VistaPosizione* vistaP;
     vistaGioco* vistaG;

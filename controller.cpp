@@ -158,4 +158,7 @@ void Controller::resetGameP()
     vistaP->resetPosizione();
     vistaP->updatePanelloP();
 }
+void Controller::sendHelp(){
+    vistaG->showHelp();
+}
 
