@@ -13,6 +13,8 @@ vistaGioco::vistaGioco(Controller* c,QWidget* parent): QWidget(parent), controll
 
     addButton();
 
+    addButtonHelp();
+
     addLabel();
 
     setSchermata();
@@ -153,6 +155,18 @@ void vistaGioco::addButton()
         grigliaGiocatore->addWidget(button2, i/10, i%10);
         button2->setEnabled(false);
     }
+
+}
+
+void vistaGioco::addButtonHelp()
+{
+    // HELP BUTTON
+   QPushButton* helpButton = new QPushButton("Help");
+    helpButton->setFocusPolicy(Qt::NoFocus);
+    helpButton->setStyleSheet("font-size: 15px; border-radius: 15px; padding: 1em;");
+    QObject::connect(helpButton,SIGNAL(clicked(bool)),controller,SLOT(sendHelp()));
+
+    mainLayout->addWidget(helpButton);
 }
 
 void vistaGioco::addLabel()
@@ -190,13 +204,7 @@ void vistaGioco::addMenu()
     QAction* reset=new QAction("Reset", menu);
     connect(reset,SIGNAL(triggered()),controller,SLOT(resetGameG()));
     connect(exit,SIGNAL(triggered()),this,SLOT(close()));
-    // HELP BUTTON
-    helpButton = new QPushButton("Help");
-    helpButton->setFocusPolicy(Qt::NoFocus);
-    helpButton->setStyleSheet("font-size: 15px;");
-    QObject::connect(helpButton,SIGNAL(clicked(bool)),controller,SLOT(sendHelp()));
 
-    layout->addWidget(helpButton);
 
     menu->addAction(exit);
 

@@ -32,6 +32,7 @@ public:
 
 protected:
    Controller* controller;
+   QVBoxLayout* masterLayout;
    QHBoxLayout * mainLayout;
    QVBoxLayout* PannelloInformazioniP;
    QGridLayout* grigliaComputer;
@@ -39,6 +40,7 @@ protected:
    void setSchermata();
    void addMenu();
    void addButton();
+   void addButtonHelp();
    void addLabelP();
 };
 #endif //VISTAPOSIZIONE_H

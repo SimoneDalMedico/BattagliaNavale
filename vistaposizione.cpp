@@ -11,6 +11,8 @@ VistaPosizione::VistaPosizione(Controller* c, QWidget* parent):QWidget(parent), 
 
     addButton();
 
+    addButtonHelp();
+
     addLabelP();
 
     setSchermata();
@@ -114,6 +116,18 @@ void VistaPosizione::addButton()
         grigliaGiocatore->addWidget(button2, i/10, i%10);
         button2->setEnabled(true);
     }
+
+}
+
+void VistaPosizione::addButtonHelp()
+{
+    // HELP BUTTON
+   QPushButton* helpButton = new QPushButton("Help");
+    helpButton->setFocusPolicy(Qt::NoFocus);
+    helpButton->setStyleSheet("font-size: 15px; border-radius: 15px; padding: 1em; position:absolute; bottom: 2px; left: 2px;");
+    QObject::connect(helpButton,SIGNAL(clicked(bool)),controller,SLOT(sendHelp()));
+
+    mainLayout->addWidget(helpButton);
 }
 
 void VistaPosizione::addLabelP()

@@ -45,6 +45,7 @@ private:
     void setSchermata();
     void addMenu();
     void addButton();
+    void addButtonHelp();
     void addLabel();
 };
 
