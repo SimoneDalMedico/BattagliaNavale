@@ -9,7 +9,7 @@ class ModelloGioco: public Model
 public:
     ModelloGioco();
     ModelloGioco(ModelloPosizione*);
-    ~ModelloGioco()=default;
+//    ~ModelloGioco()=default;
     void move(unsigned short int, unsigned short int);
 
     int SceltaComputer();

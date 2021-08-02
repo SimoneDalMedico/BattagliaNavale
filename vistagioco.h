@@ -23,7 +23,7 @@ class vistaGioco : public QWidget
     Q_OBJECT
 public:
     vistaGioco(Controller*,QWidget* parent=nullptr);
-    ~vistaGioco()=default;
+//    ~vistaGioco() =default;
     void update();
     void updateC();
     void resetGame();

@@ -5,13 +5,13 @@ NaveCrociere::NaveCrociere()
 
 }
 
-NaveCrociere::~NaveCrociere()
-{
-    for(std::map< unsigned short int,cella>::iterator i=NaveCrociere::caselleNave.begin(); i!=NaveCrociere::caselleNave.end();i++){
-        NaveCrociere::caselleNave.erase(i);
-    }
+//NaveCrociere::~NaveCrociere()
+//{
+//    for(std::map< unsigned short int,cella>::iterator i=NaveCrociere::caselleNave.begin(); i!=NaveCrociere::caselleNave.end();i++){
+//        NaveCrociere::caselleNave.erase(i);
+//    }
 
-}
+//}
 
 void NaveCrociere::assegna(unsigned short X, unsigned short Y)
 {

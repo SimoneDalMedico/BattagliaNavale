@@ -7,7 +7,7 @@ class ModelloPosizione: public Model
 public:
     ModelloPosizione();
 
-    ~ModelloPosizione()=default;
+//    ~ModelloPosizione()=default;
     Player operator()(unsigned short int, unsigned short int) const;
     void move(unsigned short int, unsigned short int) override;
     void moveC();

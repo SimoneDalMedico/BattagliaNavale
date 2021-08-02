@@ -24,7 +24,7 @@ class VistaPosizione: public QWidget
 public:
     VistaPosizione(Controller*, QWidget* parent=nullptr);
     VistaPosizione(VistaPosizione* );
-    ~VistaPosizione()=default;
+//    ~VistaPosizione()=default;
     void update();
     void updatePanelloP();
     void resetPosizione();

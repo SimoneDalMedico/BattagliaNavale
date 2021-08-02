@@ -9,7 +9,7 @@ private:
     unsigned short int y;
 public:
     cella() =default;
-    ~cella()=default;
+//    ~cella()=default;
     cella(unsigned short int, unsigned short int);
     unsigned short int ShowX();
     unsigned short int ShowY();

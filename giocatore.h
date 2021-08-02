@@ -17,7 +17,7 @@ class Giocatore
 public:
     Giocatore();
     Giocatore(const Giocatore&);
-    ~Giocatore()=default;
+//    ~Giocatore()=default;
     void operator=(Giocatore);
 
 protected:

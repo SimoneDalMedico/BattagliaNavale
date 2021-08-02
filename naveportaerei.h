@@ -9,7 +9,7 @@ class NavePortaerei : public Nave
 public:
     NavePortaerei();
 
-    ~NavePortaerei()=default;
+//    ~NavePortaerei()=default;
     void assegna(unsigned short int, unsigned short int);
     void operator=(NavePortaerei);
 };

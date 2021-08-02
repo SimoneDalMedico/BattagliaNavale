@@ -8,7 +8,7 @@ class NaveCrociere : public Nave
     friend class Computer;
 public:
     NaveCrociere();
-    ~NaveCrociere();
+//    ~NaveCrociere();
     void assegna(unsigned short int, unsigned short int);
     void operator=(NaveCrociere);
 };

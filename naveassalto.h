@@ -8,7 +8,7 @@ class NaveAssalto: public Nave
     friend class Computer;
 public:
     NaveAssalto();
-    ~NaveAssalto()=default;
+//    ~NaveAssalto()=default;
     void assegna(unsigned short int, unsigned short int);
     void operator=(NaveAssalto);
 };
