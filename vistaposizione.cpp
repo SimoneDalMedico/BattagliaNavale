@@ -2,7 +2,9 @@
 #include "controller.h"
 VistaPosizione::VistaPosizione(Controller* c, QWidget* parent):QWidget(parent), controller(c)
 {
-    mainLayout=new QHBoxLayout(this);
+//    masterLayout=new QBoxLayout(QBoxLayout::TopToBottom);
+    masterLayout=new QVBoxLayout();
+    mainLayout=new QHBoxLayout(parent);
     grigliaComputer=new QGridLayout(parent);
     grigliaGiocatore=new QGridLayout(parent);
     PannelloInformazioniP=new QVBoxLayout(parent);
@@ -11,16 +13,22 @@ VistaPosizione::VistaPosizione(Controller* c, QWidget* parent):QWidget(parent), 
 
     addButton();
 
-    addButtonHelp();
+
 
     addLabelP();
 
-    setSchermata();
+
 
     mainLayout->addLayout(grigliaComputer);
     mainLayout->addLayout(grigliaGiocatore);
     mainLayout->addLayout(PannelloInformazioniP);
-    setLayout(mainLayout);
+
+//    setLayout(mainLayout);
+//     addButtonHelp();
+     masterLayout->addLayout(mainLayout);
+     addButtonHelp();
+     setSchermata();
+     setLayout(masterLayout);
 }
 
 VistaPosizione::VistaPosizione(VistaPosizione * p):controller(p->controller)
@@ -96,7 +104,7 @@ void VistaPosizione::addMenu()
     menu->addAction(quit);
     menuBar->addMenu(menu);
 
-    mainLayout->addWidget(menuBar);
+    masterLayout->addWidget(menuBar);
 }
 
 void VistaPosizione::addButton()
@@ -122,12 +130,22 @@ void VistaPosizione::addButton()
 void VistaPosizione::addButtonHelp()
 {
     // HELP BUTTON
-   QPushButton* helpButton = new QPushButton("Help");
+    QBoxLayout* posizionamento=new QBoxLayout(QBoxLayout::LeftToRight);
+    posizionamento->addSpacing(750);
+   QPushButton* helpButton = new QPushButton("Help",this);
     helpButton->setFocusPolicy(Qt::NoFocus);
-    helpButton->setStyleSheet("font-size: 15px; border-radius: 15px; padding: 1em; position:absolute; bottom: 2px; left: 2px;");
-    QObject::connect(helpButton,SIGNAL(clicked(bool)),controller,SLOT(sendHelp()));
+    helpButton->setStyleSheet(
+                            "font-size: 15px;"
+                            "border-radius: 5px;"
+                            "padding: 0.4em;"
+                            "max-width: 35px;"
+                            "max-height: 15px;"
+                            );
 
-    mainLayout->addWidget(helpButton);
+
+    QObject::connect(helpButton,SIGNAL(clicked(bool)),controller,SLOT(sendHelp()));
+    posizionamento->addWidget(helpButton);
+    masterLayout->addLayout(posizionamento);
 }
 
 void VistaPosizione::addLabelP()

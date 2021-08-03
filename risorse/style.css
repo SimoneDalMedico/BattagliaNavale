@@ -19,6 +19,7 @@ padding:0;
 border: 1px solid white;
 background-color: rgb(21,73,99);
 }
+
 QPushButton:hover {
         /*Background – color : #e6e6fa;*/
         /*Border – style: inset;*/

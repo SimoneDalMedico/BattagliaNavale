@@ -1,6 +1,7 @@
 #ifndef VISTAPOSIZIONE_H
 #define VISTAPOSIZIONE_H
 #include <QWidget>
+#include <QBoxLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QGridLayout>
@@ -32,7 +33,7 @@ public:
 
 protected:
    Controller* controller;
-   QVBoxLayout* masterLayout;
+   QBoxLayout* masterLayout;
    QHBoxLayout * mainLayout;
    QVBoxLayout* PannelloInformazioniP;
    QGridLayout* grigliaComputer;

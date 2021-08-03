@@ -13,8 +13,6 @@ vistaGioco::vistaGioco(Controller* c,QWidget* parent): QWidget(parent), controll
 
     addButton();
 
-    addButtonHelp();
-
     addLabel();
 
     setSchermata();
@@ -24,6 +22,8 @@ vistaGioco::vistaGioco(Controller* c,QWidget* parent): QWidget(parent), controll
     mainLayout->addLayout(grigliaGiocatore);
 
     mainLayout->addLayout(PannelloInformazioni);
+
+    addButtonHelp();
 
     mainLayout->addLayout(layout);
 
