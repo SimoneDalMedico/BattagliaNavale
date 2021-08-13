@@ -3,8 +3,9 @@
 
 vistaGioco::vistaGioco(Controller* c,QWidget* parent): QWidget(parent), controller(c)
 {
-    layout = new QGridLayout(parent);
-    mainLayout=new QHBoxLayout(this);
+//    masterlayout = new QGridLayout(parent);
+    masterLayout=new QVBoxLayout();
+    mainLayout=new QHBoxLayout(parent);
     grigliaComputer=new QGridLayout(parent);
     grigliaGiocatore=new QGridLayout(parent);
     PannelloInformazioni=new QVBoxLayout(parent);
@@ -15,19 +16,20 @@ vistaGioco::vistaGioco(Controller* c,QWidget* parent): QWidget(parent), controll
 
     addLabel();
 
-    setSchermata();
+
 
     mainLayout->addLayout(grigliaComputer);
-
     mainLayout->addLayout(grigliaGiocatore);
-
     mainLayout->addLayout(PannelloInformazioni);
 
+    masterLayout->addLayout(mainLayout);
     addButtonHelp();
 
-    mainLayout->addLayout(layout);
+    setSchermata();
 
-    setLayout(mainLayout);
+//    mainLayout->addLayout(layout);
+
+    setLayout(masterLayout);
 }
 
 void vistaGioco::update()
@@ -51,7 +53,7 @@ void vistaGioco::update()
                 }
         }
     }
-    std::cout<<"vistaGioco->update->end"<<std::endl;
+
 
 }
 
@@ -132,8 +134,8 @@ void vistaGioco::setSchermata()
 {
     grigliaComputer->setSpacing(0);
     grigliaGiocatore->setSpacing(0);
-
-    setMinimumSize(QSize(400,400));
+    setMaximumSize(14000,6000);
+//    setMinimumSize(QSize(400,400));
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
     QFile file(":/risorse/style.css");
     file.open(QFile::ReadOnly);
@@ -148,10 +150,12 @@ void vistaGioco::addButton()
         button1->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
         connect(button1,SIGNAL(clickedCell(unsigned short, unsigned short)), controller, SLOT(moveG(unsigned short, unsigned short)));
         button1->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+        button1->setStyleSheet("width:40px; height: 40px;");
         grigliaComputer->addWidget(button1, i/10, i%10);
         button1->setEnabled(true);
         ButtonB* button2=new ButtonB(i/10,i%10,this);
         button2->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+        button2->setStyleSheet("width:40px; height: 40px;");
         grigliaGiocatore->addWidget(button2, i/10, i%10);
         button2->setEnabled(false);
     }
@@ -161,12 +165,28 @@ void vistaGioco::addButton()
 void vistaGioco::addButtonHelp()
 {
     // HELP BUTTON
-   QPushButton* helpButton = new QPushButton("Help");
-    helpButton->setFocusPolicy(Qt::NoFocus);
-    helpButton->setStyleSheet("font-size: 15px; border-radius: 15px; padding: 1em;");
-    QObject::connect(helpButton,SIGNAL(clicked(bool)),controller,SLOT(sendHelp()));
+//   QPushButton* helpButton = new QPushButton("Help");
+//    helpButton->setFocusPolicy(Qt::NoFocus);
+//    helpButton->setStyleSheet("font-size: 15px; border-radius: 15px; padding: 1em;");
+//    QObject::connect(helpButton,SIGNAL(clicked(bool)),controller,SLOT(sendHelp()));
 
-    mainLayout->addWidget(helpButton);
+//    mainLayout->addWidget(helpButton);
+    QBoxLayout* posizionamento=new QBoxLayout(QBoxLayout::LeftToRight);
+    posizionamento->addSpacing(750);
+   QPushButton* helpButton = new QPushButton("Help",this);
+    helpButton->setFocusPolicy(Qt::NoFocus);
+    helpButton->setStyleSheet(
+                            "font-size: 15px;"
+                            "border-radius: 5px;"
+                            "padding: 0.4em;"
+                            "max-width: 35px;"
+                            "max-height: 15px;"
+                            );
+
+
+    QObject::connect(helpButton,SIGNAL(clicked(bool)),controller,SLOT(sendHelp()));
+    posizionamento->addWidget(helpButton);
+    masterLayout->addLayout(posizionamento);
 }
 
 void vistaGioco::addLabel()

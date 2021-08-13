@@ -28,6 +28,7 @@ if(giocatore.numeroNaviPosizionate==0){
         if(static_cast<NaveAssalto*>(giocatore.navi[0].get())->counter()<2){
             grigliaGiocatore[X*10+Y]=playerG;
             static_cast<NaveAssalto*>(giocatore.navi[0].get())->assegna(X,Y);
+
             std::cout<<"mostrare x e y del contenitore navi[0]: "<<(static_cast<NaveAssalto*>(giocatore.navi[0].get()))->ShowX()<<" "<<static_cast<NaveAssalto*>(giocatore.navi[0].get())->counter()<<std::endl;
 
         }

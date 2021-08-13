@@ -36,12 +36,11 @@ public:
 
 private:
     Controller* controller;
-    QGridLayout* layout;
+    QBoxLayout* masterLayout;
     QHBoxLayout* mainLayout;
     QGridLayout* grigliaGiocatore;
     QGridLayout* grigliaComputer;
     QVBoxLayout* PannelloInformazioni;
-    QPushButton * helpButton;
     void setSchermata();
     void addMenu();
     void addButton();

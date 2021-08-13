@@ -169,7 +169,7 @@ if(it->second.ShowX()==0 && it->second.ShowY()==0){
                caselleNave.insert(a);
            }
        }else{
-           if(it->second.ShowX()<9 && it->second.ShowY()==9){
+           if(it->second.ShowX()<9 && it->second.ShowX()>0 && it->second.ShowY()==9){
                unsigned short int y0=it->second.ShowY();
                unsigned short int y1=it->second.ShowY()-1;
                unsigned short int y[2]={y0,y1};
@@ -195,8 +195,8 @@ if(it->second.ShowX()==0 && it->second.ShowY()==0){
                unsigned short int x[3]={x0,it->second.ShowX(),x2};
                unsigned short int y[3]={y0,it->second.ShowY(),y2};
 
-               unsigned short int randomX=rand() % 3;
-               unsigned short int randomY=rand() % 3;
+               unsigned short int randomX=rand() % 3; //prima era %3
+               unsigned short int randomY=rand() % 3; //prima era %3
                while(!((x[randomX]==x0 && y[randomY]==y[1]) || (x[randomX]==x[1] && y[randomY]==y0) || (x[randomX]==x[1] && y[randomY]==y2) || (x[randomX]==x2 && y[randomY]==y[1]))){
                         randomX=rand() % 3;
                         randomY=rand() % 3;
