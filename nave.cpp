@@ -214,7 +214,7 @@ if(it->second.ShowX()==0 && it->second.ShowY()==0){
 }
 
 }else{
-        if(counter()>1){
+        if(counter()>1){//x1==x2
             if(it->second.ShowX()==it2->second.ShowX()){
                 if((it->second.ShowX()==0 && it->second.ShowY()==0) || (it2->second.ShowX()==0 && it2->second.ShowY()==0)){
                     if(it->second.ShowY()<it2->second.ShowY()){
@@ -268,7 +268,7 @@ if(it->second.ShowX()==0 && it->second.ShowY()==0){
                                     caselleNave.insert(a);
                                 }
                             }else{
-                                if((it->second.ShowX()>0 && it->second.ShowX()<9 && it->second.ShowY()==0)||(it2->second.ShowX()>0 && it2->second.ShowX()<9 && it2->second.ShowY()==0)){
+                                if((it->second.ShowX()>0 && it->second.ShowX()<9 && it->second.ShowY()==0)||(it2->second.ShowX()>0 && it2->second.ShowX()<9 && it2->second.ShowY()==0)){ //da verificare se è giusto inserire y1 (forse è x1)
                                     if(it->second.ShowY()<it2->second.ShowY()){
                                         unsigned short int y1=it2->second.ShowY()+1;
                                         cella posizione(it2->second.ShowX(),y1);
@@ -294,7 +294,7 @@ if(it->second.ShowX()==0 && it->second.ShowY()==0){
                                             caselleNave.insert(a);
                                         }
                                     }else{
-                                    if(it->second.ShowY()<it2->second.ShowY()){
+                                    if(it->second.ShowY()<it2->second.ShowY()/* && aggiunto la variabile x1==x2 it->second.ShowX()==it2->second.ShowX()*/){
                                         unsigned short int y1=it->second.ShowY()-1;
                                         unsigned short int y2=it2->second.ShowY() +1;
                                         unsigned short int y[2]={y1,y2};
@@ -304,15 +304,17 @@ if(it->second.ShowX()==0 && it->second.ShowY()==0){
                                         std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                         caselleNave.insert(a);
                                     }else{
-                                        unsigned short int y1=it2->second.ShowY()-1;
-                                        unsigned short int y2=it->second.ShowY() +1;
+                                        if(it->second.ShowY()>it2->second.ShowY()){ //agginto condizione if per evitare caso it2.showY()==it.showY()
+                                            unsigned short int y1=it2->second.ShowY()-1;
+                                            unsigned short int y2=it->second.ShowY() +1;
 
-                                        unsigned short int y[2]={y1,y2};
+                                            unsigned short int y[2]={y1,y2};
 
-                                        unsigned short int random=rand() % 2;
-                                        cella posizione(it->second.ShowX(),y[random]);
-                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                        caselleNave.insert(a);
+                                            unsigned short int random=rand() % 2;
+                                            cella posizione(it->second.ShowX(),y[random]);
+                                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
+                                            caselleNave.insert(a);
+                                        }
                                     }
                                 }
                             }
@@ -320,7 +322,7 @@ if(it->second.ShowX()==0 && it->second.ShowY()==0){
                     }
                 }
             }
-                    }else{
+                    }else{ //y1==y2
                         if(it->second.ShowY()==it2->second.ShowY()){
                             if((it->second.ShowX()==0 && it->second.ShowY()==0) || (it2->second.ShowX()==0 && it2->second.ShowY()==0)){
                                 if(it->second.ShowX()<it2->second.ShowX()){
@@ -410,15 +412,17 @@ if(it->second.ShowX()==0 && it->second.ShowY()==0){
                                                         std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
                                                         caselleNave.insert(a);
                                                     }else{
-                                                        unsigned short int x1=(it2->second.ShowX())-1;
-                                                        unsigned short int x2=(it->second.ShowX())+1;
+                                                        if(it->second.ShowX()>it2->second.ShowX()){ //agginto condizione if per evitare caso it2.showX()==it.showX()
+                                                            unsigned short int x1=(it2->second.ShowX())-1;
+                                                            unsigned short int x2=(it->second.ShowX())+1;
 
-                                                        unsigned short int x[2]={x1,x2};
-                                                        unsigned short int random=rand() % 2;
+                                                            unsigned short int x[2]={x1,x2};
+                                                            unsigned short int random=rand() % 2;
 
-                                                        cella posizione(x[random],it->second.ShowY());
-                                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                                        caselleNave.insert(a);
+                                                            cella posizione(x[random],it->second.ShowY());
+                                                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
+                                                            caselleNave.insert(a);
+                                                        }
                                                         }
 
                                                     }
