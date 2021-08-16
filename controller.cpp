@@ -21,6 +21,12 @@ int Controller::getPlayer(unsigned short x, unsigned short y) const
     return (*modelloG)(x,y);
 }
 
+int Controller::getComp(unsigned short x, unsigned short y) const
+{
+    //meotdo da eliminare: solo per verificare posizione navi computer
+    return modelloG->GetComp(x,y);
+}
+
 
 int Controller::getPlayerG(unsigned short x, unsigned short y) const
 {
@@ -125,6 +131,7 @@ void Controller::posiziona(unsigned short row, unsigned short col)
        vistaP->update();
        vistaP->updatePanelloP();
        modelloP->moveC();
+       vistaP->updateC(); //da eliminare
        vistaP->updatePanelloP();
        if(modelloP->CeckFinePosizionamento()){
             vistaG->show();

@@ -64,6 +64,7 @@ unsigned short int Computer::SceltaComputer()
     }
     std::cout<<"computer->sceltacomputer->finefor"<<std::endl;
      unsigned short int scelta=rand()% n;
+//     SceltePossibili.erase(scelta);
      std::cout<<"computer->sceltacomputer->scelta = "<<scelta<<std::endl;
      std::cout<<"computer->sceltacomputer->A[scelta] = "<<A[scelta]<<std::endl;
      return A[scelta];

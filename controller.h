@@ -20,6 +20,7 @@ public:
     void setViewG(vistaGioco*);
     void setViewP(VistaPosizione*);
     int getPlayer(unsigned short, unsigned short) const;
+    int getComp(unsigned short, unsigned short) const; //da eliminare: per veirificare posizionamento navi cpmp
     int getPlayerG(unsigned short, unsigned short) const;
     int getPlayerP(unsigned short int, unsigned short int) const;
     int getWinner() const;

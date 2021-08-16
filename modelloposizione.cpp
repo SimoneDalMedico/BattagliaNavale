@@ -29,7 +29,7 @@ if(giocatore.numeroNaviPosizionate==0){
             grigliaGiocatore[X*10+Y]=playerG;
             static_cast<NaveAssalto*>(giocatore.navi[0].get())->assegna(X,Y);
 
-            std::cout<<"mostrare x e y del contenitore navi[0]: "<<(static_cast<NaveAssalto*>(giocatore.navi[0].get()))->ShowX()<<" "<<static_cast<NaveAssalto*>(giocatore.navi[0].get())->counter()<<std::endl;
+            std::cout<<"mostrare x e y del contenitore navi[0]: "<<(static_cast<NaveAssalto*>(giocatore.navi[0].get()))->ShowX()<<" "<<static_cast<NaveAssalto*>(giocatore.navi[0].get())->ShowY()<<" "<<static_cast<NaveAssalto*>(giocatore.navi[0].get())->counter()<<std::endl;
 
         }
         if(static_cast<NaveAssalto*>(giocatore.navi[0].get())->counter()==2) {
@@ -99,7 +99,7 @@ void ModelloPosizione::moveC()
 
 
         if(static_cast<NaveAssalto*>(computer.navi[0].get())->counter()==2) {
-            computer.numeroNaviPosizionate++;
+            computer.numeroNaviPosizionate=computer.numeroNaviPosizionate+1;
         }
     }
         }else{
@@ -118,12 +118,12 @@ void ModelloPosizione::moveC()
                     }
 
             }else{
-                if(static_cast<NaveCrociere*>(computer.navi[1].get())->counter()>0 && static_cast<NaveCrociere*>(computer.navi[0].get())->counter()<3){
+                if(static_cast<NaveCrociere*>(computer.navi[1].get())->counter()>0 && static_cast<NaveCrociere*>(computer.navi[1].get())->counter()<3){
                     static_cast<NaveCrociere*>(computer.navi[1].get())->Posizionamentocomputer();
                     grigliaComputer[static_cast<NaveCrociere*>(computer.navi[1].get())->PosizionaGrigliaC()]=playerC;
                 }
                 if(static_cast<NaveCrociere*>(computer.navi[1].get())->counter()==3) {
-                    computer.numeroNaviPosizionate++;
+                    computer.numeroNaviPosizionate=computer.numeroNaviPosizionate+1;
                 }
             }
         }else{
@@ -142,12 +142,12 @@ void ModelloPosizione::moveC()
                         }
 
                 }else{
-                    if(static_cast<NaveCorazzata*>(computer.navi[2].get())->counter()>0 && static_cast<NaveCorazzata*>(computer.navi[0].get())->counter()<4){
+                    if(static_cast<NaveCorazzata*>(computer.navi[2].get())->counter()>0 && static_cast<NaveCorazzata*>(computer.navi[2].get())->counter()<4){
                         static_cast<NaveCorazzata*>(computer.navi[2].get())->Posizionamentocomputer();
                         grigliaComputer[static_cast<NaveCorazzata*>(computer.navi[2].get())->PosizionaGrigliaC()]=playerC;
                     }
                     if(static_cast<NaveCorazzata*>(computer.navi[2].get())->counter()==4) {
-                        computer.numeroNaviPosizionate++;
+                        computer.numeroNaviPosizionate=computer.numeroNaviPosizionate+1;
                     }
                 }
             }else{
@@ -167,11 +167,11 @@ void ModelloPosizione::moveC()
                                 static_cast<NavePortaerei*>(computer.navi[3].get())->assegna(X,Y);
                             }
                     }else{
-                        if(static_cast<NavePortaerei*>(computer.navi[3].get())->counter()>0 && static_cast<NavePortaerei*>(computer.navi[0].get())->counter()<5){
+                        if(static_cast<NavePortaerei*>(computer.navi[3].get())->counter()>0 && static_cast<NavePortaerei*>(computer.navi[3].get())->counter()<5){
                             static_cast<NavePortaerei*>(computer.navi[3].get())->Posizionamentocomputer();
                             grigliaComputer[static_cast<NavePortaerei*>(computer.navi[3].get())->PosizionaGrigliaC()]=playerC;
                         }
-                       if(static_cast<NavePortaerei*>(computer.navi[3].get())->counter()==5) computer.numeroNaviPosizionate++;
+                       if(static_cast<NavePortaerei*>(computer.navi[3].get())->counter()==5) computer.numeroNaviPosizionate=computer.numeroNaviPosizionate+1;
                     }
                 }
             }

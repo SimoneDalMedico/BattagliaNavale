@@ -214,6 +214,16 @@ void vistaGioco::inizializza_Griglie()
             buttonG->setIcon(QIcon(":/risorse/quadratoRosso.png"));
         }
     }
+    //parte da eliminare: serve solo per verificare il posizionameto:
+    for(unsigned short int i=0;i<100;i++){
+        int playerG=controller->getComp(i/10,i%10);
+        if(playerG==2){
+            QLayoutItem* item=grigliaComputer->itemAtPosition(i/10,i%10);
+            QPushButton* buttonG=static_cast<QPushButton*>(item->widget());
+            buttonG->setIcon(QIcon(":/risorse/quadratoRosso.png"));
+        }
+    }
+
 }
 
 void vistaGioco::addMenu()

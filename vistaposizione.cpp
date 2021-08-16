@@ -51,6 +51,20 @@ void VistaPosizione::update()
     }
 }
 
+void VistaPosizione::updateC()
+{
+    //metodo da elinare: serve per verificare il posizionamento di computer
+    for (unsigned short int i=0;i<100;i++){
+        int player=controller->getPlayerP(i/10,i%10);
+        if(player==2){
+            QLayoutItem* item=grigliaComputer->itemAtPosition(i/10,i%10);
+            QPushButton* button=static_cast<QPushButton*>(item->widget());
+                button->setIcon(QIcon(":/risorse/quadratoRosso.png"));
+                button->setEnabled(false);
+        }
+    }
+}
+
 void VistaPosizione::updatePanelloP()
 {
    QLayoutItem* itemC=PannelloInformazioniP->itemAt(0);

@@ -261,6 +261,12 @@ Player ModelloGioco::GetPlayer(unsigned short x, unsigned short y)
     return grigliaGiocatore[x*10+y];
 }
 
+Player ModelloGioco::GetComp(unsigned short x, unsigned short y)
+{
+    //metodo da elimare (per verificare posizionamento navi comp)
+    return grigliaComputer[x*10+y];
+}
+
 int ModelloGioco::numNaviAffondateG()
 {
     return giocatore.numero_Navi_Affondate;
