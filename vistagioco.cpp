@@ -248,17 +248,26 @@ void vistaGioco::addMenu()
 void vistaGioco::showHelp(){
     QMessageBox info;
     QFile file(":/risorse/README.md");
-    file.open(QFile::ReadWrite);
+    file.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(file.readAll());
-    info.setText(QString(styleSheet));
-    info.setWindowTitle("Help");
+    setStyleSheet(styleSheet);
+//    info.setText(QString(styleSheet));
+//    info.setWindowTitle("Help");
     QFile stile(":/risorse/helpstyle.css");
-    stile.open(QFile::ReadWrite);
+    //":/risorse/helpstyle.css"
+    stile.open(QFile::ReadOnly);
     QString style = QLatin1String(stile.readAll());
     info.setStyleSheet(style);
     //info.setWindowIcon(QIcon(QPixmap(":/info"))); // mette iconcina nella barra delle finestre aperte in basso
     info.exec();
 }
+
+/*
+    QFile file(":/risorse/style.css");
+    file.open(QFile::ReadOnly);
+    QString styleSheet=QLatin1String(file.readAll());
+    setStyleSheet(styleSheet);
+*/
 
 
 
