@@ -15,6 +15,7 @@
 #include <QLayoutItem>
 #include <QString>
 #include <stdexcept>
+#include <QImage>
 #include "buttonb.h"
 class Controller;
 
@@ -39,6 +40,7 @@ protected:
    QVBoxLayout* PannelloInformazioniP;
    QGridLayout* grigliaComputer;
    QGridLayout* grigliaGiocatore;
+   QImage* image;
    void setSchermata();
    void addMenu();
    void addButton();

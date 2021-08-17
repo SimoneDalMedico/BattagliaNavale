@@ -16,15 +16,12 @@ vistaGioco::vistaGioco(Controller* c,QWidget* parent): QWidget(parent), controll
 
     addLabel();
 
-
-
     mainLayout->addLayout(grigliaComputer);
     mainLayout->addLayout(grigliaGiocatore);
     mainLayout->addLayout(PannelloInformazioni);
 
     masterLayout->addLayout(mainLayout);
     addButtonHelp();
-
     setSchermata();
 
 //    mainLayout->addLayout(layout);
@@ -134,7 +131,7 @@ void vistaGioco::setSchermata()
 {
     grigliaComputer->setSpacing(0);
     grigliaGiocatore->setSpacing(0);
-    setMaximumSize(14000,6000);
+    setMaximumSize(14000,600);
 //    setMinimumSize(QSize(400,400));
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
     QFile file(":/risorse/style.css");
@@ -230,19 +227,14 @@ void vistaGioco::addMenu()
 {
     QMenuBar*menuBar=new QMenuBar(this);
     QMenu* menu=new QMenu("File",menuBar);
-    QAction* exit=new QAction("Exit", menu);
     QAction* reset=new QAction("Reset", menu);
+    QAction* exit=new QAction("Quit", menu);
     connect(reset,SIGNAL(triggered()),controller,SLOT(resetGameG()));
     connect(exit,SIGNAL(triggered()),this,SLOT(close()));
-
-
-    menu->addAction(exit);
-
     menu->addAction(reset);
-
+    menu->addAction(exit);
     menuBar->addMenu(menu);
-
-    mainLayout->addWidget(menuBar);
+    masterLayout->addWidget(menuBar);
 }
 
 void vistaGioco::showHelp(){
