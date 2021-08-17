@@ -26,7 +26,7 @@ public:
 
 protected:
 
-    std::map<unsigned short int, cella> caselleNave;
+    std::map<unsigned short, cella> caselleNave;
 
 };
 

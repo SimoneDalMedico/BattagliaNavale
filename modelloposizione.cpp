@@ -132,10 +132,13 @@ void ModelloPosizione::moveC()
                     unsigned short X;
                     unsigned short Y;
                     do{
+                        std::cout<<"inzio ciclo while nave da 4"<<std::endl;
                     X=rand() % 10;
                     Y=rand() % 10;
+                    std::cout<<"X: "<<X<<std::endl;
+                    std::cout<<"Y: "<<Y<<std::endl;
                     }while(grigliaComputer[X*10+Y]!=none);
-
+                        std::cout<<"fine ciclo while nave da 4"<<std::endl;
                         if(static_cast<NaveCorazzata*>(computer.navi[2].get())->check_posizione(X,Y)){
                             grigliaComputer[X*10+Y]=playerC;
                             static_cast<NaveCorazzata*>(computer.navi[2].get())->assegna(X,Y);
@@ -156,11 +159,13 @@ void ModelloPosizione::moveC()
                         unsigned short X;
                         unsigned short Y;
                         do{
+                            std::cout<<"inzio ciclo while nave da 5"<<std::endl;
                         X=rand() % 10;
                         Y=rand() % 10;
-                        }while(!checkSpazioNave(X,Y));
                         std::cout<<"X: "<<X<<std::endl;
                         std::cout<<"Y: "<<Y<<std::endl;
+                        }while(!checkSpazioNave(X,Y));
+                        std::cout<<"fine ciclo while nave da 5"<<std::endl;
 
                             if(static_cast<NavePortaerei*>(computer.navi[3].get())->check_posizione(X,Y)){
                                 grigliaComputer[X*10+Y]=playerC;
@@ -168,7 +173,9 @@ void ModelloPosizione::moveC()
                             }
                     }else{
                         if(static_cast<NavePortaerei*>(computer.navi[3].get())->counter()>0 && static_cast<NavePortaerei*>(computer.navi[3].get())->counter()<5){
+                            std::cout<<"inizio posizionamento computer nave da 5 caselle"<<std::endl;
                             static_cast<NavePortaerei*>(computer.navi[3].get())->Posizionamentocomputer();
+                            std::cout<<"fineposizionamento nave da 5"<<std::endl;
                             grigliaComputer[static_cast<NavePortaerei*>(computer.navi[3].get())->PosizionaGrigliaC()]=playerC;
                         }
                        if(static_cast<NavePortaerei*>(computer.navi[3].get())->counter()==5) computer.numeroNaviPosizionate=computer.numeroNaviPosizionate+1;

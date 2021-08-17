@@ -5,14 +5,14 @@
 class cella
 {
 private:
-    unsigned short int x;
-    unsigned short int y;
+    unsigned short x;
+    unsigned short y;
 public:
     cella() =default;
     ~cella()=default;
-    cella(unsigned short int, unsigned short int);
-    unsigned short int ShowX();
-    unsigned short int ShowY();
+    cella(unsigned short, unsigned short);
+    unsigned short ShowX();
+    unsigned short ShowY();
 };
 
 #endif // CELLA_H

@@ -90,7 +90,7 @@ void Controller::moveG(unsigned short row, unsigned short col)
         modelloG->move(row,col);
         vistaG->update();
 
-        //fin qui va
+
 
         if(modelloG->checkNaveColpita(row,col)==true){
             if(modelloG->checkNaveAffondata()==true){
