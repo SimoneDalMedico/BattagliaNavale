@@ -22,13 +22,18 @@ bool Nave::check_posizione(unsigned short x, unsigned short y)
     std::map<unsigned short,cella>::iterator it2=caselleNave.end();
     it2--;
         if(it->first==it2->first){
+            //una sola casella
             if((x==(it2->second.ShowX())-1 && y==it2->second.ShowY()) || (x==(it2->second.ShowX())+1 && y==it2->second.ShowY()) || (x==it2->second.ShowX() && y==(it2->second.ShowY())-1) || (x==it2->second.ShowX() && y==(it2->second.ShowY())+1)){
                 return true;
             }
         }else{
+            //piu caselle
+
+            //caso orizzontale
             if(it->second.ShowX()==it2->second.ShowX() && x==it2->second.ShowX() && (y==(it2->second.ShowY())+1 || y==(it2->second.ShowY())-1)){
                 return true;
             }
+            //caso verticale
             if(it->second.ShowY()==it2->second.ShowY() && y==it2->second.ShowY() && (x==(it2->second.ShowX())+1 || x==(it2->second.ShowX())-1)){
                 return true;
             }
