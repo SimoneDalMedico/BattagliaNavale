@@ -4,5 +4,6 @@
         <file>risorse/Affondata.png</file>
         <file>risorse/quadratoRosso.png</file>
         <file>risorse/XMancata.jpg</file>
+        <file>risorse/helpstyle.css</file>
     </qresource>
 </RCC>

@@ -54,3 +54,5 @@ SOURCES += buttonb.cpp \
            vistagioco.cpp \
            vistaposizione.cpp
 RESOURCES += Risorse.qrc
+
+DISTFILES +=

@@ -247,13 +247,13 @@ void vistaGioco::addMenu()
 
 void vistaGioco::showHelp(){
     QMessageBox info;
-    QFile file(":/resources/README.md");
-    file.open(QFile::ReadOnly);
+    QFile file(":/risorse/README.md");
+    file.open(QFile::ReadWrite);
     QString styleSheet = QLatin1String(file.readAll());
     info.setText(QString(styleSheet));
     info.setWindowTitle("Help");
-    QFile stile(":/resources/helpstyle.css");
-    stile.open(QFile::ReadOnly);
+    QFile stile(":/risorse/helpstyle.css");
+    stile.open(QFile::ReadWrite);
     QString style = QLatin1String(stile.readAll());
     info.setStyleSheet(style);
     //info.setWindowIcon(QIcon(QPixmap(":/info"))); // mette iconcina nella barra delle finestre aperte in basso
