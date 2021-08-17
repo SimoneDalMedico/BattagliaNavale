@@ -251,8 +251,8 @@ void vistaGioco::showHelp(){
     file.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(file.readAll());
     setStyleSheet(styleSheet);
-//    info.setText(QString(styleSheet));
-//    info.setWindowTitle("Help");
+    info.setText(QString(styleSheet));
+    info.setWindowTitle("Help");
     QFile stile(":/risorse/helpstyle.css");
     //":/risorse/helpstyle.css"
     stile.open(QFile::ReadOnly);
