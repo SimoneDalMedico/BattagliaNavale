@@ -126,6 +126,7 @@ void Controller::moveG(unsigned short row, unsigned short col)
 
 void Controller::posiziona(unsigned short row, unsigned short col)
 {
+    resetGameP(); //DA ELIMINARE SE NN FUNZIA
     try {
        modelloP->move(row,col);
        vistaP->update();
