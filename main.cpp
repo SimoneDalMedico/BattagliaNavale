@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
     c.setViewG(&vs);
     q.show();
-    c.resetGameP(); //DA ELIMINARE SE NN FUNZIA
+    //c.resetGameP(); //DA ELIMINARE SE NN FUNZIA
 
 
     return a.exec();
