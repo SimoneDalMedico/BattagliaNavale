@@ -12,7 +12,7 @@ class Nave : public cella
 {
 
 public:
-    Nave() =default;
+    Nave();
     //virtual ~Nave() =default;
     Nave(unsigned short int, unsigned short int);
     bool colpita(unsigned short int, unsigned short int);
@@ -28,6 +28,7 @@ protected:
 
 //    std::map<unsigned short, cella> caselleNave;
       std::list<cella> caselleNave;
+      std::map<unsigned short, unsigned short> SceltePosizionamentoComputer;
 
 };
 
