@@ -5,7 +5,7 @@
 #include <map>
 #include <iostream>
 //#include <QRandomGenerator>
-#include <vector>
+#include <list>
 //typedef std::pair<unsigned short int, unsigned short int> tpair;
 
 class Nave : public cella
@@ -22,11 +22,12 @@ public:
     int counter();
     bool check_posizione(unsigned short int, unsigned short int);
     void Posizionamentocomputer();
-    unsigned short int PosizionaGrigliaC();
-
+    unsigned short int PosizionaGrigliaCFine();
+    unsigned short int PosizionaGrigliaCInizio();
 protected:
 
-    std::map<unsigned short, cella> caselleNave;
+//    std::map<unsigned short, cella> caselleNave;
+      std::list<cella> caselleNave;
 
 };
 

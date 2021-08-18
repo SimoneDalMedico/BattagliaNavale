@@ -2,7 +2,7 @@
 
 void Nave::reset()
 {
-    std::map<unsigned short,cella>::iterator it;
+    std::list<cella>::iterator it;
     caselleNave.clear();
 }
 
@@ -18,23 +18,22 @@ bool Nave::check_posizione(unsigned short x, unsigned short y)
     if(caselleNave.empty()){
         return true;
     }else{
-    std::map<unsigned short,cella>::iterator it=caselleNave.begin();
-    std::map<unsigned short,cella>::iterator it2=caselleNave.end();
-    it2--;
-        if(it->first==it2->first){
+    cella it=caselleNave.front();
+    cella it2=caselleNave.back();
+        if(it==it2){
             //una sola casella
-            if((x==(it2->second.ShowX())-1 && y==it2->second.ShowY()) || (x==(it2->second.ShowX())+1 && y==it2->second.ShowY()) || (x==it2->second.ShowX() && y==(it2->second.ShowY())-1) || (x==it2->second.ShowX() && y==(it2->second.ShowY())+1)){
+            if((x==(it2.ShowX())-1 && y==it2.ShowY()) || (x==(it2.ShowX())+1 && y==it2.ShowY()) || (x==it2.ShowX() && y==(it2.ShowY())-1) || (x==it2.ShowX() && y==(it2.ShowY())+1)){
                 return true;
             }
         }else{
             //piu caselle
 
             //caso orizzontale
-            if(it->second.ShowX()==it2->second.ShowX() && x==it2->second.ShowX() && (y==(it2->second.ShowY())+1 || y==(it2->second.ShowY())-1)){
+            if(it.ShowX()==it2.ShowX() && x==it2.ShowX() && (y==(it2.ShowY())+1 || y==(it2.ShowY())-1)){
                 return true;
             }
             //caso verticale
-            if(it->second.ShowY()==it2->second.ShowY() && y==it2->second.ShowY() && (x==(it2->second.ShowX())+1 || x==(it2->second.ShowX())-1)){
+            if(it.ShowY()==it2.ShowY() && y==it2.ShowY() && (x==(it2.ShowX())+1 || x==(it2.ShowX())-1)){
                 return true;
             }
         }
@@ -46,172 +45,182 @@ bool Nave::check_posizione(unsigned short x, unsigned short y)
 void Nave::Posizionamentocomputer()
 {
 
-    std::map<unsigned short,cella>::iterator it=caselleNave.begin();
-    std::map<unsigned short,cella>::iterator it2=caselleNave.end();
-    it2--;
-    if(it->first==it2->first && counter()==1){
+    cella it=caselleNave.front();
+    cella it2=caselleNave.back();
+//    it2--;
+    if(it==it2 && counter()==1){
         std::cout<<"inizio caso inserimneto seconda casella"<<std::endl;
-if(it->second.ShowX()==0 && it->second.ShowY()==9){
-            unsigned short x0=(it->second.ShowX());
-            unsigned short x1=(it->second.ShowX())+1;
-            unsigned short y0=(it->second.ShowY());
-            unsigned short y1=(it->second.ShowY())-1;
+if(it.ShowX()==0 && it.ShowY()==9){
+            unsigned short x0=(it.ShowX());
+            unsigned short x1=(it.ShowX())+1;
+            unsigned short y0=(it.ShowY());
+            unsigned short y1=(it.ShowY())-1;
             unsigned short x[2]={x0,x1};
             unsigned short randomX=rand() % 2;
             if(x[randomX]==x0){
-                cella posizione(x0,y1);
-                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                caselleNave.insert(a);
+                cella posizione(x0,y1); //direzione <--
+                caselleNave.push_front(posizione);
             }else{
-                cella posizione(x1,y0);
-                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                caselleNave.insert(a);
+                cella posizione(x1,y0); //direzione da alto a basso
+
+                caselleNave.push_back(posizione);
             }
 }else{
-if(it->second.ShowX()==9 && it->second.ShowY()==0){
-    unsigned short x0=(it->second.ShowX());
-    unsigned short x1=(it->second.ShowX())-1;
-    unsigned short y0=(it->second.ShowY());
-    unsigned short y1=(it->second.ShowY())+1;
+if(it.ShowX()==9 && it.ShowY()==0){
+    unsigned short x0=(it.ShowX());
+    unsigned short x1=(it.ShowX())-1;
+    unsigned short y0=(it.ShowY());
+    unsigned short y1=(it.ShowY())+1;
     unsigned short x[2]={x0,x1};
     unsigned short randomX=rand() % 2;
     if(x[randomX]==x0){
         cella posizione(x0,y1);
-        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-        caselleNave.insert(a);
+        caselleNave.push_back(posizione);
     }else{
         cella posizione(x1,y0);
-        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-        caselleNave.insert(a);
+
+        caselleNave.push_front(posizione);
     }
 }else{
-if(it->second.ShowX()==0 && it->second.ShowY()<9 && it->second.ShowY()>0){
-            unsigned short x0=(it->second.ShowX());
-            unsigned short x1=(it->second.ShowX())+1;
+if(it.ShowX()==0 && it.ShowY()<9 && it.ShowY()>0){
+            unsigned short x0=(it.ShowX());
+            unsigned short x1=(it.ShowX())+1;
 
             unsigned short x[2]={x0,x1};
             unsigned short randomX=rand() % 2;
             if(x[randomX]==x0){
-                unsigned short y0=(it->second.ShowY())-1;
-                unsigned short y1=(it->second.ShowY())+1;
+                unsigned short y0=(it.ShowY())-1;
+                unsigned short y1=(it.ShowY())+1;
                 unsigned short y[2]={y0,y1};
                 unsigned short randomY=rand() % 2;
                 cella posizione(x0,y[randomY]);
-                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                caselleNave.insert(a);
+                if(y[randomY]<it.ShowY()){
+                    //inserisco davanti alla lista
+                    caselleNave.push_front(posizione);
+                }else{
+                    caselleNave.push_back(posizione);
+                }
+
             }else{
-                cella posizione(x1,it->second.ShowY());
-                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                caselleNave.insert(a);
+                cella posizione(x1,it.ShowY());
+                caselleNave.push_back(posizione);
             }
 
 
 }else{
-if(it->second.ShowX()<9 && it->second.ShowY()==0 && it->second.ShowX()>0){
-    unsigned short y0=(it->second.ShowY());
-    unsigned short y1=(it->second.ShowY())+1;
+if(it.ShowX()<9 && it.ShowY()==0 && it.ShowX()>0){
+    unsigned short y0=(it.ShowY());
+    unsigned short y1=(it.ShowY())+1;
     unsigned short y[2]={y0,y1};
     unsigned short randomY=rand() % 2;
     if(y[randomY]==y0){
-        unsigned short x0=(it->second.ShowX())-1;
-        unsigned short x1=(it->second.ShowX())+1;
+        unsigned short x0=(it.ShowX())-1;
+        unsigned short x1=(it.ShowX())+1;
         unsigned short x[2]={x0,x1};
         unsigned short randomX=rand() % 2;
         cella posizione(x[randomX],y0);
-        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-        caselleNave.insert(a);
+        if(x[randomX]<it.ShowX()){
+            caselleNave.push_front(posizione);
+        }else{
+            caselleNave.push_back(posizione);
+        }
+
     }else{
-        cella posizione(it->second.ShowX(),y1);
-        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-        caselleNave.insert(a);
+        cella posizione(it.ShowX(),y1);
+
+        caselleNave.push_back(posizione);
     }
 }else{
-if(it->second.ShowX()==0 && it->second.ShowY()==0){
-    unsigned short x0=(it->second.ShowX());
-    unsigned short x1=(it->second.ShowX())+1;
+if(it.ShowX()==0 && it.ShowY()==0){
+    unsigned short x0=(it.ShowX());
+    unsigned short x1=(it.ShowX())+1;
     unsigned short x[2]={x0,x1};
     unsigned short randomX=rand() % 2;
     if(x[randomX]==x0){
-        unsigned short y1=(it->second.ShowY())+1;
+        unsigned short y1=(it.ShowY())+1;
         cella posizione(x0,y1);
-        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-        caselleNave.insert(a);
+        caselleNave.push_back(posizione);
     }else{
-        cella posizione(x1,it->second.ShowY());
-        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-        caselleNave.insert(a);
+        cella posizione(x1,it.ShowY());
+        caselleNave.push_back(posizione);
     }
 }else{
-   if(it->second.ShowX()==9 && it->second.ShowY()==9){
-       unsigned short x0=(it->second.ShowX());
-       unsigned short x1=(it->second.ShowX())-1;
+   if(it.ShowX()==9 && it.ShowY()==9){
+       unsigned short x0=(it.ShowX());
+       unsigned short x1=(it.ShowX())-1;
        unsigned short x[2]={x0,x1};
        unsigned short randomX=rand() % 2;
        if(x[randomX]==x0){
-           unsigned short y1=(it->second.ShowY())-1;
+           unsigned short y1=(it.ShowY())-1;
            cella posizione(x0,y1);
-           std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-           caselleNave.insert(a);
+           caselleNave.push_front(posizione);
        }else{
-           cella posizione(x1,it->second.ShowY());
-           std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-           caselleNave.insert(a);
+           cella posizione(x1,it.ShowY());
+           caselleNave.push_front(posizione);
        }
    } else{
-       if(it->second.ShowX()==9 && it->second.ShowY()<9 && it->second.ShowY()>0){
-           unsigned short x0=it->second.ShowX();
-           unsigned short x1=it->second.ShowX()-1;
+       if(it.ShowX()==9 && it.ShowY()<9 && it.ShowY()>0){
+           unsigned short x0=it.ShowX();
+           unsigned short x1=it.ShowX()-1;
            unsigned short x[2]={x0,x1};
            unsigned short randomX=rand()%2;
            if(x[randomX]==x0){
-               unsigned short y1=it->second.ShowY()-1;
-               unsigned short y2=it->second.ShowY()+1;
+               unsigned short y1=it.ShowY()-1;
+               unsigned short y2=it.ShowY()+1;
                unsigned short y[2]={y1,y2};
                unsigned short randomY=rand()%2;
                cella posizione(x0,y[randomY]);
-               std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-               caselleNave.insert(a);
+               if(y[randomY]<it.ShowY()){
+                   caselleNave.push_front(posizione);
+               }else{
+                   caselleNave.push_back(posizione);
+               }
            }else{
-               cella posizione(x1,it->second.ShowY());
-               std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-               caselleNave.insert(a);
+               cella posizione(x1,it.ShowY());
+               caselleNave.push_front(posizione);
            }
        }else{
-           if(it->second.ShowX()<9 && it->second.ShowX()>0 && it->second.ShowY()==9){
-               unsigned short y0=it->second.ShowY();
-               unsigned short y1=it->second.ShowY()-1;
+           if(it.ShowX()<9 && it.ShowX()>0 && it.ShowY()==9){
+               unsigned short y0=it.ShowY();
+               unsigned short y1=it.ShowY()-1;
                unsigned short y[2]={y0,y1};
                unsigned short randomY=rand()%2;
                if(y[randomY]==y0){
-                   unsigned short x1=it->second.ShowX()-1;
-                   unsigned short x2=it->second.ShowX()+1;
+                   unsigned short x1=it.ShowX()-1;
+                   unsigned short x2=it.ShowX()+1;
                    unsigned short x[2]={x1,x2};
                    unsigned short randomX=rand()%2;
                    cella posizione(x[randomX],y0);
-                   std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                   caselleNave.insert(a);
+                   if(x[randomX]<it.ShowX()){
+                        caselleNave.push_front(posizione);
+                   }else{
+                        caselleNave.push_back(posizione);
+                   }
                }else{
-                   cella posizione(it->second.ShowX(),y1);
-                   std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                   caselleNave.insert(a);
+                   cella posizione(it.ShowX(),y1);
+
+                   caselleNave.push_front(posizione);
                }
            }else{
-               unsigned short x0=(it->second.ShowX())-1;
-               unsigned short x2=(it->second.ShowX())+1;
-               unsigned short y0=(it->second.ShowY())-1;
-               unsigned short y2=(it->second.ShowY())+1;
-               unsigned short x[3]={x0,it->second.ShowX(),x2};
-               unsigned short y[3]={y0,it->second.ShowY(),y2};
+               unsigned short x0=(it.ShowX())-1;
+               unsigned short x2=(it.ShowX())+1;
+               unsigned short y0=(it.ShowY())-1;
+               unsigned short y2=(it.ShowY())+1;
+               unsigned short x[3]={x0,it.ShowX(),x2};
+               unsigned short y[3]={y0,it.ShowY(),y2};
 
-               unsigned short randomX=rand() % 3; //prima era %3
-               unsigned short randomY=rand() % 3; //prima era %3
+               unsigned short randomX=rand() % 3;
+               unsigned short randomY=rand() % 3;
                while(!((x[randomX]==x0 && y[randomY]==y[1]) || (x[randomX]==x[1] && y[randomY]==y0) || (x[randomX]==x[1] && y[randomY]==y2) || (x[randomX]==x2 && y[randomY]==y[1]))){
                         randomX=rand() % 3;
                         randomY=rand() % 3;
                }
                cella posizione(x[randomX],y[randomY]);
-               std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-               caselleNave.insert(a);
+               if(x[randomX]<it.ShowX() || y[randomY]<it.ShowY()){
+                    caselleNave.push_front(posizione);
+               }else{
+                   caselleNave.push_back(posizione);
+               }
            }
        }
    }
@@ -222,242 +231,297 @@ if(it->second.ShowX()==0 && it->second.ShowY()==0){
 }
 
 }else{
-        if(counter()>1){//x1==x2
+        if(counter()>1){ //gia posizionate almeno due caselle
+            //x1==x2    caso orizzonale
             std::cout<<"inizio caso orizzzontale"<<std::endl;
-            if(it->second.ShowX()==it2->second.ShowX()){
-                if((it->second.ShowX()==0 && it->second.ShowY()==0) || (it2->second.ShowX()==0 && it2->second.ShowY()==0)){
-                    if(it->second.ShowY()<it2->second.ShowY()){
-                        unsigned short y1=it2->second.ShowY()+1;
-                        cella posizione(it2->second.ShowX(),y1);
-                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                        caselleNave.insert(a);
-                    }else{
-                        unsigned short y1=it->second.ShowY()+1;
-                        cella posizione(it->second.ShowX(),y1);
-                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                        caselleNave.insert(a);
-                    }
+            if(it.ShowX()==it2.ShowX()){
+                if((it.ShowX()==0 && it.ShowY()==0) || (it2.ShowX()==0 && it2.ShowY()==0)){
+                    unsigned short y1=it2.ShowY()+1;
+                    cella posizione(it2.ShowX(),y1);
+                    caselleNave.push_back(posizione);
+                    //DA VERIFICARE: TEORICAMNETE SONO GAI MESSI IN ORDINE QUIDNI NON SERVE FARE CONTROLLO SE IT<>IT2!!!!!
+
+//                    if(it.ShowY()<it2.ShowY()){
+//                        unsigned short y1=it2.ShowY()+1;
+//                        cella posizione(it2.ShowX(),y1);
+
+//                        caselleNave.push_back(posizione);
+//                    }else{
+//                        unsigned short y1=it.ShowY()+1;
+//                        cella posizione(it.ShowX(),y1);
+
+//                        caselleNave.insert(a);
+//                    }
                 }else{
-                    if((it->second.ShowX()==0 && it->second.ShowY()==9) || (it2->second.ShowX()==0 && it2->second.ShowY()==9)){
-                        if(it->second.ShowY()<it2->second.ShowY()){
-                            unsigned short y1=it->second.ShowY()-1;
-                            cella posizione(it->second.ShowX(),y1);
-                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                            caselleNave.insert(a);
-                        }else{
-                            unsigned short y1=it2->second.ShowY()-1;
-                            cella posizione(it->second.ShowX(),y1);
-                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                            caselleNave.insert(a);
-                        }
+                    if((it.ShowX()==0 && it.ShowY()==9) || (it2.ShowX()==0 && it2.ShowY()==9)){
+                        unsigned short y1=it.ShowY()-1;
+                        cella posizione(it.ShowX(),y1);
+                        caselleNave.push_front(posizione);
+//                        if(it.ShowY()<it2.ShowY()){
+//                            unsigned short y1=it.ShowY()-1;
+//                            cella posizione(it.ShowX(),y1);
+
+//                            caselleNave.insert(a);
+//                        }else{
+//                            unsigned short y1=it2.ShowY()-1;
+//                            cella posizione(it.ShowX(),y1);
+
+//                            caselleNave.insert(a);
+//                        }
                     }else{
-                        if((it->second.ShowX()==9 && it->second.ShowY()==0) || (it2->second.ShowX()==9 && it2->second.ShowY()==0)){
-                            if(it->second.ShowY()<it2->second.ShowY()){
-                                unsigned short y1=it2->second.ShowY()+1;
-                                cella posizione(it2->second.ShowX(),y1);
-                                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                caselleNave.insert(a);
-                            }else{
-                                unsigned short y1=it->second.ShowY()+1;
-                                cella posizione(it->second.ShowX(),y1);
-                                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                caselleNave.insert(a);
-                            }
+                        if((it.ShowX()==9 && it.ShowY()==0) || (it2.ShowX()==9 && it2.ShowY()==0)){
+                            unsigned short y1=it2.ShowY()+1;
+                            cella posizione(it2.ShowX(),y1);
+                            caselleNave.push_back(posizione);
+//                            if(it.ShowY()<it2.ShowY()){
+//                                unsigned short y1=it2.ShowY()+1;
+//                                cella posizione(it2.ShowX(),y1);
+
+//                                caselleNave.insert(a);
+//                            }else{
+//                                unsigned short y1=it.ShowY()+1;
+//                                cella posizione(it.ShowX(),y1);
+
+//                                caselleNave.insert(a);
+//                            }
                         }else{
-                            if((it->second.ShowX()==9 && it->second.ShowY()==9) || (it2->second.ShowX()==9 && it2->second.ShowY()==9)){
-                                if(it->second.ShowY()<it2->second.ShowY()){
-                                    unsigned short y1=it->second.ShowY()-1;
-                                    cella posizione(it->second.ShowX(),y1);
-                                    std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                    caselleNave.insert(a);
-                                }else{
-                                    unsigned short y1=it2->second.ShowY()-1;
-                                    cella posizione(it2->second.ShowX(),y1);
-                                    std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                    caselleNave.insert(a);
-                                }
+                            if((it.ShowX()==9 && it.ShowY()==9) || (it2.ShowX()==9 && it2.ShowY()==9)){
+                                unsigned short y1=it.ShowY()-1;
+                                cella posizione(it.ShowX(),y1);
+                                caselleNave.push_front(posizione);
+//                                if(it.ShowY()<it2.ShowY()){
+//                                    unsigned short y1=it.ShowY()-1;
+//                                    cella posizione(it.ShowX(),y1);
+
+//                                    caselleNave.insert(a);
+//                                }else{
+//                                    unsigned short y1=it2.ShowY()-1;
+//                                    cella posizione(it2.ShowX(),y1);
+
+//                                    caselleNave.insert(a);
+//                                }
                             }else{
-                                if((it->second.ShowX()>0 && it->second.ShowX()<9 && it->second.ShowY()==0)||(it2->second.ShowX()>0 && it2->second.ShowX()<9 && it2->second.ShowY()==0)){ //da verificare se è giusto inserire y1 (forse è x1)
-                                    if(it->second.ShowY()<it2->second.ShowY()){
-                                        unsigned short y1=it2->second.ShowY()+1;
-                                        cella posizione(it2->second.ShowX(),y1);
-                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                        caselleNave.insert(a);
-                                    }else{
-                                        unsigned short y1=it->second.ShowY()+1;
-                                        cella posizione(it->second.ShowX(),y1);
-                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                        caselleNave.insert(a);
-                                    }
+                                if((it.ShowX()>0 && it.ShowX()<9 && it.ShowY()==0)||(it2.ShowX()>0 && it2.ShowX()<9 && it2.ShowY()==0)){ //da verificare se è giusto inserire y1 (forse è x1)
+                                    unsigned short y1=it2.ShowY()+1;
+                                    cella posizione(it2.ShowX(),y1);
+                                    caselleNave.push_back(posizione);
+
+//                                    if(it.ShowY()<it2.ShowY()){
+//                                        unsigned short y1=it2.ShowY()+1;
+//                                        cella posizione(it2.ShowX(),y1);
+
+//                                        caselleNave.insert(a);
+//                                    }else{
+//                                        unsigned short y1=it.ShowY()+1;
+//                                        cella posizione(it.ShowX(),y1);
+
+//                                        caselleNave.insert(a);
+//                                    }
                                 }else{
-                                    if((it->second.ShowX()>0 && it->second.ShowX()<9 && it->second.ShowY()==9) || (it2->second.ShowX()>0 && it2->second.ShowX()<9 && it2->second.ShowY()==9)){
-                                        if(it->second.ShowY()<it2->second.ShowY()){
-                                            unsigned short y1=it->second.ShowY()-1;
-                                            cella posizione(it->second.ShowX(),y1);
-                                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                            caselleNave.insert(a);
-                                        }else{
-                                            unsigned short y1=it2->second.ShowY()-1;
-                                            cella posizione(it2->second.ShowX(),y1);
-                                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                            caselleNave.insert(a);
-                                        }
+                                    if((it.ShowX()>0 && it.ShowX()<9 && it.ShowY()==9) || (it2.ShowX()>0 && it2.ShowX()<9 && it2.ShowY()==9)){
+                                        unsigned short y1=it.ShowY()-1;
+                                        cella posizione(it.ShowX(),y1);
+                                        caselleNave.push_front(posizione);
+
+//                                        if(it.ShowY()<it2.ShowY()){
+//                                            unsigned short y1=it.ShowY()-1;
+//                                            cella posizione(it.ShowX(),y1);
+
+//                                            caselleNave.insert(a);
+//                                        }else{
+//                                            unsigned short y1=it2.ShowY()-1;
+//                                            cella posizione(it2.ShowX(),y1);
+
+//                                            caselleNave.insert(a);
+//                                        }
                                     }else{
-                                    if(it->second.ShowY()<it2->second.ShowY()/* && aggiunto la variabile x1==x2 it->second.ShowX()==it2->second.ShowX()*/){
-                                        unsigned short y1=it->second.ShowY()-1;
-                                        unsigned short y2=it2->second.ShowY()+1;
+//                                    if(it.ShowY()<it2.ShowY()){
+                                        unsigned short y1=it.ShowY()-1;
+                                        unsigned short y2=it2.ShowY()+1;
                                         unsigned short y[2]={y1,y2};
-                                        std::cout<<"showX:"<<it2->second.ShowX()<<std::endl;
-                                        std::cout<<"showY it:"<<it->second.ShowY()<<std::endl;
-                                        std::cout<<"showY it2:"<<it2->second.ShowY()<<std::endl;
+                                        std::cout<<"showX:"<<it2.ShowX()<<std::endl;
+                                        std::cout<<"showY it:"<<it.ShowY()<<std::endl;
+                                        std::cout<<"showY it2:"<<it2.ShowY()<<std::endl;
                                         unsigned short random=rand() % 2;
                                         std::cout<<"nuova Y:"<<y[random]<<std::endl;
                                         //provo a sostituire il random all' interno di posizione con una variabile standard
-                                        unsigned short yf=y[random];
-
-                                        cella posizione(it->second.ShowX(),yf);
-                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                        caselleNave.insert(a);
-                                    }else{
-                                        if(it->second.ShowY()>it2->second.ShowY()){ //agginto condizione if per evitare caso it2.showY()==it.showY()
-                                            unsigned short y1=it2->second.ShowY()-1;
-                                            unsigned short y2=it->second.ShowY() +1;
-
-                                            unsigned short y[2]={y1,y2};
-
-                                            unsigned short random=rand() % 2;
-                                            cella posizione(it->second.ShowX(),y[random]);
-                                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                            caselleNave.insert(a);
+//                                        unsigned short yf=y[random];
+                                        cella posizione(it.ShowX(),y[random]);
+                                        if(y[random]<it.ShowY()){
+                                            caselleNave.push_front(posizione);
+                                        }else{
+                                         caselleNave.push_back(posizione);
                                         }
-                                    }
+
+//                                    }else{
+//                                        if(it.ShowY()>it2.ShowY()){ //agginto condizione if per evitare caso it2.showY()==it.showY()
+//                                            unsigned short y1=it2.ShowY()-1;
+//                                            unsigned short y2=it.ShowY() +1;
+
+//                                            unsigned short y[2]={y1,y2};
+
+//                                            unsigned short random=rand() % 2;
+//                                            cella posizione(it.ShowX(),y[random]);
+
+//                                            caselleNave.insert(a);
+//                                        }
+//                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-                    }else{ //y1==y2
+        }else{ //y1==y2
                 std::cout<<"inizio caso verticale"<<std::endl;
-                        if(it->second.ShowY()==it2->second.ShowY()){
-                            if((it->second.ShowX()==0 && it->second.ShowY()==0) || (it2->second.ShowX()==0 && it2->second.ShowY()==0)){
-                                std::cout<<"inizio caso verticale X=0 Y=0"<<std::endl;
-                                if(it->second.ShowX()<it2->second.ShowX()){
-                                    unsigned short x1=it2->second.ShowX()+1;
-                                    cella posizione(x1,it->second.ShowY());
-                                    std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                    caselleNave.insert(a);
-                                }else{
-                                    unsigned short x1=it->second.ShowX()+1;
-                                    cella posizione(x1,it->second.ShowY());
-                                    std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                    caselleNave.insert(a);
-                                }
+                        if(it.ShowY()==it2.ShowY()){
+                            //casi verticali
+                            if((it.ShowX()==0 && it.ShowY()==0) || (it2.ShowX()==0 && it2.ShowY()==0)){
+                                unsigned short x1=it2.ShowX()+1;
+                                cella posizione(x1,it.ShowY());
+                                caselleNave.push_back(posizione);
+
+
+//                                std::cout<<"inizio caso verticale X=0 Y=0"<<std::endl;
+//                                if(it.ShowX()<it2.ShowX()){
+//                                    unsigned short x1=it2.ShowX()+1;
+//                                    cella posizione(x1,it.ShowY());
+
+//                                    caselleNave.insert(a);
+//                                }else{
+//                                    unsigned short x1=it.ShowX()+1;
+//                                    cella posizione(x1,it.ShowY());
+
+//                                    caselleNave.insert(a);
+//                                }
                             }else{
-                                if((it->second.ShowX()==0 && it->second.ShowY()==9) || (it2->second.ShowX()==0 && it2->second.ShowY()==9)){
+                                if((it.ShowX()==0 && it.ShowY()==9) || (it2.ShowX()==0 && it2.ShowY()==9)){
                                     std::cout<<"inizio caso verticale X=0 Y=9"<<std::endl;
-                                    if(it->second.ShowX()<it2->second.ShowX()){
-                                        unsigned short x1=it2->second.ShowX()+1;
-                                        cella posizione(x1,it->second.ShowY());
-                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                        caselleNave.insert(a);
-                                    }else{
-                                        unsigned short x1=it->second.ShowX()+1;
-                                        cella posizione(x1,it->second.ShowY());
-                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                        caselleNave.insert(a);
-                                    }
+                                    unsigned short x1=it2.ShowX()+1;
+                                    cella posizione(x1,it.ShowY());
+                                    caselleNave.push_back(posizione);
+
+//                                    if(it.ShowX()<it2.ShowX()){
+//                                        unsigned short x1=it2.ShowX()+1;
+//                                        cella posizione(x1,it.ShowY());
+
+//                                        caselleNave.insert(a);
+//                                    }else{
+//                                        unsigned short x1=it.ShowX()+1;
+//                                        cella posizione(x1,it.ShowY());
+
+//                                        caselleNave.insert(a);
+//                                    }
                                 }else{
-                                    if((it->second.ShowX()==9 && it->second.ShowY()==0) || (it2->second.ShowX()==9 && it2->second.ShowY()==0)){
+                                    if((it.ShowX()==9 && it.ShowY()==0) || (it2.ShowX()==9 && it2.ShowY()==0)){
                                         std::cout<<"inizio caso verticale X=9 Y=0"<<std::endl;
-                                        if(it->second.ShowX()<it->second.ShowX()){
-                                            unsigned short x1=it->second.ShowX()-1;
-                                            cella posizione(x1,it->second.ShowY());
-                                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                            caselleNave.insert(a);
-                                        }else{
-                                            unsigned short x1=it2->second.ShowX()-1;
-                                            cella posizione(x1,it2->second.ShowY());
-                                            std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                            caselleNave.insert(a);
-                                        }
+                                        unsigned short x1=it.ShowX()-1;
+                                        cella posizione(x1,it.ShowY());
+                                        caselleNave.push_front(posizione);
+
+//                                        if(it.ShowX()<it.ShowX()){
+//                                            unsigned short x1=it.ShowX()-1;
+//                                            cella posizione(x1,it.ShowY());
+
+//                                            caselleNave.insert(a);
+//                                        }else{
+//                                            unsigned short x1=it2.ShowX()-1;
+//                                            cella posizione(x1,it2.ShowY());
+
+//                                            caselleNave.insert(a);
+//                                        }
                                     }else{
-                                        if((it->second.ShowX()==9 && it->second.ShowY()==9) || (it2->second.ShowX()==9 && it2->second.ShowY()==9)){
+                                        if((it.ShowX()==9 && it.ShowY()==9) || (it2.ShowX()==9 && it2.ShowY()==9)){
                                             std::cout<<"inizio caso verticale X=9 Y=9"<<std::endl;
-                                            if(it->second.ShowX()<it2->second.ShowX()){
-                                                unsigned short x1=it->second.ShowX()-1;
-                                                cella posizione(x1,it->second.ShowY());
-                                                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                                caselleNave.insert(a);
-                                            }else{
-                                                unsigned short x1=it2->second.ShowX()-1;
-                                                cella posizione(x1,it->second.ShowY());
-                                                std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                                caselleNave.insert(a);
-                                            }
+                                            unsigned short x1=it.ShowX()-1;
+                                            cella posizione(x1,it.ShowY());
+                                            caselleNave.push_front(posizione);
+
+//                                            if(it.ShowX()<it2.ShowX()){
+//                                                unsigned short x1=it.ShowX()-1;
+//                                                cella posizione(x1,it.ShowY());
+
+//                                                caselleNave.insert(a);
+//                                            }else{
+//                                                unsigned short x1=it2.ShowX()-1;
+//                                                cella posizione(x1,it.ShowY());
+
+//                                                caselleNave.insert(a);
+//                                            }
                                         }else{
-                                            if((it->second.ShowX()==0 && it->second.ShowY()>0 && it->second.ShowY()<9) || (it2->second.ShowX()==0 && it2->second.ShowY()>0 && it2->second.ShowY()<9)){
+                                            if((it.ShowX()==0 && it.ShowY()>0 && it.ShowY()<9) || (it2.ShowX()==0 && it2.ShowY()>0 && it2.ShowY()<9)){
                                                 std::cout<<"inizio caso verticale X=0 0<Y<9"<<std::endl;
-                                                if(it->second.ShowX()<it2->second.ShowX()){
-                                                    unsigned short x1=it2->second.ShowX()+1;
-                                                    cella posizione(x1,it->second.ShowY());
-                                                    std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                                    caselleNave.insert(a);
-                                                }else{
-                                                    unsigned short x1=it->second.ShowX()+1;
-                                                    cella posizione(x1,it->second.ShowY());
-                                                    std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                                    caselleNave.insert(a);
-                                                }
+                                                unsigned short x1=it2.ShowX()+1;
+                                                cella posizione(x1,it.ShowY());
+                                                caselleNave.push_back(posizione);
+
+//                                                if(it.ShowX()<it2.ShowX()){
+//                                                    unsigned short x1=it2.ShowX()+1;
+//                                                    cella posizione(x1,it.ShowY());
+
+//                                                    caselleNave.insert(a);
+//                                                }else{
+//                                                    unsigned short x1=it.ShowX()+1;
+//                                                    cella posizione(x1,it.ShowY());
+
+//                                                    caselleNave.insert(a);
+//                                                }
                                             }else{
-                                                if((it->second.ShowX()==9 && it->second.ShowY()>0 && it->second.ShowY()<9) || (it2->second.ShowX()==9 && it2->second.ShowY()>0 && it2->second.ShowY()<9)){
+                                                if((it.ShowX()==9 && it.ShowY()>0 && it.ShowY()<9) || (it2.ShowX()==9 && it2.ShowY()>0 && it2.ShowY()<9)){
                                                     std::cout<<"inizio caso verticale X=9 0<Y<9"<<std::endl;
-                                                    if(it->second.ShowX()<it2->second.ShowX()){
-                                                        std::cout<<"caso it<it2"<<std::endl;
-                                                        unsigned short x1=it->second.ShowX()-1;
-                                                        cella posizione(x1,it->second.ShowY());
-                                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                                        caselleNave.insert(a);
-                                                    }else{
-                                                        std::cout<<"inizio it>it2"<<std::endl;
-                                                        unsigned short x1=it2->second.ShowX()-1;
-                                                        cella posizione(x1,it->second.ShowY());
-                                                        std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                                        caselleNave.insert(a);
-                                                    }
+                                                    unsigned short x1=it.ShowX()-1;
+                                                    cella posizione(x1,it.ShowY());
+                                                    caselleNave.push_front(posizione);
+
+//                                                    if(it.ShowX()<it2.ShowX()){
+//                                                        std::cout<<"caso it<it2"<<std::endl;
+//                                                        unsigned short x1=it.ShowX()-1;
+//                                                        cella posizione(x1,it.ShowY());
+
+//                                                        caselleNave.insert(a);
+//                                                    }else{
+//                                                        std::cout<<"inizio it>it2"<<std::endl;
+//                                                        unsigned short x1=it2.ShowX()-1;
+//                                                        cella posizione(x1,it.ShowY());
+
+//                                                        caselleNave.insert(a);
+//                                                    }
                                                 }else{
-                                                    if(it->second.ShowX()<it2->second.ShowX()){
+//                                                    if(it.ShowX()<it2.ShowX()){
                                                         std::cout<<"inizio caso base verticale it<it2"<<std::endl;
-                                                        unsigned short x1=(it->second.ShowX())-1;
-                                                        unsigned short x2=(it2->second.ShowX())+1;
+                                                        unsigned short x1=(it.ShowX())-1;
+                                                        unsigned short x2=(it2.ShowX())+1;
                                                         unsigned short x[2]={x1,x2};
                                                         unsigned short random=rand() % 2;
                                                           std::cout<<"random: "<<random<<std::endl;
-                                                        cella posizione(x[random],it->second.ShowY());
-                                                        std::map<unsigned short,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                                        caselleNave.insert(a);
-                                                    }else{
-                                                        if(it->second.ShowX()>it2->second.ShowX()){ //agginto condizione if per evitare caso it2.showX()==it.showX()
-                                                            std::cout<<"inizio caso base verticale it>it2"<<std::endl;
-                                                            unsigned short x1=(it2->second.ShowX())-1;
-                                                            unsigned short x2=(it->second.ShowX())+1;
-
-                                                            unsigned short x[2]={x1,x2};
-                                                            int random=rand() % 2;
-                                                            std::cout<<"random: "<<random<<std::endl;
-                                                            std::cout<<"x1="<<x1<<std::endl;
-                                                            std::cout<<"x2="<<x2<<std::endl;
-                                                            std::cout<<"x["<<random<<"]="<<x[random]<<std::endl;
-                                                            std::cout<<"inizializzo cella posizione"<<std::endl;
-                                                            cella posizione(x[random],it->second.ShowY());
-                                                            std::cout<<"fine cella posizione"<<std::endl;
-                                                            std::cout<<"inizializzo map a"<<std::endl;
-                                                            std::map<unsigned short,cella>::value_type a(caselleNave.size()+1 ,posizione);
-                                                            std::cout<<"fine map a"<<std::endl;
-                                                            std::cout<<"insert a"<<std::endl;
-                                                            caselleNave.insert(a);
-                                                            std::cout<<"fine insert a"<<std::endl;
+                                                        cella posizione(x[random],it.ShowY());
+                                                        if(x[random]<it.ShowX()){
+                                                            caselleNave.push_front(posizione);
+                                                        }else{
+                                                            caselleNave.push_back(posizione);
                                                         }
+//                                                    }else{
+//                                                        if(it.ShowX()>it2.ShowX()){ //agginto condizione if per evitare caso it2.showX()==it.showX()
+//                                                            std::cout<<"inizio caso base verticale it>it2"<<std::endl;
+//                                                            unsigned short x1=(it2.ShowX())-1;
+//                                                            unsigned short x2=(it.ShowX())+1;
+
+//                                                            unsigned short x[2]={x1,x2};
+//                                                            int random=rand() % 2;
+//                                                            std::cout<<"random: "<<random<<std::endl;
+//                                                            std::cout<<"x1="<<x1<<std::endl;
+//                                                            std::cout<<"x2="<<x2<<std::endl;
+//                                                            std::cout<<"x["<<random<<"]="<<x[random]<<std::endl;
+//                                                            std::cout<<"inizializzo cella posizione"<<std::endl;
+//                                                            cella posizione(x[random],it.ShowY());
+//                                                            std::cout<<"fine cella posizione"<<std::endl;
+//                                                            std::cout<<"inizializzo map a"<<std::endl;
+//                                                            std::list<cella>::iterator::value_type a(caselleNave.size()+1 ,posizione);
+//                                                            std::cout<<"fine map a"<<std::endl;
+//                                                            std::cout<<"insert a"<<std::endl;
+//                                                            caselleNave.insert(a);
+//                                                            std::cout<<"fine insert a"<<std::endl;
+//                                                        }
                                                         }
 
 
@@ -468,18 +532,31 @@ if(it->second.ShowX()==0 && it->second.ShowY()==0){
                                     }
                                 }
                             }
-                        std::cout<<"fine caso verticale"<<std::endl;
                         }
-                    }
-                }
+    it=caselleNave.front();
+    it2=caselleNave.back();
+    for(std::list<cella>::iterator it=caselleNave.begin();it!=caselleNave.end();it++){
+        std::cout<<"x:"<<it->ShowX()<<" Y:"<<it->ShowY()<<std::endl;
+    }
+        std::cout<<"it: "<<it.ShowX()<<" "<<it.ShowY()<<std::endl;
+        std::cout<<"it2: "<<it2.ShowX()<<" "<<it2.ShowY()<<std::endl;
+        std::cout<<"fine caso verticale"<<std::endl;
+}
+}
+
+unsigned short Nave::PosizionaGrigliaCInizio()
+{
+    cella it=caselleNave.front();
+    return (((it.ShowX())*10)+it.ShowY());
 }
 
 
-unsigned short Nave::PosizionaGrigliaC()
+
+unsigned short Nave::PosizionaGrigliaCFine()
 {
-    std::map<unsigned short,cella>::iterator it=caselleNave.end();
-    it--;
-    return (((it->second.ShowX())*10)+it->second.ShowY());
+
+    cella it=caselleNave.back();
+    return (((it.ShowX())*10)+it.ShowY());
 }
 
 
@@ -487,14 +564,15 @@ unsigned short Nave::PosizionaGrigliaC()
 Nave::Nave(unsigned short X, unsigned short Y)
 {
     cella posizione(X,Y);
-    std::map<int,cella>::value_type a(caselleNave.size()+1 ,posizione);
-    caselleNave.insert(a);
+    caselleNave.push_back(posizione);
+//
+//    caselleNave.insert(a);
 }
 
 bool Nave::colpita(unsigned short X, unsigned short Y)
 {
-    for(std::map<unsigned short,cella>::iterator it=caselleNave.begin();it!=caselleNave.end();it++){
-        if(it->second.ShowX()==X && it->second.ShowY()==Y){
+    for(std::list<cella>::iterator it=caselleNave.begin();it!=caselleNave.end();it++){
+        if(it->ShowX()==X && it->ShowY()==Y){
             caselleNave.erase(it);
             return true;
         }

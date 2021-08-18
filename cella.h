@@ -11,6 +11,7 @@ public:
     cella() =default;
     ~cella()=default;
     cella(unsigned short, unsigned short);
+    bool operator==(const cella&);
     unsigned short ShowX();
     unsigned short ShowY();
 };
