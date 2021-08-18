@@ -13,11 +13,7 @@ VistaPosizione::VistaPosizione(Controller* c, QWidget* parent):QWidget(parent), 
 
     addButton();
 
-
-
     addLabelP();
-
-
 
     mainLayout->addLayout(grigliaComputer);
     mainLayout->addLayout(grigliaGiocatore);
@@ -110,14 +106,13 @@ void VistaPosizione::addMenu()
     QMenuBar*menuBar=new QMenuBar(this);
     QMenu* menu=new QMenu("File",menuBar);
     QAction* reset=new QAction("Reset", menu);
-    QAction* quit=new QAction("quit",menuBar);
-   connect(reset,SIGNAL(triggered()),controller,SLOT(resetGameP()));
-   connect(quit,SIGNAL(triggered()),this,SLOT(close()));
-
+    QAction* quit=new QAction("Quit",menuBar);
+    connect(reset,SIGNAL(triggered()),controller,SLOT(resetGameP()));
+    connect(quit,SIGNAL(triggered()),this,SLOT(close()));
     menu->addAction(reset);
     menu->addAction(quit);
     menuBar->addMenu(menu);
-
+    //masterLayout->addIma
     masterLayout->addWidget(menuBar);
 }
 

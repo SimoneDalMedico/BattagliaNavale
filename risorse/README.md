@@ -1,18 +1,21 @@
-Controls
---------
-Up    - Rotate clockwise
 
-Down  - Soft Drop
 
-Left  - Move left
+Posiziona le 4 navi che hai a disposizione per iniziare a giocare.
 
-Right - Move right
+Ordine di posizionamento:
 
-Z     - Rotate counter-clockwise
+- Nave da due caselle [ASSALTO]
 
-X     - Rotate clockwise
+- Nave da tre caselle [CROCIERA]
 
-Space - Hard Drop
+- Nave da quattro caselle [CORAZZATA]
 
-You can click the "Reset" button anytime to restart the game.
+- Nave da cinque caselle [PORTAEREI]
+
+Le navi NON possono essere posizionate in diagonale
+
+Tramite il menu in alto a sinistra puoi abbandonare il gioco
+
+o ricominciare la partita resettando il campo da gioco.
+
 
