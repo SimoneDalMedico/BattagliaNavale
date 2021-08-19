@@ -83,12 +83,11 @@ void ModelloPosizione::moveC()
             unsigned short Y;
             do{
             X=rand() % 10;
-
             Y=rand() % 10;
             }while(grigliaComputer[X*10+Y]!=none);
                 if(static_cast<NaveAssalto*>(computer.navi[0].get())->check_posizione(X,Y)){
-                    grigliaComputer[X*10+Y]=playerC;
                     static_cast<NaveAssalto*>(computer.navi[0].get())->assegna(X,Y);
+                     grigliaComputer[X*10+Y]=playerC;
                 }
 
         }else{
@@ -146,15 +145,15 @@ void ModelloPosizione::moveC()
         }else{
             if(computer.numeroNaviPosizionate==2){
                 if(static_cast<NaveCorazzata*>(computer.navi[2].get())->counter()==0){
-                    unsigned short X;
-                    unsigned short Y;
-                    do{
+                    unsigned short X=rand() % 2;
+                    unsigned short Y=rand() % 2;
+                    while(grigliaComputer[X*10+Y]!=none){
                         std::cout<<"inzio ciclo while nave da 4"<<std::endl;
-                    X=rand() % 10;
-                    Y=rand() % 10;
+                        X=rand() % 10;
+                        Y=rand() % 10;
                     std::cout<<"X: "<<X<<std::endl;
                     std::cout<<"Y: "<<Y<<std::endl;
-                    }while(grigliaComputer[X*10+Y]!=none);
+                    }
                         std::cout<<"fine ciclo while nave da 4"<<std::endl;
                         if(static_cast<NaveCorazzata*>(computer.navi[2].get())->check_posizione(X,Y)){
                             grigliaComputer[X*10+Y]=playerC;
