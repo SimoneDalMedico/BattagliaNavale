@@ -4,6 +4,11 @@ void Nave::reset()
 {
     std::list<cella>::iterator it;
     caselleNave.clear();
+    for(unsigned short i=0;i<100;i++){
+        std::map<unsigned short, unsigned short>::value_type v(i,i);
+        SceltePosizionamentoComputer.insert(v);
+    }
+
 }
 
 int Nave::counter()
@@ -50,7 +55,7 @@ void Nave::Posizionamentocomputer()
 //    it2--;
     if(it==it2 && counter()==1){
         std::cout<<"inizio caso inserimneto seconda casella"<<std::endl;
-if(it.ShowX()==0 && it.ShowY()==9){
+if(it.ShowX()==0 && it.ShowY()==9 && (SceltePosizionamentoComputer[it.ShowX()*10+(it.ShowY()-1)] || SceltePosizionamentoComputer[(it.ShowX()+1)*10+it.ShowY()])){
             unsigned short x0=(it.ShowX());
             unsigned short x1=(it.ShowX())+1;
             unsigned short y0=(it.ShowY());
@@ -70,7 +75,7 @@ if(it.ShowX()==0 && it.ShowY()==9){
 
             }
 }else{
-if(it.ShowX()==9 && it.ShowY()==0 && (SceltePosizionamentoComputer[it.ShowX()*10+y1])){
+if(it.ShowX()==9 && it.ShowY()==0 && (SceltePosizionamentoComputer[it.ShowX()*10+(it.ShowY()+1)] || SceltePosizionamentoComputer[(it.ShowX()-1)*10+it.ShowY()])){
     unsigned short x0=(it.ShowX());
     unsigned short x1=(it.ShowX())-1;
     unsigned short y0=(it.ShowY());
@@ -89,14 +94,14 @@ if(it.ShowX()==9 && it.ShowY()==0 && (SceltePosizionamentoComputer[it.ShowX()*10
         }
     }
 }else{
-if(it.ShowX()==0 && it.ShowY()<9 && it.ShowY()>0){
+if(it.ShowX()==0 && it.ShowY()<9 && it.ShowY()>0 && (it.ShowX()*10+(it.ShowY()-1) || SceltePosizionamentoComputer[it.ShowX()*10+(it.ShowY()+1)] || SceltePosizionamentoComputer[(it.ShowX()-1)*10+it.ShowY()] || SceltePosizionamentoComputer[(it.ShowX()+1)*10+it.ShowY()])){
             unsigned short x0=(it.ShowX());
             unsigned short x1=(it.ShowX())+1;
             unsigned short y0=(it.ShowY())-1;
             unsigned short y1=(it.ShowY())+1;
             unsigned short x[2]={x0,x1};
             unsigned short randomX=rand() % 2;
-            if(x[randomX]==x0 && (SceltePosizionamentoComputer[x0+y0] || SceltePosizionamentoComputer[x0+y1])){
+            if(x[randomX]==x0 && (SceltePosizionamentoComputer[x0*10+y0] || SceltePosizionamentoComputer[x0*10+y1])){
                 unsigned short y[2]={y0,y1};
                 unsigned short randomY=rand() % 2;
                 while(!SceltePosizionamentoComputer[x0+y[randomY]]){ //rischio loop infinito (poco probabile)
@@ -113,15 +118,15 @@ if(it.ShowX()==0 && it.ShowY()<9 && it.ShowY()>0){
                 SceltePosizionamentoComputer.erase(x0*10+y[randomY]);
             }else{
                 if(SceltePosizionamentoComputer[x1*10+it.ShowY()]){
-                cella posizione(x1,it.ShowY());
-                caselleNave.push_back(posizione);
-                SceltePosizionamentoComputer.erase(x1*10+it.ShowY());
+                    cella posizione(x1,it.ShowY());
+                    caselleNave.push_back(posizione);
+                    SceltePosizionamentoComputer.erase(x1*10+it.ShowY());
                 }
             }
 
 
 }else{
-if(it.ShowX()<9 && it.ShowY()==0 && it.ShowX()>0){
+if(it.ShowX()<9 && it.ShowY()==0 && it.ShowX()>0 && (SceltePosizionamentoComputer[(it.ShowX()-1)*10+it.ShowY()] || SceltePosizionamentoComputer[(it.ShowX()+1)*10+it.ShowY()] || SceltePosizionamentoComputer[it.ShowX()*10+(it.ShowY()+1)])){
     unsigned short y0=(it.ShowY());
     unsigned short y1=(it.ShowY())+1;
     unsigned short x0=(it.ShowX())-1;
@@ -150,7 +155,7 @@ if(it.ShowX()<9 && it.ShowY()==0 && it.ShowX()>0){
         }
     }
 }else{
-if(it.ShowX()==0 && it.ShowY()==0){
+if(it.ShowX()==0 && it.ShowY()==0 && (SceltePosizionamentoComputer[it.ShowX()*10+(it.ShowY()+1)] || SceltePosizionamentoComputer[(it.ShowX()+1)*10+it.ShowY()])){
     unsigned short x0=(it.ShowX());
     unsigned short x1=(it.ShowX())+1;
     unsigned short y1=(it.ShowY())+1;
@@ -168,7 +173,7 @@ if(it.ShowX()==0 && it.ShowY()==0){
         }
     }
 }else{
-   if(it.ShowX()==9 && it.ShowY()==9){
+   if(it.ShowX()==9 && it.ShowY()==9 && (SceltePosizionamentoComputer[it.ShowX()*10+(it.ShowY()-1)] || SceltePosizionamentoComputer[(it.ShowX()-1)*10+it.ShowY()])){
        unsigned short x0=(it.ShowX());
        unsigned short x1=(it.ShowX())-1;
         unsigned short y1=(it.ShowY())-1;
@@ -186,7 +191,7 @@ if(it.ShowX()==0 && it.ShowY()==0){
            }
        }
    } else{
-       if(it.ShowX()==9 && it.ShowY()<9 && it.ShowY()>0){
+       if(it.ShowX()==9 && it.ShowY()<9 && it.ShowY()>0 && (SceltePosizionamentoComputer[it.ShowX()*10+(it.ShowY()-1)] || SceltePosizionamentoComputer[it.ShowX()*10+(it.ShowY()-1)] || SceltePosizionamentoComputer[(it.ShowX()-1)*10+it.ShowY()])){
            unsigned short x0=it.ShowX();
            unsigned short x1=it.ShowX()-1;
            unsigned short x[2]={x0,x1};
@@ -214,7 +219,7 @@ if(it.ShowX()==0 && it.ShowY()==0){
                }
            }
        }else{
-           if(it.ShowX()<9 && it.ShowX()>0 && it.ShowY()==9){
+           if(it.ShowX()<9 && it.ShowX()>0 && it.ShowY()==9 && (SceltePosizionamentoComputer[(it.ShowX()-1)*10+it.ShowY()] || SceltePosizionamentoComputer[(it.ShowX()+1)*10+it.ShowY()] || SceltePosizionamentoComputer[it.ShowX()*10+(it.ShowY()-1)])){
                unsigned short y0=it.ShowY();
                unsigned short y1=it.ShowY()-1;
                unsigned short x1=it.ShowX()-1;
@@ -239,11 +244,12 @@ if(it.ShowX()==0 && it.ShowY()==0){
                    }
                }
            }else{
+
+               if(SceltePosizionamentoComputer[(it.ShowX()-1)*10+it.ShowY()] || SceltePosizionamentoComputer[it.ShowX()*10+(it.ShowY()-1)] || SceltePosizionamentoComputer[it.ShowX()*10+(it.ShowY()+1)] || SceltePosizionamentoComputer[(it.ShowX()+1)*10+it.ShowY()]){
                unsigned short x0=(it.ShowX())-1;
                unsigned short x2=(it.ShowX())+1;
                unsigned short y0=(it.ShowY())-1;
                unsigned short y2=(it.ShowY())+1;
-               if(SceltePosizionamentoComputer[x0*10+y0] || SceltePosizionamentoComputer[x0*10+it.ShowY()] || SceltePosizionamentoComputer[x0*10+y2] || SceltePosizionamentoComputer[it.ShowX()*10+y0] || SceltePosizionamentoComputer[it.ShowX()*10+it.ShowY()] || SceltePosizionamentoComputer[it.ShowX()*10+y2] || SceltePosizionamentoComputer[x2*10+y0] || SceltePosizionamentoComputer[x2*10+it.ShowY()] || SceltePosizionamentoComputer[x2*10+y2]){
                unsigned short x[3]={x0,it.ShowX(),x2};
                unsigned short y[3]={y0,it.ShowY(),y2};
 
@@ -454,7 +460,8 @@ unsigned short Nave::PosizionaGrigliaCFine()
 Nave::Nave()
 {
     for(unsigned short i=0;i<100;i++){
-        SceltePosizionamentoComputer.insert(i,i);
+        std::map<unsigned short, unsigned short>::value_type v(i,i);
+        SceltePosizionamentoComputer.insert(v);
     }
 }
 

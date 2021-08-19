@@ -8,9 +8,10 @@ NaveCorazzata::NaveCorazzata()
 
 void NaveCorazzata::assegna(unsigned short X, unsigned short Y)
 {
-    if(NaveCorazzata::caselleNave.size()<4){
+    if(NaveCorazzata::caselleNave.size()<4 && SceltePosizionamentoComputer[X*10+Y]){
            cella posizione(X,Y);
            NaveCorazzata::caselleNave.push_back(posizione);
+           SceltePosizionamentoComputer.erase(X*10+Y);
     }
 }
 

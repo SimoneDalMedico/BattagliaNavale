@@ -15,10 +15,11 @@ NaveCrociere::NaveCrociere()
 
 void NaveCrociere::assegna(unsigned short X, unsigned short Y)
 {
-    if(NaveCrociere::caselleNave.size()<3){
+    if(NaveCrociere::caselleNave.size()<3 && SceltePosizionamentoComputer[X*10+Y]){
             cella posizione(X,Y);
 
             NaveCrociere::caselleNave.push_back(posizione);
+            SceltePosizionamentoComputer.erase(X*10+Y);
     }
 }
 
