@@ -331,7 +331,7 @@ if(it.ShowX()==0 && it.ShowY()==0 && (SceltePosizionamentoComputer[it.ShowX()*10
 
                                         unsigned short random=rand() % 2;
                                          std::cout<<"random="<<random<<std::endl;
-                                        while(SceltePosizionamentoComputer[it.ShowX()*10+y[random]]){
+                                        while(!SceltePosizionamentoComputer[it.ShowX()*10+y[random]]){
                                             random=rand() % 2;
                                             std::cout<<"random="<<random<<std::endl;
                                         }
