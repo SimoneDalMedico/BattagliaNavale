@@ -11,11 +11,11 @@ void NaveAssalto::assegna(unsigned short int X, unsigned short int Y)
             cella posizione(X,Y);
 
             NaveAssalto::caselleNave.push_back(posizione);
-            std::list<cella>::iterator it=caselleNave.begin();
-            for(it=caselleNave.begin();it!=caselleNave.end();it++){
-                std::cout<<"cella inserita in caselleNave: "<<it->ShowX()<<" "<<it->ShowY()<<std::endl;
+//            std::list<cella>::iterator it=caselleNave.begin();
+//            for(it=caselleNave.begin();it!=caselleNave.end();it++){
+//                std::cout<<"cella inserita in caselleNave: "<<it->ShowX()<<" "<<it->ShowY()<<std::endl;
 
-            }
+//            }
             SceltePosizionamentoComputer.erase(X*10+Y);
     }
 }

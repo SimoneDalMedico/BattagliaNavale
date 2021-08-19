@@ -106,7 +106,7 @@ if(it.ShowX()==0 && it.ShowY()<9 && it.ShowY()>0 && (it.ShowX()*10+(it.ShowY()-1
             if(x[randomX]==x0 && (SceltePosizionamentoComputer[x0*10+y0] || SceltePosizionamentoComputer[x0*10+y1])){
                 unsigned short y[2]={y0,y1};
                 unsigned short randomY=rand() % 2;
-                while(!SceltePosizionamentoComputer[x0+y[randomY]]){ //rischio loop infinito (poco probabile)
+                while(!SceltePosizionamentoComputer[x0*10+y[randomY]]){ //rischio loop infinito (poco probabile)
                     randomY=rand() % 2;
                 }
 
