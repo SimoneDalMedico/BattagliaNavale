@@ -2,8 +2,10 @@
 
 void Nave::reset()
 {
+
     std::list<cella>::iterator it;
     caselleNave.clear();
+    SceltePosizionamentoComputer.clear();
     for(unsigned short i=0;i<100;i++){
         std::map<unsigned short, unsigned short>::value_type v(i,i);
         SceltePosizionamentoComputer.insert(v);

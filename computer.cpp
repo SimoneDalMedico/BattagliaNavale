@@ -4,7 +4,7 @@ Computer::Computer()
 {
     numeroNaviPosizionate=0;
     numero_Navi_Affondate=0;
-
+    SceltePossibili.clear();
     for(unsigned short int i=0;i<100;i++){
         std::map<unsigned short int, unsigned short int>::value_type v(i,i);
         SceltePossibili.insert(v);
