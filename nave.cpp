@@ -324,18 +324,25 @@ if(it.ShowX()==0 && it.ShowY()==0 && (SceltePosizionamentoComputer[it.ShowX()*10
                                         unsigned short y1=it.ShowY()-1;
                                         unsigned short y2=it2.ShowY()+1;
                                         unsigned short y[2]={y1,y2};
+
                                         std::cout<<"showX:"<<it2.ShowX()<<std::endl;
                                         std::cout<<"showY it:"<<it.ShowY()<<std::endl;
                                         std::cout<<"showY it2:"<<it2.ShowY()<<std::endl;
+
                                         unsigned short random=rand() % 2;
                                         while(!SceltePosizionamentoComputer[it.ShowX()*10+y[random]]){
                                             random=rand() % 2;
+                                            std::cout<<"random="<<random<<std::endl;
                                         }
+
                                         std::cout<<"nuova Y:"<<y[random]<<std::endl;
+
                                         cella posizione(it.ShowX(),y[random]);
                                         if(y[random]<it.ShowY()){
+                                            std::cout<<"y[random]<it.showY()"<<std::endl;
                                             caselleNave.push_front(posizione);
                                         }else{
+                                            std::cout<<"y[random]>it2.showY()"<<std::endl;
                                          caselleNave.push_back(posizione);
                                         }
                                         SceltePosizionamentoComputer.erase(it.ShowX()*10+y[random]);
