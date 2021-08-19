@@ -1,5 +1,7 @@
 #include "nave.h"
 
+std::map<unsigned short, unsigned short> Nave::SceltePosizionamentoComputer;
+
 void Nave::reset()
 {
 

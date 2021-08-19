@@ -30,6 +30,9 @@ protected:
       std::list<cella> caselleNave;
       static std::map<unsigned short, unsigned short> SceltePosizionamentoComputer;
 
+
 };
+
+
 
 #endif // NAVE_H
