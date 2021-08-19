@@ -5,7 +5,16 @@ NaveAssalto::NaveAssalto()
     NaveAssalto::reset();
 }
 
-void NaveAssalto::assegna(unsigned short int X, unsigned short int Y)
+void NaveAssalto::assegna(unsigned short X, unsigned short Y)
+{
+    if(NaveAssalto::caselleNave.size()<2){
+            cella posizione(X,Y);
+
+            NaveAssalto::caselleNave.push_back(posizione);
+    }
+}
+
+void NaveAssalto::assegnaC(unsigned short int X, unsigned short int Y)
 {
     if(NaveAssalto::caselleNave.size()<2){
             cella posizione(X,Y);
@@ -17,10 +26,7 @@ void NaveAssalto::assegna(unsigned short int X, unsigned short int Y)
 
 //            }
             SceltePosizionamentoComputer.erase(X*10+Y);
-            std::map<unsigned short, unsigned short>::iterator it;
-            for(it=SceltePosizionamentoComputer.begin();it!=SceltePosizionamentoComputer.end();it++){
-                std::cout<<"ScelteComputer["<<it->first<<"]="<<it->second<<std::endl;
-            }
+
     }
 }
 

@@ -10,6 +10,7 @@ public:
     NaveAssalto();
     //~NaveAssalto()=default;
     void assegna(unsigned short int, unsigned short int);
+    void assegnaC(unsigned short int, unsigned short int);
     void operator=(NaveAssalto);
 };
 #endif // NAVEASSALTO_H

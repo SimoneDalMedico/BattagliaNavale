@@ -18,6 +18,7 @@ public:
     bool colpita(unsigned short int, unsigned short int);
     bool affondata();
     virtual void assegna(unsigned short int, unsigned short int) =0;
+    virtual void assegnaC(unsigned short int, unsigned short int)=0;
     void reset();
     int counter();
     bool check_posizione(unsigned short int, unsigned short int);

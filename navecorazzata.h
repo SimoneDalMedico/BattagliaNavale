@@ -10,6 +10,7 @@ public:
     NaveCorazzata();
     //~NaveCorazzata()=default;
     void assegna(unsigned short int, unsigned short int);
+    void assegnaC(unsigned short int, unsigned short int);
     void operator=(NaveCorazzata);
 };
 

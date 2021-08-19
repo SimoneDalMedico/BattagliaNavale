@@ -11,6 +11,7 @@ public:
 
     //~NavePortaerei()=default;
     void assegna(unsigned short int, unsigned short int);
+    void assegnaC(unsigned short int, unsigned short int);
     void operator=(NavePortaerei);
 };
 
