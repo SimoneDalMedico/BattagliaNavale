@@ -87,7 +87,7 @@ void ModelloPosizione::moveC()
             }while(grigliaComputer[X*10+Y]!=none);
                 if(static_cast<NaveAssalto*>(computer.navi[0].get())->check_posizione(X,Y)){
 
-                    static_cast<NaveAssalto*>(computer.navi[0].get())->assegna(X,Y);
+                    static_cast<NaveAssalto*>(computer.navi[0].get())->assegnaC(X,Y);
                      grigliaComputer[X*10+Y]=playerC;
                 }
 
@@ -122,7 +122,7 @@ void ModelloPosizione::moveC()
 
                     if(static_cast<NaveCrociere*>(computer.navi[1].get())->check_posizione(X,Y)){
                         grigliaComputer[X*10+Y]=playerC;
-                        static_cast<NaveCrociere*>(computer.navi[1].get())->assegna(X,Y);
+                        static_cast<NaveCrociere*>(computer.navi[1].get())->assegnaC(X,Y);
                     }
 
             }else{
@@ -158,7 +158,7 @@ void ModelloPosizione::moveC()
                         std::cout<<"fine ciclo while nave da 4"<<std::endl;
                         if(static_cast<NaveCorazzata*>(computer.navi[2].get())->check_posizione(X,Y)){
                             grigliaComputer[X*10+Y]=playerC;
-                            static_cast<NaveCorazzata*>(computer.navi[2].get())->assegna(X,Y);
+                            static_cast<NaveCorazzata*>(computer.navi[2].get())->assegnaC(X,Y);
                         }
 
                 }else{
@@ -193,7 +193,7 @@ void ModelloPosizione::moveC()
 
                             if(static_cast<NavePortaerei*>(computer.navi[3].get())->check_posizione(X,Y)){
                                 grigliaComputer[X*10+Y]=playerC;
-                                static_cast<NavePortaerei*>(computer.navi[3].get())->assegna(X,Y);
+                                static_cast<NavePortaerei*>(computer.navi[3].get())->assegnaC(X,Y);
                             }
                     }else{
                         if(static_cast<NavePortaerei*>(computer.navi[3].get())->counter()>0 && static_cast<NavePortaerei*>(computer.navi[3].get())->counter()<5){
