@@ -28,7 +28,7 @@ protected:
 
 //    std::map<unsigned short, cella> caselleNave;
       std::list<cella> caselleNave;
-      std::map<unsigned short, unsigned short> SceltePosizionamentoComputer;
+      static std::map<unsigned short, unsigned short> SceltePosizionamentoComputer;
 
 };
 
