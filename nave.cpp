@@ -320,6 +320,7 @@ if(it.ShowX()==0 && it.ShowY()==0 && (SceltePosizionamentoComputer[it.ShowX()*10
                                         SceltePosizionamentoComputer.erase(it.ShowX()*10+y1);
                                     }else{
                                    if(SceltePosizionamentoComputer[it.ShowX()*10+(it.ShowY()-1)] || SceltePosizionamentoComputer[it.ShowX()*10+(it2.ShowY()+1)]){
+                                       std::cout<<"ENTRA QUI DENTRO"<<std::endl;
                                         unsigned short y1=it.ShowY()-1;
                                         unsigned short y2=it2.ShowY()+1;
                                         unsigned short y[2]={y1,y2};
@@ -327,7 +328,7 @@ if(it.ShowX()==0 && it.ShowY()==0 && (SceltePosizionamentoComputer[it.ShowX()*10
                                         std::cout<<"showY it:"<<it.ShowY()<<std::endl;
                                         std::cout<<"showY it2:"<<it2.ShowY()<<std::endl;
                                         unsigned short random=rand() % 2;
-                                        while(SceltePosizionamentoComputer[it.ShowX()*10+y[random]]){
+                                        while(!SceltePosizionamentoComputer[it.ShowX()*10+y[random]]){
                                             random=rand() % 2;
                                         }
                                         std::cout<<"nuova Y:"<<y[random]<<std::endl;
