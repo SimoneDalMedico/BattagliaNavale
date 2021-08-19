@@ -17,6 +17,10 @@ void NaveAssalto::assegna(unsigned short int X, unsigned short int Y)
 
 //            }
             SceltePosizionamentoComputer.erase(X*10+Y);
+            std::map<unsigned short, unsigned short>::iterator it;
+            for(it=SceltePosizionamentoComputer.begin();it!=SceltePosizionamentoComputer.end();it++){
+                std::cout<<"ScelteComputer["<<it->first<<"]="<<it->second<<std::endl;
+            }
     }
 }
 
