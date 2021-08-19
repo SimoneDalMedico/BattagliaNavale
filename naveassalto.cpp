@@ -16,6 +16,7 @@ void NaveAssalto::assegna(unsigned short int X, unsigned short int Y)
                 std::cout<<"cella inserita in caselleNave: "<<it->ShowX()<<" "<<it->ShowY()<<std::endl;
 
             }
+            SceltePosizionamentoComputer.erase(X*10+Y);
     }
 }
 

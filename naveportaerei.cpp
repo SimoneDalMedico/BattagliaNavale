@@ -11,6 +11,7 @@ void NavePortaerei::assegna(unsigned short X, unsigned short Y)
             cella posizione(X,Y);
 
             NavePortaerei::caselleNave.push_back(posizione);
+            SceltePosizionamentoComputer.erase(X*10+Y);
     }
 }
 
