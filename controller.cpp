@@ -21,13 +21,6 @@ int Controller::getPlayer(unsigned short x, unsigned short y) const
     return (*modelloG)(x,y);
 }
 
-int Controller::getComp(unsigned short x, unsigned short y) const
-{
-    //meotdo da eliminare: solo per verificare posizione navi computer
-    return modelloG->GetComp(x,y);
-}
-
-
 int Controller::getPlayerG(unsigned short x, unsigned short y) const
 {
     return modelloG->GetPlayer(x,y);
@@ -89,9 +82,6 @@ void Controller::moveG(unsigned short row, unsigned short col)
     try {
         modelloG->move(row,col);
         vistaG->update();
-
-
-
         if(modelloG->checkNaveColpita(row,col)==true){
             if(modelloG->checkNaveAffondata()==true){
                 vistaG->updatePannelo();
@@ -117,22 +107,17 @@ void Controller::moveG(unsigned short row, unsigned short col)
 
         }
     std::cout<<"controller->moveG->end"<<std::endl;
-    } catch (std::exception*exc) {
-
-        vistaG->ShowMessage(exc->what());
     }
-
+    catch (std::exception*exc) { vistaG->ShowMessage(exc->what());}
 }
 
 void Controller::posiziona(unsigned short row, unsigned short col)
 {
-
-    try {
+   try {
        modelloP->move(row,col);
        vistaP->update();
        vistaP->updatePanelloP();
        modelloP->moveC();
-       vistaP->updateC(); //da eliminare
        vistaP->updatePanelloP();
        if(modelloP->CeckFinePosizionamento()){
             vistaG->show();
@@ -143,18 +128,15 @@ void Controller::posiziona(unsigned short row, unsigned short col)
             modelloG->riempiGriglie(modelloP);
             vistaG->inizializza_Griglie();
        }
-   } catch (std::exception* exc) {
-        vistaP->ShowMessage(exc->what());
-    }
+   }
+   catch (std::exception* exc) { vistaP->ShowMessage(exc->what());}
 }
 
 void Controller::resetGameG()
 {
     modelloG->reset();
     modelloP->reset();
-
     vistaP->resetPosizione();
-
     vistaG->close();
     vistaP->show();
     vistaP->updatePanelloP();

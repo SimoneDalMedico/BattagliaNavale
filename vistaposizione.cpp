@@ -2,29 +2,21 @@
 #include "controller.h"
 VistaPosizione::VistaPosizione(Controller* c, QWidget* parent):QWidget(parent), controller(c)
 {
-//    masterLayout=new QBoxLayout(QBoxLayout::TopToBottom);
     masterLayout=new QVBoxLayout();
     mainLayout=new QHBoxLayout(parent);
     grigliaComputer=new QGridLayout(parent);
     grigliaGiocatore=new QGridLayout(parent);
     PannelloInformazioniP=new QVBoxLayout(parent);
-
     addMenu();
-
     addButton();
-
     addLabelP();
-
     mainLayout->addLayout(grigliaComputer);
     mainLayout->addLayout(grigliaGiocatore);
     mainLayout->addLayout(PannelloInformazioniP);
-
-//    setLayout(mainLayout);
-//     addButtonHelp();
-     masterLayout->addLayout(mainLayout);
-     addButtonHelp();
-     setSchermata();
-     setLayout(masterLayout);
+    masterLayout->addLayout(mainLayout);
+    addButtonHelp();
+    setSchermata();
+    setLayout(masterLayout);
 }
 
 VistaPosizione::VistaPosizione(VistaPosizione * p):controller(p->controller)
@@ -41,41 +33,26 @@ void VistaPosizione::update()
         if(player==1){
             QLayoutItem* item=grigliaGiocatore->itemAtPosition(i/10,i%10);
             QPushButton* button=static_cast<QPushButton*>(item->widget());
-                button->setIcon(QIcon(":/risorse/quadratoRosso.png"));
-                button->setEnabled(false);
-        }
-    }
-}
-
-void VistaPosizione::updateC()
-{
-    //metodo da elinare: serve per verificare il posizionamento di computer
-    for (unsigned short int i=0;i<100;i++){
-        int player=controller->getPlayerP(i/10,i%10);
-        if(player==2){
-            QLayoutItem* item=grigliaComputer->itemAtPosition(i/10,i%10);
-            QPushButton* button=static_cast<QPushButton*>(item->widget());
-                button->setIcon(QIcon(":/risorse/quadratoRosso.png"));
-                button->setEnabled(false);
+            button->setIcon(QIcon(":/risorse/quadratoRosso.png"));
+            button->setEnabled(false);
         }
     }
 }
 
 void VistaPosizione::updatePanelloP()
 {
-   QLayoutItem* itemC=PannelloInformazioniP->itemAt(0);
-   std::stringstream naviComputer;
-   QLabel* naveC=static_cast<QLabel*>(itemC->widget());
-   int numeroNaviPosizionateComputer=controller->showNaviPosizionateC();
-   naviComputer<<"numero navi Computer posizionate: "<<numeroNaviPosizionateComputer;
-   naveC->setText(QString::fromStdString(naviComputer.str()));
-
-   QLayoutItem* itemG=PannelloInformazioniP->itemAt(1);
-   std::stringstream naviGiocatore;
-   QLabel* naveG=static_cast<QLabel*>(itemG->widget());
-   int numeroNaviPosizionateGiocatore=controller->showNaviPosizionateG();
-   naviGiocatore<<"numero navi Giocatore posizionate: "<<numeroNaviPosizionateGiocatore;
-   naveG->setText(QString::fromStdString(naviGiocatore.str()));
+    QLayoutItem* itemC=PannelloInformazioniP->itemAt(0);
+    std::stringstream naviComputer;
+    QLabel* naveC=static_cast<QLabel*>(itemC->widget());
+    int numeroNaviPosizionateComputer=controller->showNaviPosizionateC();
+    naviComputer<<"numero navi Computer posizionate: "<<numeroNaviPosizionateComputer;
+    naveC->setText(QString::fromStdString(naviComputer.str()));
+    QLayoutItem* itemG=PannelloInformazioniP->itemAt(1);
+    std::stringstream naviGiocatore;
+    QLabel* naveG=static_cast<QLabel*>(itemG->widget());
+    int numeroNaviPosizionateGiocatore=controller->showNaviPosizionateG();
+    naviGiocatore<<"numero navi Giocatore posizionate: "<<numeroNaviPosizionateGiocatore;
+    naveG->setText(QString::fromStdString(naviGiocatore.str()));
 }
 
 void VistaPosizione::resetPosizione()
@@ -96,7 +73,6 @@ void VistaPosizione::ShowMessage(const QString & message)
 {
     QDialog* dialog=new QDialog(this);
     QHBoxLayout* layout=new QHBoxLayout(dialog);
-
     layout->addWidget(new QLabel(message,dialog));
     dialog->show();
 }
@@ -112,7 +88,6 @@ void VistaPosizione::addMenu()
     menu->addAction(reset);
     menu->addAction(quit);
     menuBar->addMenu(menu);
-    //masterLayout->addIma
     masterLayout->addWidget(menuBar);
 }
 
@@ -138,20 +113,10 @@ void VistaPosizione::addButton()
 
 void VistaPosizione::addButtonHelp()
 {
-    // HELP BUTTON
     QBoxLayout* posizionamento=new QBoxLayout(QBoxLayout::LeftToRight);
     posizionamento->addSpacing(750);
-   QPushButton* helpButton = new QPushButton("Help",this);
+    QPushButton* helpButton = new QPushButton("Help",this);
     helpButton->setFocusPolicy(Qt::NoFocus);
-    helpButton->setStyleSheet(
-                            "font-size: 15px;"
-                            "border-radius: 5px;"
-                            "padding: 0.4em;"
-                            "max-width: 35px;"
-                            "max-height: 15px;"
-                            );
-
-
     QObject::connect(helpButton,SIGNAL(clicked(bool)),controller,SLOT(sendHelp()));
     posizionamento->addWidget(helpButton);
     masterLayout->addLayout(posizionamento);
@@ -162,22 +127,22 @@ void VistaPosizione::addLabelP()
     std::stringstream naviG;
     std::stringstream naviC;
 
-     naviC<<"numero navi Computer Pozizionate: "<<controller->showNaviPosizionateC();
-     naviG<<"numero navi giocatore Posizionate: "<<controller->showNaviPosizionateG();
-     QLabel* naviComputerPosizionate=new QLabel(QString::fromStdString(naviC.str()));
-     QLabel* naviGiocatorePosizionate=new QLabel(QString::fromStdString(naviG.str()));
-     QLabel* assalto=new QLabel(QString("assalto: 2 caselle"));
-     QLabel* crociere=new QLabel(QString("crociere: 3 caselle"));
-     QLabel* corazzata=new QLabel(QString("corazzata: 4 caselle"));
-     QLabel* portaerei=new QLabel(QString("portaerei: 5 caselle"));
-     QLabel* regola=new QLabel(QString("N.B. le navi NON possono essere messe in obliquo!"));
-     PannelloInformazioniP->addWidget(naviComputerPosizionate);
-     PannelloInformazioniP->addWidget(naviGiocatorePosizionate);
-     PannelloInformazioniP->addWidget(assalto);
-     PannelloInformazioniP->addWidget(crociere);
-     PannelloInformazioniP->addWidget(corazzata);
-     PannelloInformazioniP->addWidget(portaerei);
-     PannelloInformazioniP->addWidget(regola);
+    naviC<<"numero navi Computer Pozizionate: "<<controller->showNaviPosizionateC();
+    naviG<<"numero navi giocatore Posizionate: "<<controller->showNaviPosizionateG();
+    QLabel* naviComputerPosizionate=new QLabel(QString::fromStdString(naviC.str()));
+    QLabel* naviGiocatorePosizionate=new QLabel(QString::fromStdString(naviG.str()));
+    QLabel* assalto=new QLabel(QString("assalto: 2 caselle"));
+    QLabel* crociere=new QLabel(QString("crociere: 3 caselle"));
+    QLabel* corazzata=new QLabel(QString("corazzata: 4 caselle"));
+    QLabel* portaerei=new QLabel(QString("portaerei: 5 caselle"));
+    QLabel* regola=new QLabel(QString("N.B. le navi NON possono essere messe in obliquo!"));
+    PannelloInformazioniP->addWidget(naviComputerPosizionate);
+    PannelloInformazioniP->addWidget(naviGiocatorePosizionate);
+    PannelloInformazioniP->addWidget(assalto);
+    PannelloInformazioniP->addWidget(crociere);
+    PannelloInformazioniP->addWidget(corazzata);
+    PannelloInformazioniP->addWidget(portaerei);
+    PannelloInformazioniP->addWidget(regola);
 }
 
 void VistaPosizione::setSchermata()
@@ -185,7 +150,7 @@ void VistaPosizione::setSchermata()
 
     grigliaComputer->setSpacing(0);
     grigliaGiocatore->setSpacing(0);
-//    setMinimumSize(QSize(1300,500));
+    //    setMinimumSize(QSize(1300,500));
     setMaximumSize(1400,600);
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
     QFile file(":risorse/style.css");

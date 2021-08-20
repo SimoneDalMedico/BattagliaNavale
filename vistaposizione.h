@@ -28,7 +28,6 @@ public:
     VistaPosizione(VistaPosizione* );
     ~VistaPosizione()=default;
     void update();
-    void updateC(); //da eliminare: serve per controllare il osiuzionamento di computer
     void updatePanelloP();
     void resetPosizione();
     void ShowMessage(const QString&);

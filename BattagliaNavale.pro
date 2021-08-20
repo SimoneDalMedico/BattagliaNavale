@@ -21,7 +21,6 @@ HEADERS += buttonb.h \
            contenitore.h \
            controller.h \
            deep_ptr.h \
-           dimensione.h \
            giocatore.h \
            model.h \
            modellogioco.h \
@@ -38,9 +37,7 @@ FORMS += schermata.ui
 SOURCES += buttonb.cpp \
            cella.cpp \
            computer.cpp \
-           contenitore.cpp \
            controller.cpp \
-           deep_ptr.cpp \
            giocatore.cpp \
            main.cpp \
            modellogioco.cpp \
