@@ -21,12 +21,6 @@ int Controller::getPlayer(unsigned short x, unsigned short y) const
     return (*modelloG)(x,y);
 }
 
-int Controller::getComp(unsigned short x, unsigned short y) const
-{
-    //meotdo da eliminare: solo per verificare posizione navi computer
-    return modelloG->GetComp(x,y);
-}
-
 int Controller::getPlayerG(unsigned short x, unsigned short y) const
 {
     return modelloG->GetPlayer(x,y);
