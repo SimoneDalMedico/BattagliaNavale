@@ -21,15 +21,12 @@ int Controller::getPlayer(unsigned short x, unsigned short y) const
     return (*modelloG)(x,y);
 }
 
-<<<<<<< Updated upstream
-=======
 int Controller::getComp(unsigned short x, unsigned short y) const
 {
     //meotdo da eliminare: solo per verificare posizione navi computer
     return modelloG->GetComp(x,y);
 }
 
->>>>>>> Stashed changes
 int Controller::getPlayerG(unsigned short x, unsigned short y) const
 {
     return modelloG->GetPlayer(x,y);
@@ -90,10 +87,6 @@ void Controller::moveG(unsigned short row, unsigned short col)
     try {
         modelloG->move(row,col);
         vistaG->update();
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         if(modelloG->checkNaveColpita(row,col)==true){
             if(modelloG->checkNaveAffondata()==true){
                 vistaG->updatePannelo();
@@ -117,24 +110,14 @@ void Controller::moveG(unsigned short row, unsigned short col)
             vistaP->resetPosizione();
             vistaP->updatePanelloP();
         }
-<<<<<<< Updated upstream
-    std::cout<<"controller->moveG->end"<<std::endl;
-    }
-    catch (std::exception*exc) { vistaG->ShowMessage(exc->what());}
-=======
     } catch (std::exception*exc) {
         vistaG->ShowMessage(exc->what());
     }
->>>>>>> Stashed changes
 }
 
 void Controller::posiziona(unsigned short row, unsigned short col)
 {
-<<<<<<< Updated upstream
-   try {
-=======
     try {
->>>>>>> Stashed changes
        modelloP->move(row,col);
        vistaP->update();
        vistaP->updatePanelloP();
