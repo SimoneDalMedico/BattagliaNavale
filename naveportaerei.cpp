@@ -9,7 +9,6 @@ void NavePortaerei::assegna(unsigned short X, unsigned short Y)
 {
     if(NavePortaerei::caselleNave.size()<5){
             cella posizione(X,Y);
-
             NavePortaerei::caselleNave.push_back(posizione);
     }
 }
@@ -18,7 +17,6 @@ void NavePortaerei::assegnaC(unsigned short X, unsigned short Y)
 {
     if(NavePortaerei::caselleNave.size()<5 && SceltePosizionamentoComputer[X*10+Y]){
             cella posizione(X,Y);
-
             NavePortaerei::caselleNave.push_back(posizione);
             SceltePosizionamentoComputer.erase(X*10+Y);
     }

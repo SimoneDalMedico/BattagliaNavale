@@ -2,8 +2,6 @@
 #define CONTROLLER_H
 
 #include <QObject>
-
-//#include <QRandomGenerator>
 #include "modellogioco.h"
 #include "modelloposizione.h"
 #include "vistagioco.h"
@@ -46,8 +44,6 @@ private:
 
     ModelloPosizione* modelloP;
     ModelloGioco* modelloG;
-
-
 };
 
 #endif // CONTROLLER_H

@@ -12,20 +12,12 @@ ModelloGioco::ModelloGioco(ModelloPosizione* p): giocatore(p->giocatore), comput
     for(unsigned short int i=0;i<100;i++){
         grigliaComputer[i]=p->grigliaComputer[i];
         grigliaGiocatore[i]=p->grigliaGiocatore[i];
-//        std::cout<<grigliaComputer[i]<<std::endl;
-//        std::cout<<grigliaGiocatore[i]<<std::endl;
-//        std::cout<<std::endl;
     }
-    //giocatore=p->giocatore;
-    //computer=p->computer;
 }
 
 void ModelloGioco::move(unsigned short int x, unsigned short int y)
 {
-    std::cout<<"ModelloGioco->move->start"<<std::endl;
-    std::cout<<"Modello gioco->turno = "<<turn<<std::endl;
     if(turn==giocatore.Turno){
-        std::cout<<"Modello gioco->turnogiocatore"<<std::endl;
         if(x>10 && y>10){
             throw new std::domain_error("Exception: (" + std::to_string(x) + ", " + std::to_string(y) +") è fuori dal bound della griglia");
         }
@@ -39,7 +31,6 @@ void ModelloGioco::move(unsigned short int x, unsigned short int y)
         }
 
     }else{
-        std::cout<<"Modello gioco->turnocomputer"<<std::endl;
         std::map<unsigned short int,unsigned short int>::iterator it;
         it=computer.SceltePossibili.find(x*10+y);
                     if(grigliaGiocatore[x*10+y]==playerG){
@@ -53,12 +44,10 @@ void ModelloGioco::move(unsigned short int x, unsigned short int y)
         computer.SceltePossibili.erase(it);
     }
     turn=!turn;
-    std::cout<<"ModelloGioco->move->end"<<std::endl;
 }
 
 int ModelloGioco::SceltaComputer()
 {
-    std::cout<<"modellogioco->sceltacomputer->start"<<std::endl;
     return computer.SceltaComputer();
 }
 
@@ -147,41 +136,31 @@ bool ModelloGioco::checkNaveColpita(unsigned short x, unsigned short y)
       std::map<int,cella>::iterator it;
         if(turn==Giocatore::Turno){
             if(static_cast<NaveAssalto*>(giocatore.navi[0].get())->colpita(x,y)){
-                std::cout<<"modellogioco->checknavecolpita->GAssalto->true"<<std::endl;
                 return true;
             }
             if(static_cast<NaveCrociere*>(giocatore.navi[1].get())->colpita(x,y)){
-                std::cout<<"modellogioco->checknavecolpita->Gcrociere->true"<<std::endl;
                 return true;
             }
             if(static_cast<NaveCorazzata*>(giocatore.navi[2].get())->colpita(x,y)){
-                std::cout<<"modellogioco->checknavecolpita->Gcorazzata->true"<<std::endl;
                 return true;
             }
             if(static_cast<NavePortaerei*>(giocatore.navi[3].get())->colpita(x,y)){
-                std::cout<<"modellogioco->checknavecolpita->Gportaerei->true"<<std::endl;
                 return true;
             }
         }else{
             if(static_cast<NaveAssalto*>(computer.navi[0].get())->colpita(x,y)){
-                std::cout<<"modellogioco->checknavecolpita->Cassalto->true"<<std::endl;
-
                 return true;
             }
             if(static_cast<NaveCrociere*>(computer.navi[1].get())->colpita(x,y)){
-                std::cout<<"modellogioco->checknavecolpita->Ccrociera->true"<<std::endl;
                 return true;
             }
             if(static_cast<NaveCorazzata*>(computer.navi[2].get())->colpita(x,y)){
-                std::cout<<"modellogioco->checknavecolpita->Ccorazzata->true"<<std::endl;
                 return true;
             }
             if(static_cast<NavePortaerei*>(computer.navi[3].get())->colpita(x,y)){
-                std::cout<<"modellogioco->checknavecolpita->Cportaerei->true"<<std::endl;
                 return true;
             }
         }
-        std::cout<<"modellogioco->checknavecolpita->false"<<std::endl;
         return false;
 }
 
@@ -243,16 +222,8 @@ void ModelloGioco::riempiGriglie(ModelloPosizione *p)
         grigliaComputer[i]=p->grigliaComputer[i];
 
     }
-    //da numeri random!
     giocatore=p->giocatore;
     computer=p->computer;
-
-
-    contenitore<deep_ptr<cella>>::iterator it=giocatore.navi.begin();
-    std::cout<<"test riempi griglie"<<std::endl;
-    for(it=giocatore.navi.begin();it!=giocatore.navi.end(); ++it){
-        std::cout<<it->get()->ShowX()<<" "<<it->get()->ShowY()<<std::endl;
-    }
 
 }
 
