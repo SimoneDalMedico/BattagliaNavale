@@ -112,12 +112,12 @@ void Controller::moveG(unsigned short row, unsigned short col)
 void Controller::posiziona(unsigned short row, unsigned short col)
 {
     try {
-       modelloP->move(row,col);
-       vistaP->update();
-       vistaP->updatePanelloP();
-       modelloP->moveC();
-       vistaP->updatePanelloP();
-       if(modelloP->CeckFinePosizionamento()){
+        modelloP->move(row,col);
+        vistaP->update();
+        vistaP->updatePanelloP();
+        modelloP->moveC();
+        vistaP->updatePanelloP();
+        if(modelloP->CeckFinePosizionamento()){
             vistaG->show();
             vistaG->resetGame();
             vistaP->close();
@@ -125,9 +125,9 @@ void Controller::posiziona(unsigned short row, unsigned short col)
             vistaG->updatePannelo();
             modelloG->riempiGriglie(modelloP);
             vistaG->inizializza_Griglie();
-       }
-   }
-   catch (std::exception* exc) { vistaP->ShowMessage(exc->what());}
+        }
+    }
+    catch (std::exception* exc) { vistaP->ShowMessage(exc->what());}
 }
 
 void Controller::resetGameG()

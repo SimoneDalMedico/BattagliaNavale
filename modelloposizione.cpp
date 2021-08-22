@@ -21,8 +21,8 @@ void ModelloPosizione::move(unsigned short X, unsigned short Y)
 {
     if(grigliaGiocatore[X*10+Y]) throw  new MoveException(X,Y);
 
-if(giocatore.numeroNaviPosizionate==0){
-    if(!static_cast<NaveAssalto*>(giocatore.navi[0].get())->check_posizione(X,Y)) throw new MoveException(X,Y);
+    if(giocatore.numeroNaviPosizionate==0){
+        if(!static_cast<NaveAssalto*>(giocatore.navi[0].get())->check_posizione(X,Y)) throw new MoveException(X,Y);
         if(static_cast<NaveAssalto*>(giocatore.navi[0].get())->counter()<2){
             grigliaGiocatore[X*10+Y]=playerG;
             static_cast<NaveAssalto*>(giocatore.navi[0].get())->assegna(X,Y);
@@ -31,42 +31,42 @@ if(giocatore.numeroNaviPosizionate==0){
             giocatore.numeroNaviPosizionate=(giocatore.numeroNaviPosizionate)+1;
         }
 
-}else{
-if(giocatore.numeroNaviPosizionate==1){
-    if(!static_cast<NaveCrociere*>(giocatore.navi[1].get())->check_posizione(X,Y)) throw new MoveException(X,Y);
-        if(static_cast<NaveCrociere*>(giocatore.navi[1].get())->counter()<3){
-             grigliaGiocatore[X*10+Y]=playerG;
-            static_cast<NaveCrociere*>(giocatore.navi[1].get())->assegna(X,Y);
+    }else{
+        if(giocatore.numeroNaviPosizionate==1){
+            if(!static_cast<NaveCrociere*>(giocatore.navi[1].get())->check_posizione(X,Y)) throw new MoveException(X,Y);
+            if(static_cast<NaveCrociere*>(giocatore.navi[1].get())->counter()<3){
+                grigliaGiocatore[X*10+Y]=playerG;
+                static_cast<NaveCrociere*>(giocatore.navi[1].get())->assegna(X,Y);
 
-        }
+            }
             if(static_cast<NaveCrociere*>(giocatore.navi[1].get())->counter()==3){
                 giocatore.numeroNaviPosizionate=(giocatore.numeroNaviPosizionate)+1;
             }
-}else{
-if(giocatore.numeroNaviPosizionate==2){
-    if(!static_cast<NaveCorazzata*>(giocatore.navi[2].get())->check_posizione(X,Y)) throw new MoveException(X,Y);
-    if(static_cast<NaveCorazzata*>(giocatore.navi[2].get())->counter()<4){
-        grigliaGiocatore[X*10+Y]=playerG;
-        static_cast<NaveCorazzata*>(giocatore.navi[2].get())->assegna(X,Y);
+        }else{
+            if(giocatore.numeroNaviPosizionate==2){
+                if(!static_cast<NaveCorazzata*>(giocatore.navi[2].get())->check_posizione(X,Y)) throw new MoveException(X,Y);
+                if(static_cast<NaveCorazzata*>(giocatore.navi[2].get())->counter()<4){
+                    grigliaGiocatore[X*10+Y]=playerG;
+                    static_cast<NaveCorazzata*>(giocatore.navi[2].get())->assegna(X,Y);
 
-        }
-        if(static_cast<NaveCorazzata*>(giocatore.navi[2].get())->counter()==4) {
-            giocatore.numeroNaviPosizionate=(giocatore.numeroNaviPosizionate)+1;
-        }
-}else{
-if(giocatore.numeroNaviPosizionate==3){
-    if(!static_cast<NavePortaerei*>(giocatore.navi[3].get())->check_posizione(X,Y)) throw new MoveException(X,Y);
-    if(static_cast<NavePortaerei*>(giocatore.navi[3].get())->counter()<5 ){
-        grigliaGiocatore[X*10+Y]=playerG;
-        static_cast<NavePortaerei*>(giocatore.navi[3].get())->assegna(X,Y);
+                }
+                if(static_cast<NaveCorazzata*>(giocatore.navi[2].get())->counter()==4) {
+                    giocatore.numeroNaviPosizionate=(giocatore.numeroNaviPosizionate)+1;
+                }
+            }else{
+                if(giocatore.numeroNaviPosizionate==3){
+                    if(!static_cast<NavePortaerei*>(giocatore.navi[3].get())->check_posizione(X,Y)) throw new MoveException(X,Y);
+                    if(static_cast<NavePortaerei*>(giocatore.navi[3].get())->counter()<5 ){
+                        grigliaGiocatore[X*10+Y]=playerG;
+                        static_cast<NavePortaerei*>(giocatore.navi[3].get())->assegna(X,Y);
 
-    }
-    if(static_cast<NavePortaerei*>(giocatore.navi[3].get())->counter()==5) giocatore.numeroNaviPosizionate=(giocatore.numeroNaviPosizionate)+1;
-}
+                    }
+                    if(static_cast<NavePortaerei*>(giocatore.navi[3].get())->counter()==5) giocatore.numeroNaviPosizionate=(giocatore.numeroNaviPosizionate)+1;
+                }
             }
         }
     }
-turn=!turn;
+    turn=!turn;
 }
 
 
@@ -77,14 +77,14 @@ void ModelloPosizione::moveC()
             unsigned short X;
             unsigned short Y;
             do{
-            X=rand() % 10;
-            Y=rand() % 10;
+                X=rand() % 10;
+                Y=rand() % 10;
             }while(grigliaComputer[X*10+Y]!=none);
-                if(static_cast<NaveAssalto*>(computer.navi[0].get())->check_posizione(X,Y)){
+            if(static_cast<NaveAssalto*>(computer.navi[0].get())->check_posizione(X,Y)){
 
-                    static_cast<NaveAssalto*>(computer.navi[0].get())->assegnaC(X,Y);
-                     grigliaComputer[X*10+Y]=playerC;
-                }
+                static_cast<NaveAssalto*>(computer.navi[0].get())->assegnaC(X,Y);
+                grigliaComputer[X*10+Y]=playerC;
+            }
 
         }else{
             if(static_cast<NaveAssalto*>(computer.navi[0].get())->counter()>0 && static_cast<NaveAssalto*>(computer.navi[0].get())->counter()<2){
@@ -98,23 +98,23 @@ void ModelloPosizione::moveC()
                 }
 
             }
-        if(static_cast<NaveAssalto*>(computer.navi[0].get())->counter()==2) {
-            computer.numeroNaviPosizionate=computer.numeroNaviPosizionate+1;
+            if(static_cast<NaveAssalto*>(computer.navi[0].get())->counter()==2) {
+                computer.numeroNaviPosizionate=computer.numeroNaviPosizionate+1;
+            }
         }
-    }
-        }else{
+    }else{
         if(computer.numeroNaviPosizionate==1){
             if(static_cast<NaveCrociere*>(computer.navi[1].get())->counter()==0){
                 unsigned short X;
                 unsigned short Y;
                 do{
-                X=rand() % 10;
-                Y=rand() % 10;
+                    X=rand() % 10;
+                    Y=rand() % 10;
                 }while(grigliaComputer[X*10+Y]!=none);
-                    if(static_cast<NaveCrociere*>(computer.navi[1].get())->check_posizione(X,Y)){
-                        grigliaComputer[X*10+Y]=playerC;
-                        static_cast<NaveCrociere*>(computer.navi[1].get())->assegnaC(X,Y);
-                    }
+                if(static_cast<NaveCrociere*>(computer.navi[1].get())->check_posizione(X,Y)){
+                    grigliaComputer[X*10+Y]=playerC;
+                    static_cast<NaveCrociere*>(computer.navi[1].get())->assegnaC(X,Y);
+                }
 
             }else{
                 if(static_cast<NaveCrociere*>(computer.navi[1].get())->counter()>0 && static_cast<NaveCrociere*>(computer.navi[1].get())->counter()<3){
@@ -140,10 +140,10 @@ void ModelloPosizione::moveC()
                         X=rand() % 10;
                         Y=rand() % 10;
                     }while(grigliaComputer[X*10+Y]!=none);
-                        if(static_cast<NaveCorazzata*>(computer.navi[2].get())->check_posizione(X,Y)){
-                            grigliaComputer[X*10+Y]=playerC;
-                            static_cast<NaveCorazzata*>(computer.navi[2].get())->assegnaC(X,Y);
-                        }
+                    if(static_cast<NaveCorazzata*>(computer.navi[2].get())->check_posizione(X,Y)){
+                        grigliaComputer[X*10+Y]=playerC;
+                        static_cast<NaveCorazzata*>(computer.navi[2].get())->assegnaC(X,Y);
+                    }
                 }else{
                     if(static_cast<NaveCorazzata*>(computer.navi[2].get())->counter()>0 && static_cast<NaveCorazzata*>(computer.navi[2].get())->counter()<4){
                         static_cast<NaveCorazzata*>(computer.navi[2].get())->Posizionamentocomputer();
@@ -168,10 +168,10 @@ void ModelloPosizione::moveC()
                             X=rand() % 10;
                             Y=rand() % 10;
                         }while(!checkSpazioNave(X,Y));
-                            if(static_cast<NavePortaerei*>(computer.navi[3].get())->check_posizione(X,Y)){
-                                grigliaComputer[X*10+Y]=playerC;
-                                static_cast<NavePortaerei*>(computer.navi[3].get())->assegnaC(X,Y);
-                            }
+                        if(static_cast<NavePortaerei*>(computer.navi[3].get())->check_posizione(X,Y)){
+                            grigliaComputer[X*10+Y]=playerC;
+                            static_cast<NavePortaerei*>(computer.navi[3].get())->assegnaC(X,Y);
+                        }
                     }else{
                         if(static_cast<NavePortaerei*>(computer.navi[3].get())->counter()>0 && static_cast<NavePortaerei*>(computer.navi[3].get())->counter()<5){
                             static_cast<NavePortaerei*>(computer.navi[3].get())->Posizionamentocomputer();
@@ -183,13 +183,13 @@ void ModelloPosizione::moveC()
                                 }
                             }
                         }
-                       if(static_cast<NavePortaerei*>(computer.navi[3].get())->counter()==5) computer.numeroNaviPosizionate=computer.numeroNaviPosizionate+1;
+                        if(static_cast<NavePortaerei*>(computer.navi[3].get())->counter()==5) computer.numeroNaviPosizionate=computer.numeroNaviPosizionate+1;
                     }
                 }
             }
         }
     }
-turn=!turn;
+    turn=!turn;
 }
 
 void ModelloPosizione::reset()
@@ -202,8 +202,8 @@ void ModelloPosizione::reset()
     }
     computer.SceltePossibili.clear();
     for(unsigned short int i=0;i<100;i++){
-            std::map<unsigned short int, unsigned short int>::value_type v(i,i);
-            computer.SceltePossibili.insert(v);
+        std::map<unsigned short int, unsigned short int>::value_type v(i,i);
+        computer.SceltePossibili.insert(v);
     }
     giocatore.numeroNaviPosizionate=0;
     computer.numeroNaviPosizionate=0;
@@ -252,7 +252,7 @@ bool ModelloPosizione::checkPosizione(unsigned short x, unsigned short y)
 
 int ModelloPosizione::NaviPosizionateG()
 {
-     return giocatore.numeroNaviPosizionate;
+    return giocatore.numeroNaviPosizionate;
 }
 
 int ModelloPosizione::NaviPosizionateC()
@@ -304,12 +304,12 @@ bool ModelloPosizione::checkSpazioNave(unsigned short X, unsigned short Y)
             }
         }
 
-    if(check1==true && check2==true && check3==true && check4==true){
-        return true;
-    }else{
-        return false;
+        if(check1==true && check2==true && check3==true && check4==true){
+            return true;
+        }else{
+            return false;
+        }
     }
-}
-return false;
+    return false;
 }
 

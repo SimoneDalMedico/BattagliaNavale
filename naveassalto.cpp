@@ -8,18 +8,18 @@ NaveAssalto::NaveAssalto()
 void NaveAssalto::assegna(unsigned short X, unsigned short Y)
 {
     if(NaveAssalto::caselleNave.size()<2){
-            cella posizione(X,Y);
-            NaveAssalto::caselleNave.push_back(posizione);
+        cella posizione(X,Y);
+        NaveAssalto::caselleNave.push_back(posizione);
     }
 }
 
 void NaveAssalto::assegnaC(unsigned short int X, unsigned short int Y)
 {
     if(NaveAssalto::caselleNave.size()<2){
-            cella posizione(X,Y);
+        cella posizione(X,Y);
 
-            NaveAssalto::caselleNave.push_back(posizione);
-            SceltePosizionamentoComputer.erase(X*10+Y);
+        NaveAssalto::caselleNave.push_back(posizione);
+        SceltePosizionamentoComputer.erase(X*10+Y);
     }
 }
 

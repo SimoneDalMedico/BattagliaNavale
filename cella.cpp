@@ -12,7 +12,7 @@ bool cella::operator==(const cella& v)
 
 unsigned short cella::ShowX()
 {
-  return x;
+    return x;
 }
 
 unsigned short cella::ShowY()

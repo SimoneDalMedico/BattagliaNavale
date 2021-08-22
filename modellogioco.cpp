@@ -33,13 +33,13 @@ void ModelloGioco::move(unsigned short int x, unsigned short int y)
     }else{
         std::map<unsigned short int,unsigned short int>::iterator it;
         it=computer.SceltePossibili.find(x*10+y);
-                    if(grigliaGiocatore[x*10+y]==playerG){
-                        grigliaGiocatore[x*10+y]=playerC;
-                    }else{
-                        if(grigliaGiocatore[x*10+y]==none){
-                            grigliaGiocatore[x*10+y]=playerMancata;
-                        }
-                    }
+        if(grigliaGiocatore[x*10+y]==playerG){
+            grigliaGiocatore[x*10+y]=playerC;
+        }else{
+            if(grigliaGiocatore[x*10+y]==none){
+                grigliaGiocatore[x*10+y]=playerMancata;
+            }
+        }
 
         computer.SceltePossibili.erase(it);
     }
@@ -133,35 +133,35 @@ bool ModelloGioco::checkWinner()
 
 bool ModelloGioco::checkNaveColpita(unsigned short x, unsigned short y)
 {
-      std::map<int,cella>::iterator it;
-        if(turn==Giocatore::Turno){
-            if(static_cast<NaveAssalto*>(giocatore.navi[0].get())->colpita(x,y)){
-                return true;
-            }
-            if(static_cast<NaveCrociere*>(giocatore.navi[1].get())->colpita(x,y)){
-                return true;
-            }
-            if(static_cast<NaveCorazzata*>(giocatore.navi[2].get())->colpita(x,y)){
-                return true;
-            }
-            if(static_cast<NavePortaerei*>(giocatore.navi[3].get())->colpita(x,y)){
-                return true;
-            }
-        }else{
-            if(static_cast<NaveAssalto*>(computer.navi[0].get())->colpita(x,y)){
-                return true;
-            }
-            if(static_cast<NaveCrociere*>(computer.navi[1].get())->colpita(x,y)){
-                return true;
-            }
-            if(static_cast<NaveCorazzata*>(computer.navi[2].get())->colpita(x,y)){
-                return true;
-            }
-            if(static_cast<NavePortaerei*>(computer.navi[3].get())->colpita(x,y)){
-                return true;
-            }
+    std::map<int,cella>::iterator it;
+    if(turn==Giocatore::Turno){
+        if(static_cast<NaveAssalto*>(giocatore.navi[0].get())->colpita(x,y)){
+            return true;
         }
-        return false;
+        if(static_cast<NaveCrociere*>(giocatore.navi[1].get())->colpita(x,y)){
+            return true;
+        }
+        if(static_cast<NaveCorazzata*>(giocatore.navi[2].get())->colpita(x,y)){
+            return true;
+        }
+        if(static_cast<NavePortaerei*>(giocatore.navi[3].get())->colpita(x,y)){
+            return true;
+        }
+    }else{
+        if(static_cast<NaveAssalto*>(computer.navi[0].get())->colpita(x,y)){
+            return true;
+        }
+        if(static_cast<NaveCrociere*>(computer.navi[1].get())->colpita(x,y)){
+            return true;
+        }
+        if(static_cast<NaveCorazzata*>(computer.navi[2].get())->colpita(x,y)){
+            return true;
+        }
+        if(static_cast<NavePortaerei*>(computer.navi[3].get())->colpita(x,y)){
+            return true;
+        }
+    }
+    return false;
 }
 
 bool ModelloGioco::checkNaveAffondata()
@@ -209,10 +209,10 @@ bool ModelloGioco::checkNaveAffondata()
 
 bool ModelloGioco::CheckScelta(unsigned short X, unsigned short Y)
 {
-       if(grigliaComputer[X*10+Y]==none){
-           return true;
-       }
-       return false;
+    if(grigliaComputer[X*10+Y]==none){
+        return true;
+    }
+    return false;
 }
 
 void ModelloGioco::riempiGriglie(ModelloPosizione *p)

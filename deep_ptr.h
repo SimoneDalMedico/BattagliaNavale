@@ -19,11 +19,11 @@ class deep_ptr {
     friend bool operator==<T>(const deep_ptr& left, const deep_ptr& right);
     friend bool operator!=<T>(const deep_ptr& left, const deep_ptr& right);
 
-   private:
+private:
     T* _ptr;
     unsigned short int* _counter;
 
-   public:
+public:
     deep_ptr(T* ptr = nullptr);
     deep_ptr(const deep_ptr<T>& deep_ptr);
 

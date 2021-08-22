@@ -106,6 +106,8 @@ void VistaPosizione::addMenu()
     QMenu* Help=new QMenu("Help",menuBar);
     QAction* help=new QAction("Come si gioca...",Help);
     connect(help,SIGNAL(triggered()),controller,SLOT(sendHelp()));
+    menuBar->setMaximumWidth(90);
+    menuBar->setMaximumHeight(25);
     menu->addAction(reset);
     menu->addAction(quit);
     Help->addAction(help);
@@ -119,14 +121,14 @@ void VistaPosizione::addButton()
     for(unsigned short int i=0;i<100;i++){
         ButtonB* button1=new ButtonB(i/10,i%10,this);
         button1->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
-        button1->setMinimumSize(45,45);
-        button1->setMaximumSize(60,60);
+        button1->setMinimumSize(50,50);
+        button1->setMaximumSize(88,88);
         grigliaComputer->addWidget(button1, i/10, i%10);
         button1->setEnabled(false);
         ButtonB* button2=new ButtonB(i/10,i%10,this);
         button2->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
-        button2->setMinimumSize(45,45);
-        button2->setMaximumSize(60,60);
+        button2->setMinimumSize(50,50);
+        button2->setMaximumSize(88,88);
         connect(button2,SIGNAL(clickedCell(unsigned short, unsigned short)), controller, SLOT(posiziona(unsigned short, unsigned short)));
         grigliaGiocatore->addWidget(button2, i/10, i%10);
         button2->setEnabled(true);
@@ -163,7 +165,7 @@ void VistaPosizione::setSchermata()
 {
     grigliaComputer->setSpacing(0);
     grigliaGiocatore->setSpacing(0);
-    setMaximumSize(1400,600);
+    setMaximumSize(1600,600);
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
     QFile file(":risorse/style.css");
     file.open(QFile::ReadOnly);

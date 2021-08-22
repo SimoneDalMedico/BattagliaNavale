@@ -23,8 +23,8 @@ public:
     unsigned short int PosizionaGrigliaCFine();
     unsigned short int PosizionaGrigliaCInizio();
 protected:
-      std::list<cella> caselleNave;
-      static std::map<unsigned short, unsigned short> SceltePosizionamentoComputer;
+    std::list<cella> caselleNave;
+    static std::map<unsigned short, unsigned short> SceltePosizionamentoComputer;
 };
 
 

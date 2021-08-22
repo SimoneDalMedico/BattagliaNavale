@@ -5,9 +5,9 @@
 
 template <class T>
 class contenitore {
-   private:
+private:
     class Node {
-       public:
+    public:
         T _info;
         Node *_prev, *_next;
 
@@ -23,7 +23,7 @@ class contenitore {
     static Node* ricFind(Node* from, const T& find);
     static void ricFindAll(Node* from, const T& find, contenitore<T*>* list);
 
-   public:
+public:
     contenitore();
     contenitore(const contenitore<T>& list);
     contenitore<T>& operator=(const contenitore<T>& list);
@@ -58,13 +58,13 @@ class contenitore {
         friend class contenitore<T>;
         friend class constIterator;
 
-       private:
+    private:
         Node* _ptr;
         bool _pastTheEnd;
 
         iterator(Node* n, bool pastTheEnd = false);
 
-       public:
+    public:
         iterator();
 
         T& operator*() const;
@@ -83,12 +83,12 @@ class contenitore {
     class constIterator {
         friend class contenitore<T>;
 
-       private:
+    private:
         iterator _it;
 
         constIterator(Node* n, bool pastTheEnd = false);
 
-       public:
+    public:
         constIterator();
         constIterator(const iterator& it);  // convert iterator in constIterator
 

@@ -33,16 +33,16 @@ public:
     void ShowMessage(const QString&);
 
 protected:
-   Controller* controller;
-   QBoxLayout* masterLayout;
-   QHBoxLayout * mainLayout;
-   QVBoxLayout* PannelloInformazioniP;
-   QGridLayout* grigliaComputer;
-   QGridLayout* grigliaGiocatore;
-   QImage* image;
-   void setSchermata();
-   void addMenu();
-   void addButton();
-   void addLabelP();
+    Controller* controller;
+    QBoxLayout* masterLayout;
+    QHBoxLayout * mainLayout;
+    QVBoxLayout* PannelloInformazioniP;
+    QGridLayout* grigliaComputer;
+    QGridLayout* grigliaGiocatore;
+    QImage* image;
+    void setSchermata();
+    void addMenu();
+    void addButton();
+    void addLabelP();
 };
 #endif //VISTAPOSIZIONE_H
