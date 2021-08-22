@@ -1,6 +1,6 @@
 ﻿#include "controller.h"
 
-Controller::Controller(ModelloPosizione* p,QObject* parent):QObject(parent), vistaP(nullptr),modelloP(p){resetGameP();}//aggiunto resetGameP come prova
+Controller::Controller(ModelloPosizione* p,QObject* parent):QObject(parent), vistaP(nullptr),modelloP(p){resetGameP();}
 
 Controller::Controller(ModelloGioco * g, QObject *parent):QObject(parent),vistaG(nullptr),modelloG(g) {}
 
@@ -78,7 +78,6 @@ bool Controller::CheckPosizionato(unsigned short int x, unsigned short int y)
 
 void Controller::moveG(unsigned short row, unsigned short col)
 {
-    std::cout<<"controller->moveG->start"<<std::endl;
     try {
         modelloG->move(row,col);
         vistaG->update();
@@ -104,16 +103,15 @@ void Controller::moveG(unsigned short row, unsigned short col)
             modelloP->reset();
             vistaP->resetPosizione();
             vistaP->updatePanelloP();
-
         }
-    std::cout<<"controller->moveG->end"<<std::endl;
+    } catch (std::exception*exc) {
+        vistaG->ShowMessage(exc->what());
     }
-    catch (std::exception*exc) { vistaG->ShowMessage(exc->what());}
 }
 
 void Controller::posiziona(unsigned short row, unsigned short col)
 {
-   try {
+    try {
        modelloP->move(row,col);
        vistaP->update();
        vistaP->updatePanelloP();

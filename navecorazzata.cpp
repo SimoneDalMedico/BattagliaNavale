@@ -25,7 +25,6 @@ void NaveCorazzata::assegnaC(unsigned short X, unsigned short Y)
 
 void NaveCorazzata::operator=(NaveCorazzata co)
 {
-    
     std::list<cella>::iterator it;
     for(it=co.caselleNave.begin();it!=co.caselleNave.end();it++){
         cella posizione(it->ShowX(), it->ShowY());

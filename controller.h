@@ -43,8 +43,6 @@ private:
 
     ModelloPosizione* modelloP;
     ModelloGioco* modelloG;
-
-
 };
 
 #endif // CONTROLLER_H
