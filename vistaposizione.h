@@ -43,7 +43,6 @@ protected:
    void setSchermata();
    void addMenu();
    void addButton();
-   void addButtonHelp();
    void addLabelP();
 };
 #endif //VISTAPOSIZIONE_H

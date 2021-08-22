@@ -15,14 +15,12 @@ vistaGioco::vistaGioco(Controller* c,QWidget* parent): QWidget(parent), controll
     mainLayout->addLayout(grigliaGiocatore);
     mainLayout->addLayout(PannelloInformazioni);
     masterLayout->addLayout(mainLayout);
-    addButtonHelp();
     setSchermata();
     setLayout(masterLayout);
 }
 
 void vistaGioco::update()
 {
-    std::cout<<"vistaGioco->update->start"<<std::endl;
     for(unsigned short int i=0;i<100;i++){
         int player=controller->getPlayer(i/10, i%10);
         if(player!=none){
@@ -144,17 +142,6 @@ void vistaGioco::addButton()
     }
 }
 
-void vistaGioco::addButtonHelp()
-{
-    QBoxLayout* posizionamento=new QBoxLayout(QBoxLayout::LeftToRight);
-    posizionamento->addSpacing(750);
-    QPushButton* helpButton = new QPushButton("Help",this);
-    helpButton->setFocusPolicy(Qt::NoFocus);
-    QObject::connect(helpButton,SIGNAL(clicked(bool)),controller,SLOT(sendHelp()));
-    posizionamento->addWidget(helpButton);
-    masterLayout->addLayout(posizionamento);
-}
-
 void vistaGioco::addLabel()
 {
     std::stringstream naviG;
@@ -184,12 +171,17 @@ void vistaGioco::addMenu()
     QMenuBar*menuBar=new QMenuBar(this);
     QMenu* menu=new QMenu("File",menuBar);
     QAction* reset=new QAction("Reset", menu);
-    QAction* exit=new QAction("Quit", menu);
-    connect(reset,SIGNAL(triggered()),controller,SLOT(resetGameG()));
-    connect(exit,SIGNAL(triggered()),this,SLOT(close()));
+    QAction* quit=new QAction("Quit",menuBar);
+    connect(reset,SIGNAL(triggered()),controller,SLOT(resetGameP()));
+    connect(quit,SIGNAL(triggered()),this,SLOT(close()));
+    QMenu* Help=new QMenu("Help",menuBar);
+    QAction* help=new QAction("Come si gioca...",Help);
+    connect(help,SIGNAL(triggered()),controller,SLOT(sendHelp()));
     menu->addAction(reset);
-    menu->addAction(exit);
+    menu->addAction(quit);
+    Help->addAction(help);
     menuBar->addMenu(menu);
+    menuBar->addMenu(Help);
     masterLayout->addWidget(menuBar);
 }
 

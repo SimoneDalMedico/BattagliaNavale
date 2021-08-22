@@ -43,18 +43,12 @@ void Computer::operator=(Computer pos)
 
 unsigned short int Computer::SceltaComputer()
 {
-    std::cout<<"computer->sceltacomputer->start"<<std::endl;
     unsigned short int n=0;
     unsigned short int A[SceltePossibili.size()];
-    std::cout<<"computer->sceltacomputer->Sceltepossibili.size = "<<SceltePossibili.size()<<std::endl;
-    std::cout<<"computer->sceltacomputer->iniziofor"<<std::endl;
     for(std::map<unsigned short int, unsigned short int>::iterator it=SceltePossibili.begin(); it!=SceltePossibili.end();it++){
         A[n]=it->second;
         n++;
     }
-    std::cout<<"computer->sceltacomputer->finefor"<<std::endl;
     unsigned short int scelta=rand()% n;
-    std::cout<<"computer->sceltacomputer->scelta = "<<scelta<<std::endl;
-    std::cout<<"computer->sceltacomputer->A[scelta] = "<<A[scelta]<<std::endl;
     return A[scelta];
 }
