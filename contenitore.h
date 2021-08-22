@@ -105,9 +105,6 @@ class contenitore {
         bool operator!=(const constIterator& x) const;
     };
 
-    // Se MyList<...> c; => begin, end, cbegin, cend disponibili
-    // Se const MyList<...> c => solo cend, cbegin.
-
     iterator begin();
     iterator end();
 

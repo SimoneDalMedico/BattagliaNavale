@@ -25,16 +25,6 @@ Computer::Computer()
     cella* cella_portaaerei=new NavePortaerei();
     deep_ptr<cella> portaaerei(cella_portaaerei);
     navi.pushBack(portaaerei);
-
-//    deep_ptr<cella> assalto=new NaveAssalto();
-//    navi.pushBack(assalto);
-//    deep_ptr<cella> crociere=new NaveCrociere();
-//    navi.pushBack(crociere);
-//    deep_ptr<cella> corazzata=new NaveCorazzata();
-//    navi.pushBack(corazzata);
-//    deep_ptr<cella> portarei=new NavePortaerei();
-//    navi.pushBack(portarei);
-
 }
 
 Computer::Computer(const Computer &C)
@@ -59,13 +49,12 @@ unsigned short int Computer::SceltaComputer()
     std::cout<<"computer->sceltacomputer->Sceltepossibili.size = "<<SceltePossibili.size()<<std::endl;
     std::cout<<"computer->sceltacomputer->iniziofor"<<std::endl;
     for(std::map<unsigned short int, unsigned short int>::iterator it=SceltePossibili.begin(); it!=SceltePossibili.end();it++){
-       A[n]=it->second;
+        A[n]=it->second;
         n++;
     }
     std::cout<<"computer->sceltacomputer->finefor"<<std::endl;
-     unsigned short int scelta=rand()% n;
-//     SceltePossibili.erase(scelta);
-     std::cout<<"computer->sceltacomputer->scelta = "<<scelta<<std::endl;
-     std::cout<<"computer->sceltacomputer->A[scelta] = "<<A[scelta]<<std::endl;
-     return A[scelta];
+    unsigned short int scelta=rand()% n;
+    std::cout<<"computer->sceltacomputer->scelta = "<<scelta<<std::endl;
+    std::cout<<"computer->sceltacomputer->A[scelta] = "<<A[scelta]<<std::endl;
+    return A[scelta];
 }

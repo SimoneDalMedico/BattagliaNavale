@@ -147,10 +147,8 @@ void VistaPosizione::addLabelP()
 
 void VistaPosizione::setSchermata()
 {
-
     grigliaComputer->setSpacing(0);
     grigliaGiocatore->setSpacing(0);
-    //    setMinimumSize(QSize(1300,500));
     setMaximumSize(1400,600);
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
     QFile file(":risorse/style.css");

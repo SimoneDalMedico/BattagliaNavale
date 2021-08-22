@@ -19,17 +19,11 @@ public:
     Giocatore(const Giocatore&);
     ~Giocatore()=default;
     void operator=(Giocatore);
-
 protected:
-//    NaveAssalto assalto;
-//    NaveCrociere crociere;
-//    NaveCorazzata corazzata;
-//    NavePortaerei portaerei;
     contenitore<deep_ptr<cella>> navi;
     static const int Turno=0;
     int numero_Navi_Affondate;
     int numeroNaviPosizionate;
-    //contenitore<deep_ptr<cella>> naviG
 };
 
 #endif // GIOCATORE_H

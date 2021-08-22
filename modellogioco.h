@@ -24,7 +24,6 @@ public:
     bool CheckScelta(unsigned short int, unsigned short int);
     void riempiGriglie(ModelloPosizione*);
     Player GetPlayer(unsigned short int, unsigned short int);
-    Player GetComp(unsigned short int, unsigned short int); //metodo da elimare (per verificare posizionamento navi comp)
     int numNaviAffondateG();
     int numNaviAffondateC();
 private:
